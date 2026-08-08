@@ -15,7 +15,7 @@ export function Logo({ className = "h-9", light = false, iconOnly = false, width
   return (
     <div 
       className={`inline-flex items-center gap-2.5 font-display select-none transition-transform hover:scale-[1.02] shrink-0 ${
-        light ? 'text-[#FCFCF8]' : 'text-[#092B20] dark:text-[#F7FFF9]'
+        light ? 'text-[#FCFCF8]' : 'text-[#092B20]'
       }`}
       style={{ width: width ? `${width}px` : undefined }}
     >
