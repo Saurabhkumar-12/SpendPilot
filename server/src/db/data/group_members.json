@@ -1,0 +1,40 @@
+[
+  {
+    "id": "gm-1",
+    "group_id": "grp-goa",
+    "user_id": "usr-rahul",
+    "role": "ADMIN"
+  },
+  {
+    "id": "gm-2",
+    "group_id": "grp-goa",
+    "user_id": "usr-saurabh",
+    "role": "MEMBER"
+  },
+  {
+    "id": "gm-3",
+    "group_id": "grp-goa",
+    "user_id": "usr-aman",
+    "role": "MEMBER"
+  },
+  {
+    "id": "gm-4",
+    "group_id": "grp-goa",
+    "user_id": "usr-neha",
+    "role": "MEMBER"
+  },
+  {
+    "id": "9e677a5a-bc67-4253-9395-dc695f8aac17",
+    "group_id": "36eb9679-9388-4a8b-897f-99cdf767fb24",
+    "user_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "role": "ADMIN",
+    "joined_at": "2026-08-07T07:08:02.054Z"
+  },
+  {
+    "id": "e489cc01-bba8-4d9b-aa61-6490c872ca31",
+    "group_id": "0e4df75e-5d2c-42b8-93b1-608be43e0a4c",
+    "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "role": "ADMIN",
+    "joined_at": "2026-08-07T07:09:11.103Z"
+  }
+]

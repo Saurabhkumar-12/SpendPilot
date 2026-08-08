@@ -1,0 +1,90 @@
+[
+  {
+    "user_id": "usr-rahul",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "usr-saurabh",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "usr-aman",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "usr-neha",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "9da89803-db12-4b8b-b6f4-834d7ad0329a",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "84d63d8c-3c16-4620-9b28-3ec281d80f74",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "5d001448-b202-444b-861e-866f60306800",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "11ff180a-4e31-43ca-b228-e83df6120861",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  }
+]

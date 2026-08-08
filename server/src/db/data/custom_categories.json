@@ -1,0 +1,18 @@
+[
+  {
+    "id": "df7459e3-d701-47f0-bcf9-bac79838f88e",
+    "user_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "name": "Gadgets",
+    "icon": "Laptop",
+    "color": "#10B981",
+    "created_at": "2026-08-07T07:08:02.049Z"
+  },
+  {
+    "id": "86283283-292c-4756-b488-4b70ec724ead",
+    "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "name": "Gadgets",
+    "icon": "Laptop",
+    "color": "#10B981",
+    "created_at": "2026-08-07T07:09:11.087Z"
+  }
+]

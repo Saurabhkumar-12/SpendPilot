@@ -1,0 +1,64 @@
+[
+  {
+    "id": "exp-1",
+    "user_id": "usr-rahul",
+    "amount": 450,
+    "category": "Food",
+    "description": "Lunch at Cafe Bistro",
+    "date": "2026-08-05",
+    "payment_method": "UPI",
+    "created_at": "2026-08-06T17:17:02.146Z"
+  },
+  {
+    "id": "exp-2",
+    "user_id": "usr-rahul",
+    "amount": 1200,
+    "category": "Fuel",
+    "description": "Petrol fill up",
+    "date": "2026-08-04",
+    "payment_method": "Credit Card",
+    "created_at": "2026-08-06T17:17:02.146Z"
+  },
+  {
+    "id": "exp-3",
+    "user_id": "usr-rahul",
+    "amount": 3500,
+    "category": "Shopping",
+    "description": "Running shoes purchase",
+    "date": "2026-08-02",
+    "payment_method": "UPI",
+    "created_at": "2026-08-06T17:17:02.146Z"
+  },
+  {
+    "id": "exp-4",
+    "user_id": "usr-rahul",
+    "amount": 12000,
+    "category": "Rent",
+    "description": "Monthly room rent share",
+    "date": "2026-08-01",
+    "payment_method": "Net Banking",
+    "created_at": "2026-08-06T17:17:02.146Z"
+  },
+  {
+    "id": "2f66128b-a3af-41f2-8fd9-f255cb62e3be",
+    "user_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-08-07",
+    "payment_method": "UPI",
+    "created_at": "2026-08-07T07:08:02.025Z",
+    "updated_at": "2026-08-07T07:08:02.025Z"
+  },
+  {
+    "id": "f4692d11-6bec-44cc-bcc5-e98714eaeaf9",
+    "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-08-07",
+    "payment_method": "UPI",
+    "created_at": "2026-08-07T07:09:11.050Z",
+    "updated_at": "2026-08-07T07:09:11.050Z"
+  }
+]

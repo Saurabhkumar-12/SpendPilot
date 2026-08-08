@@ -1,0 +1,138 @@
+[
+  {
+    "id": "usr-rahul",
+    "name": "Rahul Sharma",
+    "email": "rahul@spendpilot.com",
+    "password_hash": "$2a$10$o0OF4giyFTvlr870AGDoSuQqUBCueO0DBvIpk2d29G9eZg1sw4d36",
+    "is_verified": 1,
+    "created_at": "2026-08-06T17:17:02.143Z"
+  },
+  {
+    "id": "usr-saurabh",
+    "name": "Saurabh Verma",
+    "email": "saurabh@spendpilot.com",
+    "password_hash": "$2a$10$o0OF4giyFTvlr870AGDoSuQqUBCueO0DBvIpk2d29G9eZg1sw4d36",
+    "is_verified": 1,
+    "created_at": "2026-08-06T17:17:02.143Z"
+  },
+  {
+    "id": "usr-aman",
+    "name": "Aman Gupta",
+    "email": "aman@spendpilot.com",
+    "password_hash": "$2a$10$o0OF4giyFTvlr870AGDoSuQqUBCueO0DBvIpk2d29G9eZg1sw4d36",
+    "is_verified": 1,
+    "created_at": "2026-08-06T17:17:02.143Z"
+  },
+  {
+    "id": "usr-neha",
+    "name": "Neha Singh",
+    "email": "neha@spendpilot.com",
+    "password_hash": "$2a$10$o0OF4giyFTvlr870AGDoSuQqUBCueO0DBvIpk2d29G9eZg1sw4d36",
+    "is_verified": 1,
+    "created_at": "2026-08-06T17:17:02.143Z"
+  },
+  {
+    "id": "9da89803-db12-4b8b-b6f4-834d7ad0329a",
+    "name": "Saurabh",
+    "email": "chaurasiyasaurabh97104@gmail.com",
+    "password_hash": "$2a$10$BLZqCOMNtlyDkvUS37JgPeZ1lSi.cvDiVKAdHm8B1eClq3M/0CFo6",
+    "avatar_url": null,
+    "is_verified": 0,
+    "verification_token": "a5269254afc9bce16b334d656b2b738645e43fb50a0ce96ce215af6866f62388",
+    "reset_token": "59c7795b7bfed825f870865f2795ca075915a54b660029770ad53032073ba38c",
+    "reset_token_expires": "2026-08-06T19:14:13.274Z",
+    "created_at": "2026-08-06T17:18:24.487Z",
+    "updated_at": "2026-08-06T18:14:13.274Z"
+  },
+  {
+    "id": "84d63d8c-3c16-4620-9b28-3ec281d80f74",
+    "name": "Saurabh",
+    "email": "saurabhkumarr8058@gmail.com",
+    "password_hash": "$2a$10$yQ5p4/NFtNsafOsZVucEG.5rtnM0dMYIZ4TVDo.9GfFYb6LZk9wsG",
+    "avatar_url": null,
+    "is_verified": 0,
+    "verification_token": "e0f1ac8c597644e8297b84dff77d131f8dc1c62707dd8d311d4585246afd3ab7",
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-06T17:21:18.796Z",
+    "updated_at": "2026-08-06T17:21:18.796Z"
+  },
+  {
+    "id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "name": "Saurabh",
+    "email": "frankcastlepunisher26@gmail.com",
+    "password_hash": "$2a$10$oXPsSwOP.zZUpsJbdeyNvuRf4kH6rqqUP/jj0DqSlLNFOc7OcsOce",
+    "recovery_pin": "658154",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-06T18:16:57.699Z",
+    "updated_at": "2026-08-06T18:16:57.699Z"
+  },
+  {
+    "id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "name": "QA Test User",
+    "email": "qa_test_1786086481779@spendpilot.com",
+    "password_hash": "$2a$10$ssldu3yoIdy.jfXQ.ndBTeBubp6Yi/eYftVBYi1dJxvFZm4iTJkBS",
+    "recovery_pin": "185628",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-07T07:08:01.876Z",
+    "updated_at": "2026-08-07T07:08:01.876Z"
+  },
+  {
+    "id": "5d001448-b202-444b-861e-866f60306800",
+    "name": "QA Friend User",
+    "email": "friend_1786086481885@spendpilot.com",
+    "password_hash": "$2a$10$JVFS0PmRIazT10ZL0BXlEe2UIuuwBfG1m1gatvyGhxZXSEli39fEa",
+    "recovery_pin": "510227",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-07T07:08:01.967Z",
+    "updated_at": "2026-08-07T07:08:01.967Z"
+  },
+  {
+    "id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "name": "QA Test User",
+    "email": "qa_test_1786086550817@spendpilot.com",
+    "password_hash": "$2a$10$zrJg4juhzJJbPpuBzqzTTucGA7BLhGZ8BB3al2GaSeWZWdwhfcoxu",
+    "recovery_pin": "608904",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-07T07:09:10.908Z",
+    "updated_at": "2026-08-07T07:09:10.908Z"
+  },
+  {
+    "id": "11ff180a-4e31-43ca-b228-e83df6120861",
+    "name": "QA Friend User",
+    "email": "friend_1786086550916@spendpilot.com",
+    "password_hash": "$2a$10$Y5Q784RQ5sUk392f9PnstOLv7UUMnegIMYUT86uT3s8HD4vTrU5SW",
+    "recovery_pin": "882826",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-07T07:09:10.999Z",
+    "updated_at": "2026-08-07T07:09:10.999Z"
+  },
+  {
+    "id": "882a41fd-e79c-4a70-b7ec-422da6ccea2f",
+    "name": "aman",
+    "email": "aman_2379@group.local",
+    "password_hash": "",
+    "is_verified": 1,
+    "created_at": "2026-08-08T05:20:22.379Z"
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "gexp-1",
+    "group_id": "grp-goa",
+    "paid_by_id": "usr-rahul",
+    "amount": 8000,
+    "category": "Rent",
+    "description": "Baga Beach Hotel Stay",
+    "date": "2026-08-03",
+    "split_type": "EQUAL",
+    "created_at": "2026-08-06T17:17:02.149Z",
+    "updated_at": "2026-08-06T17:17:02.149Z"
+  },
+  {
+    "id": "gexp-2",
+    "group_id": "grp-goa",
+    "paid_by_id": "usr-saurabh",
+    "amount": 2500,
+    "category": "Fuel",
+    "description": "Car Fuel & Highway Tolls",
+    "date": "2026-08-03",
+    "split_type": "EQUAL",
+    "created_at": "2026-08-06T17:17:02.150Z",
+    "updated_at": "2026-08-06T17:17:02.150Z"
+  },
+  {
+    "id": "gexp-3",
+    "group_id": "grp-goa",
+    "paid_by_id": "usr-aman",
+    "amount": 3200,
+    "category": "Food",
+    "description": "Seafood Dinner at Shack",
+    "date": "2026-08-04",
+    "split_type": "EQUAL",
+    "created_at": "2026-08-06T17:17:02.153Z",
+    "updated_at": "2026-08-06T17:17:02.153Z"
+  },
+  {
+    "id": "gexp-4",
+    "group_id": "grp-goa",
+    "paid_by_id": "usr-neha",
+    "amount": 6000,
+    "category": "Entertainment",
+    "description": "Water Sports & Scuba Tickets",
+    "date": "2026-08-05",
+    "split_type": "EQUAL",
+    "created_at": "2026-08-06T17:17:02.155Z",
+    "updated_at": "2026-08-06T17:17:02.155Z"
+  },
+  {
+    "id": "ce1851c3-132c-4497-96fc-b3d75be193f6",
+    "group_id": "36eb9679-9388-4a8b-897f-99cdf767fb24",
+    "paid_by_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "amount": 2000,
+    "category": "Travel",
+    "description": "Cab Booking",
+    "date": "2026-08-07",
+    "split_type": "EQUAL",
+    "created_at": "2026-08-07T07:08:02.065Z",
+    "updated_at": "2026-08-07T07:08:02.065Z"
+  },
+  {
+    "id": "ccab9342-d8c5-4c87-92aa-f214d6df3202",
+    "group_id": "0e4df75e-5d2c-42b8-93b1-608be43e0a4c",
+    "paid_by_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "amount": 2000,
+    "category": "Travel",
+    "description": "Cab Booking",
+    "date": "2026-08-07",
+    "split_type": "EQUAL",
+    "created_at": "2026-08-07T07:09:11.119Z",
+    "updated_at": "2026-08-07T07:09:11.119Z"
+  }
+]

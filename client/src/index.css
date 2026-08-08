@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root, html.light {
+    --bg-primary: #F7F6F0;
+    --bg-secondary: #EEF9F2;
+    --bg-card: #FCFCF8;
+    --bg-sidebar: #FCFCF8;
+    --border-color: #DDE5DF;
+    --text-primary: #161A18;
+    --text-secondary: #53635B;
+    --text-muted: #747B76;
+    --accent-emerald: #19B86A;
+    --accent-bright: #2ED47A;
+    --forest-deep: #092B20;
+    --forest-dark: #071C16;
+    --soft-mint: #DDF5E8;
+    --light-mint: #EEF9F2;
+    --warning: #E8A317;
+    --error: #D94A4A;
+  }
+
+  html.dark {
+    --bg-primary: #071C16;
+    --bg-secondary: #092B20;
+    --bg-card: #0E2920;
+    --bg-sidebar: #092B20;
+    --border-color: #1A4337;
+    --text-primary: #F7FFF9;
+    --text-secondary: #B8C9C0;
+    --text-muted: #747B76;
+    --accent-emerald: #2ED47A;
+    --accent-bright: #2ED47A;
+    --forest-deep: #092B20;
+    --forest-dark: #071C16;
+    --soft-mint: #153D30;
+    --light-mint: #0E2920;
+    --warning: #E8A317;
+    --error: #D94A4A;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif;
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Outfit', 'Manrope', sans-serif;
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Custom Natural Fintech Components & Utility Classes */
+.btn-emerald {
+  background: linear-gradient(135deg, #19B86A 0%, #129A57 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 8px 24px -4px rgba(25, 184, 106, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-emerald:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -2px rgba(25, 184, 106, 0.45);
+  background: linear-gradient(135deg, #2ED47A 0%, #19B86A 100%);
+}
+
+.btn-forest {
+  background: #092B20;
+  color: #FCFCF8;
+  font-weight: 700;
+  box-shadow: 0 8px 20px -4px rgba(9, 43, 32, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-forest:hover {
+  transform: translateY(-2px);
+  background: #0D3A2C;
+}
+
+.btn-mint {
+  background: #DDF5E8;
+  color: #092B20;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.btn-mint:hover {
+  background: #C8EED7;
+}
+
+.card-editorial {
+  border-radius: 24px;
+  box-shadow: 0 12px 32px -8px rgba(9, 43, 32, 0.05);
+  transition: all 0.25s ease;
+}
+
+.forest-gradient-bg {
+  background: linear-gradient(145deg, #092B20 0%, #071C16 100%);
+}
+
+.mint-gradient-bg {
+  background: linear-gradient(135deg, #F7F6F0 0%, #EEF9F2 100%);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 35px -5px rgba(25, 184, 106, 0.25);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #C4D3C9;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #19B86A;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #1F4538;
+}

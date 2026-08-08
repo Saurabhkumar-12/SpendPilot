@@ -1,0 +1,29 @@
+[
+  {
+    "id": "grp-goa",
+    "name": "Goa Trip 2026",
+    "description": "Baga beach resort, water sports & dinners",
+    "group_type": "Trip",
+    "created_by": "usr-rahul",
+    "created_at": "2026-08-06T17:17:02.148Z",
+    "updated_at": "2026-08-06T17:17:02.148Z"
+  },
+  {
+    "id": "36eb9679-9388-4a8b-897f-99cdf767fb24",
+    "name": "Goa Trip 2026",
+    "description": "Vacation expenses",
+    "group_type": "Trip",
+    "created_by": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "created_at": "2026-08-07T07:08:02.053Z",
+    "updated_at": "2026-08-07T07:08:02.053Z"
+  },
+  {
+    "id": "0e4df75e-5d2c-42b8-93b1-608be43e0a4c",
+    "name": "Goa Trip 2026",
+    "description": "Vacation expenses",
+    "group_type": "Trip",
+    "created_by": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "created_at": "2026-08-07T07:09:11.102Z",
+    "updated_at": "2026-08-07T07:09:11.102Z"
+  }
+]

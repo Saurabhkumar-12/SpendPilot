@@ -1,0 +1,40 @@
+name: SpendPilot CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v3
+        with:
+          node-version: 24
+
+      - name: Install Server Dependencies
+        run: |
+          cd server
+          npm ci
+
+      - name: Run Backend Automated Test Suite
+        run: |
+          cd server
+          node --test tests/*.test.js
+
+      - name: Install Client Dependencies
+        run: |
+          cd client
+          npm ci
+
+      - name: Build Vite Client Production Bundle
+        run: |
+          cd client
+          npm run build

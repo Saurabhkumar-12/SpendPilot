@@ -1,0 +1,24 @@
+[
+  {
+    "id": "445efae6-fd11-48f0-bfa5-5b500e955826",
+    "group_id": "36eb9679-9388-4a8b-897f-99cdf767fb24",
+    "payer_id": "5d001448-b202-444b-861e-866f60306800",
+    "payee_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "amount": 1000,
+    "status": "SETTLED",
+    "notes": "Paid via GPay",
+    "settled_at": "2026-08-07T07:08:02.083Z",
+    "created_at": "2026-08-07T07:08:02.083Z"
+  },
+  {
+    "id": "6e546b49-9551-4aae-8503-9b7b11ad09bd",
+    "group_id": "0e4df75e-5d2c-42b8-93b1-608be43e0a4c",
+    "payer_id": "11ff180a-4e31-43ca-b228-e83df6120861",
+    "payee_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "amount": 1000,
+    "status": "SETTLED",
+    "notes": "Paid via GPay",
+    "settled_at": "2026-08-07T07:09:11.134Z",
+    "created_at": "2026-08-07T07:09:11.134Z"
+  }
+]

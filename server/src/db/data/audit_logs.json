@@ -1,0 +1,308 @@
+[
+  {
+    "id": "472875dc-295d-412e-b2f6-2adca6438f7e",
+    "user_id": "9da89803-db12-4b8b-b6f4-834d7ad0329a",
+    "action": "USER_REGISTERED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"email\":\"chaurasiyasaurabh97104@gmail.com\"}",
+    "created_at": "2026-08-06T17:18:24.490Z"
+  },
+  {
+    "id": "759cdb7c-0b13-484f-9bcb-9ae6387dca07",
+    "user_id": "cd984ea1-3ea2-4e81-aa83-61c20a9f2036",
+    "action": "USER_REGISTERED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"email\":\"2k23.ece2312657@gmail.com\"}",
+    "created_at": "2026-08-06T17:20:50.592Z"
+  },
+  {
+    "id": "e629ee28-d74c-4ccd-9619-623701f21a43",
+    "user_id": "84d63d8c-3c16-4620-9b28-3ec281d80f74",
+    "action": "USER_REGISTERED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"email\":\"saurabhkumarr8058@gmail.com\"}",
+    "created_at": "2026-08-06T17:21:18.802Z"
+  },
+  {
+    "id": "01ce9d1c-86f7-4514-8f0a-c1e9ea49f4c5",
+    "user_id": "cd984ea1-3ea2-4e81-aa83-61c20a9f2036",
+    "action": "USER_LOGIN",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"rememberMe\":true}",
+    "created_at": "2026-08-06T17:21:31.298Z"
+  },
+  {
+    "id": "c9c910f4-7d25-4c55-b826-3426c917dc5d",
+    "user_id": "cd984ea1-3ea2-4e81-aa83-61c20a9f2036",
+    "action": "USER_ACCOUNT_DELETED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{}",
+    "created_at": "2026-08-06T17:43:33.184Z"
+  },
+  {
+    "id": "d0774e00-2c7c-46ac-b802-fb9a6bca6361",
+    "user_id": "9da89803-db12-4b8b-b6f4-834d7ad0329a",
+    "action": "FORGOT_PASSWORD_REQUESTED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"email\":\"chaurasiyasaurabh97104@gmail.com\"}",
+    "created_at": "2026-08-06T18:14:14.558Z"
+  },
+  {
+    "id": "3ee627b6-60ed-4f89-9f7d-687ab4b08518",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"email\":\"frankcastlepunisher26@gmail.com\"}",
+    "created_at": "2026-08-06T18:16:57.703Z"
+  },
+  {
+    "id": "c8a2f78e-b10a-4cff-b973-b01a68758e00",
+    "user_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"qa_test_1786086481779@spendpilot.com\"}",
+    "created_at": "2026-08-07T07:08:01.881Z"
+  },
+  {
+    "id": "03a81427-07ad-4a99-96f9-6e7275a5c260",
+    "user_id": "5d001448-b202-444b-861e-866f60306800",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"friend_1786086481885@spendpilot.com\"}",
+    "created_at": "2026-08-07T07:08:01.969Z"
+  },
+  {
+    "id": "b346a252-67de-47eb-b7d8-148f3234a2eb",
+    "user_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "action": "PREFERENCES_UPDATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-08-07T07:08:02.019Z"
+  },
+  {
+    "id": "c9a3c213-d074-4a27-8424-d41bb343165a",
+    "user_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "action": "PERSONAL_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"2f66128b-a3af-41f2-8fd9-f255cb62e3be\",\"amount\":450}",
+    "created_at": "2026-08-07T07:08:02.025Z"
+  },
+  {
+    "id": "59e4b17e-cc08-4849-aa45-8f82b68fab00",
+    "user_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "action": "CUSTOM_CATEGORY_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"categoryName\":\"Gadgets\"}",
+    "created_at": "2026-08-07T07:08:02.049Z"
+  },
+  {
+    "id": "9b901c0d-f9bd-4b7f-8d5d-4db7e91dfbb4",
+    "user_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "action": "GROUP_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"groupId\":\"36eb9679-9388-4a8b-897f-99cdf767fb24\",\"name\":\"Goa Trip 2026\"}",
+    "created_at": "2026-08-07T07:08:02.054Z"
+  },
+  {
+    "id": "980813bf-4cd3-49db-8574-de10103eceef",
+    "user_id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
+    "action": "GROUP_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"groupId\":\"36eb9679-9388-4a8b-897f-99cdf767fb24\",\"expenseId\":\"ce1851c3-132c-4497-96fc-b3d75be193f6\",\"amount\":2000}",
+    "created_at": "2026-08-07T07:08:02.068Z"
+  },
+  {
+    "id": "48169d08-8546-4985-95fe-8f4268345de1",
+    "user_id": "5d001448-b202-444b-861e-866f60306800",
+    "action": "SETTLEMENT_RECORDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"settlementId\":\"445efae6-fd11-48f0-bfa5-5b500e955826\",\"amount\":1000}",
+    "created_at": "2026-08-07T07:08:02.084Z"
+  },
+  {
+    "id": "c326ba1d-4ae9-41f9-9bf6-2aaeded81718",
+    "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"qa_test_1786086550817@spendpilot.com\"}",
+    "created_at": "2026-08-07T07:09:10.912Z"
+  },
+  {
+    "id": "e7bf0a55-bfb7-421b-a605-18940154f13e",
+    "user_id": "11ff180a-4e31-43ca-b228-e83df6120861",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"friend_1786086550916@spendpilot.com\"}",
+    "created_at": "2026-08-07T07:09:11.002Z"
+  },
+  {
+    "id": "2739d340-bb2a-4210-a39b-7a4dd45beb27",
+    "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "action": "PREFERENCES_UPDATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-08-07T07:09:11.043Z"
+  },
+  {
+    "id": "d1276da8-69ca-4987-acc6-c4748698b710",
+    "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "action": "PERSONAL_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"f4692d11-6bec-44cc-bcc5-e98714eaeaf9\",\"amount\":450}",
+    "created_at": "2026-08-07T07:09:11.051Z"
+  },
+  {
+    "id": "9a405900-9057-4940-947c-72f203d283c6",
+    "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "action": "CUSTOM_CATEGORY_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"categoryName\":\"Gadgets\"}",
+    "created_at": "2026-08-07T07:09:11.088Z"
+  },
+  {
+    "id": "e2bd06d1-b859-4bd8-b30a-85ac2abfe949",
+    "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "action": "GROUP_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"groupId\":\"0e4df75e-5d2c-42b8-93b1-608be43e0a4c\",\"name\":\"Goa Trip 2026\"}",
+    "created_at": "2026-08-07T07:09:11.103Z"
+  },
+  {
+    "id": "977fc8ef-c942-4bf0-a42f-e669a8582c68",
+    "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
+    "action": "GROUP_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"groupId\":\"0e4df75e-5d2c-42b8-93b1-608be43e0a4c\",\"expenseId\":\"ccab9342-d8c5-4c87-92aa-f214d6df3202\",\"amount\":2000}",
+    "created_at": "2026-08-07T07:09:11.120Z"
+  },
+  {
+    "id": "4d507688-d2c1-48af-9173-e7edca20dc09",
+    "user_id": "11ff180a-4e31-43ca-b228-e83df6120861",
+    "action": "SETTLEMENT_RECORDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"settlementId\":\"6e546b49-9551-4aae-8503-9b7b11ad09bd\",\"amount\":1000}",
+    "created_at": "2026-08-07T07:09:11.135Z"
+  },
+  {
+    "id": "72a7cae1-6c32-4cce-8ff0-51fbf355bd6c",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "USER_LOGOUT",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{}",
+    "created_at": "2026-08-07T07:14:28.564Z"
+  },
+  {
+    "id": "5fa12a27-dd17-433a-a723-68c750e4396e",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "USER_LOGIN",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"rememberMe\":true}",
+    "created_at": "2026-08-08T04:45:42.978Z"
+  },
+  {
+    "id": "5502cd04-2567-4f96-bd17-e61e7442ce50",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "USER_LOGOUT",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{}",
+    "created_at": "2026-08-08T04:51:10.486Z"
+  },
+  {
+    "id": "88ddc6f6-3c8e-4ed8-8eca-f8f117a08ea6",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "USER_LOGIN",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"rememberMe\":true}",
+    "created_at": "2026-08-08T04:59:24.238Z"
+  },
+  {
+    "id": "35118668-0000-4aa4-a76c-caf460e8f329",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "GROUP_CREATED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"groupId\":\"2fd50942-6b4e-424e-b42d-94b3ea64c3f6\",\"name\":\"naintal\"}",
+    "created_at": "2026-08-08T05:06:53.047Z"
+  },
+  {
+    "id": "7c7de592-85c7-480e-8e30-f1a4a880e8dd",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "GROUP_DELETED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"groupId\":\"2fd50942-6b4e-424e-b42d-94b3ea64c3f6\"}",
+    "created_at": "2026-08-08T05:19:58.281Z"
+  },
+  {
+    "id": "fde41350-f80f-4989-8f27-20ead3e9720b",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "GROUP_CREATED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"groupId\":\"1869e03a-76ea-4ef2-8f1a-6fe93d9b1843\",\"name\":\"goa\"}",
+    "created_at": "2026-08-08T05:20:10.943Z"
+  },
+  {
+    "id": "ef2b3523-eecf-45ab-bf4d-e5d4ba27c063",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "GROUP_EXPENSE_ADDED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"expenseId\":\"c837efa5-6f44-4e66-a4a1-6953b5dffe10\",\"groupId\":\"1869e03a-76ea-4ef2-8f1a-6fe93d9b1843\",\"amount\":1000}",
+    "created_at": "2026-08-08T05:20:39.650Z"
+  },
+  {
+    "id": "c4001483-5968-49b1-a2a5-6fa5468b92d7",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "SETTLEMENT_RECORDED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"settlementId\":\"aae090d9-960e-4402-991c-9e9011f61f0a\",\"amount\":500}",
+    "created_at": "2026-08-08T05:21:17.640Z"
+  },
+  {
+    "id": "66c2f583-1bf4-41b1-810b-7f4bd16cca9e",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "USER_LOGIN",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"rememberMe\":true}",
+    "created_at": "2026-08-08T05:28:40.042Z"
+  },
+  {
+    "id": "854846f2-f8e1-49ef-b25a-1f2c00cd1390",
+    "user_id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
+    "action": "GROUP_DELETED",
+    "ip_address": "::1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "details": "{\"groupId\":\"1869e03a-76ea-4ef2-8f1a-6fe93d9b1843\"}",
+    "created_at": "2026-08-08T05:29:14.666Z"
+  }
+]
