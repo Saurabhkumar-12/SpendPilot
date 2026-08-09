@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import { db } from '../../db/database.js';
 import { config } from '../../config/index.js';
 import { logAuditAction } from '../../middleware/auditLogger.js';
-import { sendPasswordResetEmail, sendPasswordChangedConfirmationEmail } from '../../services/emailService.js';
+import { sendPasswordResetEmail, sendPasswordChangedConfirmationEmail, sendVerificationEmail } from '../../services/emailService.js';
 
 export const authController = {
   // 1. User Registration
@@ -79,6 +79,12 @@ export const authController = {
       );
 
       logAuditAction(userId, 'USER_REGISTERED_AND_LOGGED_IN', req, { email: normalizedEmail });
+
+      sendVerificationEmail({
+        to: newUser.email,
+        userName: newUser.name,
+        verificationToken: uniqueRecoveryPin
+      }).catch(err => console.warn(`⚠️ [VERIFICATION EMAIL NOTICE]: ${err.message}`));
 
       return res.status(201).json({
         success: true,

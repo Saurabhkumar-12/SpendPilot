@@ -3,6 +3,7 @@ import { db } from '../../db/database.js';
 import { calculateOptimalSettlements } from '../../utils/settlementSolver.js';
 import { logAuditAction } from '../../middleware/auditLogger.js';
 import { emitGroupEvent } from '../../socket.js';
+import { sendGroupInvitationEmail } from '../../services/emailService.js';
 
 export const groupController = {
   async createGroup(req, res, next) {
@@ -313,6 +314,17 @@ export const groupController = {
       });
 
       logAuditAction(userId, 'GROUP_MEMBER_INVITED', req, { groupId, invitedUserId: targetUser.id });
+
+      const group = db.findOne('groups', g => g.id === groupId);
+
+      if (targetUser && targetUser.email && !targetUser.email.endsWith('@group.local')) {
+        sendGroupInvitationEmail({
+          to: targetUser.email,
+          inviterName: req.user.name || 'A group member',
+          groupName: group ? group.name : 'Expense Group',
+          groupId
+        }).catch(err => console.warn(`⚠️ [GROUP INVITE EMAIL NOTICE]: ${err.message}`));
+      }
 
       emitGroupEvent(groupId, 'group:member-added', {
         member: {

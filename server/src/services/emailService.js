@@ -50,7 +50,7 @@ export async function sendPasswordResetEmail(options, tokenParam, nameParam) {
   }
 
   const normalizedTo = toEmail.trim().toLowerCase();
-  const maskedTo = normalizedTo.substring(0, 1) + '***@' + normalizedTo.split('@')[1];
+  const maskedTo = normalizedTo.substring(0, 1) + '***@' + (normalizedTo.split('@')[1] || 'domain.com');
 
   const appUrl = config.appUrl || 'http://localhost:5173';
   const resetLink = `${appUrl}/reset-password/${resetToken}`;
@@ -111,7 +111,6 @@ export async function sendPasswordResetEmail(options, tokenParam, nameParam) {
   console.log(`To: ${maskedTo}`);
   console.log('Purpose: PASSWORD_RESET\n');
 
-  // 1. Try SMTP Transporter if configured
   if (smtpTransporter) {
     try {
       const info = await withTimeout(smtpTransporter.sendMail({
@@ -120,22 +119,13 @@ export async function sendPasswordResetEmail(options, tokenParam, nameParam) {
         subject: 'Reset your SpendPilot password',
         html: htmlContent
       }));
-      console.log('\n[RESET EMAIL]');
-      console.log(`Recipient: ${maskedTo}`);
-      console.log('Provider: SMTP');
-      console.log('Status: accepted');
-      console.log(`Message ID: ${info.messageId}\n`);
+      console.log(`[RESET EMAIL] Recipient: ${maskedTo} Provider: SMTP Status: accepted Message ID: ${info.messageId}`);
       return { success: true, messageId: info.messageId, provider: 'smtp', recipient: normalizedTo };
     } catch (err) {
-      console.log('\n[RESET EMAIL]');
-      console.log(`Recipient: ${maskedTo}`);
-      console.log('Provider: SMTP');
-      console.log('Status: rejected');
-      console.log('Message ID: NONE\n');
+      console.log(`[EMAIL ERROR] Provider: SMTP Status: 500 Message: ${err.message}`);
     }
   }
 
-  // 2. Try Resend SDK if configured
   if (resend) {
     try {
       const data = await withTimeout(resend.emails.send({
@@ -146,74 +136,23 @@ export async function sendPasswordResetEmail(options, tokenParam, nameParam) {
       }));
 
       if (data && data.data && data.data.id) {
-        console.log('\n[RESET EMAIL]');
-        console.log(`Recipient: ${maskedTo}`);
-        console.log('Provider: Resend');
-        console.log('Status: accepted');
-        console.log(`Message ID: ${data.data.id}\n`);
+        console.log(`[RESET EMAIL] Recipient: ${maskedTo} Provider: Resend Status: accepted Message ID: ${data.data.id}`);
         return { success: true, messageId: data.data.id, provider: 'resend', recipient: normalizedTo };
       } else if (data && data.error) {
         const statusCode = data.error.statusCode || (data.error.name === 'validation_error' ? 403 : 500);
-        console.log('\n[RESET EMAIL]');
-        console.log(`Recipient: ${maskedTo}`);
-        console.log('Provider: Resend');
-        console.log('Status: rejected');
-        console.log('Message ID: NONE');
-        console.log(`Error: ${data.error.message}\n`);
+        console.log(`[EMAIL ERROR] Provider: Resend Status: ${statusCode} Message: ${data.error.message}`);
 
-        // If in development mode and Resend rejects due to unverified recipient domain, use Ethereal SMTP fallback
-        if (config.env === 'development' && data.error.name === 'validation_error') {
-          console.log(`📨 [DEV FALLBACK] Resend testing domain restriction active. Generating Ethereal test inbox for [${normalizedTo}]...`);
-          try {
-            const testAccount = await nodemailer.createTestAccount();
-            const devTransporter = nodemailer.createTransport({
-              host: 'smtp.ethereal.email',
-              port: 587,
-              secure: false,
-              auth: { user: testAccount.user, pass: testAccount.pass }
-            });
-            const info = await devTransporter.sendMail({
-              from: 'SpendPilot Security <no-reply@spendpilot.com>',
-              to: normalizedTo,
-              subject: 'Reset your SpendPilot password',
-              html: htmlContent
-            });
-            return { success: true, messageId: info.messageId, provider: 'ethereal-dev', recipient: normalizedTo };
-          } catch (e) {
-            return { success: true, devMode: true, recipient: normalizedTo };
-          }
+        if (config.env === 'development' && (data.error.name === 'validation_error' || statusCode === 422 || statusCode === 403)) {
+          return { success: true, devMode: true, provider: 'resend-dev-sandbox', recipient: normalizedTo };
         }
 
         return { success: false, error: data.error.message, httpStatus: statusCode, provider: 'resend', recipient: normalizedTo };
       }
     } catch (err) {
-      console.log('\n[RESET EMAIL]');
-      console.log(`Recipient: ${maskedTo}`);
-      console.log('Provider: Resend');
-      console.log('Status: rejected');
-      console.log('Message ID: NONE');
-      console.log(`Error: ${err.message}\n`);
+      console.log(`[EMAIL ERROR] Provider: Resend Status: 500 Message: ${err.message}`);
 
       if (config.env === 'development') {
-        console.log(`📨 [DEV FALLBACK] Development fallback active for [${normalizedTo}]...`);
-        try {
-          const testAccount = await nodemailer.createTestAccount();
-          const devTransporter = nodemailer.createTransport({
-            host: 'smtp.ethereal.email',
-            port: 587,
-            secure: false,
-            auth: { user: testAccount.user, pass: testAccount.pass }
-          });
-          const info = await devTransporter.sendMail({
-            from: 'SpendPilot Security <no-reply@spendpilot.com>',
-            to: normalizedTo,
-            subject: 'Reset your SpendPilot password',
-            html: htmlContent
-          });
-          return { success: true, messageId: info.messageId, provider: 'ethereal-dev', recipient: normalizedTo };
-        } catch (e) {
-          return { success: true, devMode: true, recipient: normalizedTo };
-        }
+        return { success: true, devMode: true, provider: 'resend-dev-sandbox', recipient: normalizedTo };
       }
 
       return { success: false, error: err.message, httpStatus: 500, provider: 'resend', recipient: normalizedTo };
@@ -224,9 +163,142 @@ export async function sendPasswordResetEmail(options, tokenParam, nameParam) {
 }
 
 /**
- * Sends a standalone test email for dev diagnostics
+ * 2. Sends Password Changed Confirmation Email
+ */
+export async function sendPasswordChangedConfirmationEmail(toEmail, userName = 'Valued User') {
+  if (!toEmail) return { success: false, error: 'Recipient email required' };
+  const normalizedTo = toEmail.trim().toLowerCase();
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"></head>
+    <body style="font-family: sans-serif; background-color: #F7F6F0; color: #092B20; padding: 24px;">
+      <div style="max-width: 500px; margin: 0 auto; background: #FFFFFF; border: 1px solid #DDE5DF; border-radius: 20px; padding: 32px;">
+        <div style="font-size: 20px; font-weight: 900; color: #19B86A; margin-bottom: 20px;">SpendPilot</div>
+        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 12px;">Password Changed Successfully</h3>
+        <p style="font-size: 13px; color: #53635B;">Hi ${userName},</p>
+        <p style="font-size: 13px; color: #53635B;">Your SpendPilot account password was changed successfully.</p>
+      </div>
+    </body>
+    </html>
+  `;
+
+  try {
+    if (resend) {
+      await withTimeout(resend.emails.send({ from: emailFrom, to: normalizedTo, subject: '✅ SpendPilot Password Changed Successfully', html: htmlContent }), 2500);
+    }
+  } catch (err) {
+    console.log(`[EMAIL ERROR] Provider: Resend Status: 500 Message: ${err.message}`);
+  }
+  return { success: true, recipient: normalizedTo };
+}
+
+/**
+ * 3. Sends Account Verification Email
+ */
+export async function sendVerificationEmail(options, tokenParam, nameParam) {
+  let toEmail, verificationToken, userName;
+  if (typeof options === 'object' && options !== null) {
+    toEmail = options.to;
+    verificationToken = options.verificationToken;
+    userName = options.userName || 'Valued User';
+  } else {
+    toEmail = options;
+    verificationToken = tokenParam;
+    userName = nameParam || 'Valued User';
+  }
+
+  if (!toEmail) return { success: false, error: 'Recipient email required' };
+  const normalizedTo = toEmail.trim().toLowerCase();
+  const appUrl = config.appUrl || 'http://localhost:5173';
+  const verifyLink = `${appUrl}/verify-email?token=${verificationToken}`;
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head><meta charset="utf-8"></head>
+    <body style="font-family: sans-serif; background-color: #F7F6F0; color: #092B20; padding: 32px 16px;">
+      <div style="max-width: 500px; margin: 0 auto; background: #FFFFFF; border: 1px solid #DDE5DF; border-radius: 24px; padding: 40px 32px;">
+        <h2 style="color: #19B86A;">SpendPilot</h2>
+        <h3>Verify your SpendPilot Email</h3>
+        <p>Hi ${userName},</p>
+        <p>Welcome to SpendPilot! Click the button below to verify your email address and activate your account.</p>
+        <div style="text-align: center; margin: 28px 0;">
+          <a href="${verifyLink}" style="display: inline-block; padding: 14px 32px; background: #19B86A; color: #FFFFFF; font-weight: 800; text-decoration: none; border-radius: 16px;">Verify Email Address</a>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  try {
+    if (resend) {
+      const data = await withTimeout(resend.emails.send({ from: emailFrom, to: normalizedTo, subject: 'Verify your SpendPilot email address', html: htmlContent }));
+      if (data && data.data && data.data.id) return { success: true, messageId: data.data.id, provider: 'resend', recipient: normalizedTo };
+    }
+  } catch (err) {
+    console.log(`[EMAIL ERROR] Provider: Resend Status: 500 Message: ${err.message}`);
+  }
+  return { success: true, devMode: true, recipient: normalizedTo };
+}
+
+/**
+ * 4. Sends Group Invitation Email
+ */
+export async function sendGroupInvitationEmail(options, groupParam, inviterParam) {
+  let toEmail, inviterName, groupName, groupId;
+  if (typeof options === 'object' && options !== null) {
+    toEmail = options.to;
+    inviterName = options.inviterName || 'A SpendPilot user';
+    groupName = options.groupName || 'Expense Group';
+    groupId = options.groupId;
+  } else {
+    toEmail = options;
+    groupName = groupParam || 'Expense Group';
+    inviterName = inviterParam || 'A SpendPilot user';
+  }
+
+  if (!toEmail) return { success: false, error: 'Recipient email required' };
+  const normalizedTo = toEmail.trim().toLowerCase();
+  const appUrl = config.appUrl || 'http://localhost:5173';
+  const joinLink = groupId ? `${appUrl}/dashboard?joinGroup=${groupId}` : `${appUrl}/dashboard`;
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"></head>
+    <body style="font-family: sans-serif; background-color: #F7F6F0; color: #092B20; padding: 24px;">
+      <div style="max-width: 500px; margin: 0 auto; background: #FFFFFF; border: 1px solid #DDE5DF; border-radius: 24px; padding: 32px;">
+        <h2 style="color: #19B86A;">SpendPilot Group Invitation</h2>
+        <p>Hi,</p>
+        <p><strong>${inviterName}</strong> invited you to join the group <strong>"${groupName}"</strong> on SpendPilot!</p>
+        <div style="text-align: center; margin: 28px 0;">
+          <a href="${joinLink}" style="display: inline-block; padding: 14px 32px; background: #19B86A; color: #FFFFFF; font-weight: 800; text-decoration: none; border-radius: 16px;">View Group</a>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  try {
+    if (resend) {
+      const data = await withTimeout(resend.emails.send({ from: emailFrom, to: normalizedTo, subject: `👥 You're invited to join "${groupName}" on SpendPilot`, html: htmlContent }));
+      if (data && data.data && data.data.id) return { success: true, messageId: data.data.id, provider: 'resend', recipient: normalizedTo };
+    }
+  } catch (err) {
+    console.log(`[EMAIL ERROR] Provider: Resend Status: 500 Message: ${err.message}`);
+  }
+  return { success: true, devMode: true, recipient: normalizedTo };
+}
+
+/**
+ * 5. Sends a Standalone Test Email
  */
 export async function sendTestEmail(toEmail) {
+  if (!toEmail) return { success: false, error: 'Recipient email required' };
+  const normalizedTo = toEmail.trim().toLowerCase();
+
   const htmlContent = `
     <!DOCTYPE html>
     <html>
@@ -239,85 +311,25 @@ export async function sendTestEmail(toEmail) {
 
   if (resend) {
     try {
-      console.log('\n[RESEND DEBUG]');
-      console.log('Request started');
       const data = await withTimeout(resend.emails.send({
         from: emailFrom,
-        to: toEmail,
+        to: normalizedTo,
         subject: 'SpendPilot Test Email',
         html: htmlContent
       }));
 
       if (data && data.data && data.data.id) {
-        console.log('HTTP status: 200');
-        console.log(`Message ID: ${data.data.id}`);
-        console.log('Error: NONE\n');
-        return { success: true, messageId: data.data.id, provider: 'resend' };
+        return { success: true, messageId: data.data.id, provider: 'resend', recipient: normalizedTo };
       } else if (data && data.error) {
         const statusCode = data.error.statusCode || (data.error.name === 'validation_error' ? 403 : 500);
-        console.log(`HTTP status: ${statusCode}`);
-        console.log('Message ID: NONE');
-        console.log(`Provider error: ${data.error.message}\n`);
-        return { success: false, error: data.error.message };
+        console.log(`[EMAIL ERROR] Provider: Resend Status: ${statusCode} Message: ${data.error.message}`);
+        return { success: false, error: data.error.message, recipient: normalizedTo };
       }
     } catch (err) {
-      console.log('HTTP status: 500');
-      console.log('Message ID: NONE');
-      console.log(`Provider error: ${err.message}\n`);
-      return { success: false, error: err.message };
+      console.log(`[EMAIL ERROR] Provider: Resend Status: 500 Message: ${err.message}`);
+      return { success: false, error: err.message, recipient: normalizedTo };
     }
   }
 
-  return { success: false, error: 'Resend provider not configured' };
+  return { success: false, error: 'Resend provider not configured', recipient: normalizedTo };
 }
-
-/**
- * 2. Sends Password Changed Confirmation Email
- */
-export async function sendPasswordChangedConfirmationEmail(toEmail, userName = 'Valued User') {
-  const htmlContent = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <style>
-        body { font-family: sans-serif; background-color: #F7F6F0; color: #092B20; padding: 24px; }
-        .card { max-width: 500px; margin: 0 auto; background: #FFFFFF; border: 1px solid #DDE5DF; border-radius: 20px; padding: 32px; }
-        .logo { font-size: 20px; font-weight: 900; color: #19B86A; margin-bottom: 20px; }
-        .title { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
-        .text { font-size: 13px; color: #53635B; line-height: 1.5; }
-      </style>
-    </head>
-    <body>
-      <div class="card">
-        <div class="logo">SpendPilot</div>
-        <div class="title">Password Changed Successfully</div>
-        <p class="text">Hi ${userName},</p>
-        <p class="text">Your SpendPilot account password was changed successfully.</p>
-      </div>
-    </body>
-    </html>
-  `;
-
-  try {
-    if (smtpTransporter) {
-      await withTimeout(smtpTransporter.sendMail({
-        from: emailFrom,
-        to: toEmail,
-        subject: '✅ SpendPilot Password Changed Successfully',
-        html: htmlContent
-      }), 2500);
-    } else if (resend) {
-      await withTimeout(resend.emails.send({
-        from: emailFrom,
-        to: toEmail,
-        subject: '✅ SpendPilot Password Changed Successfully',
-        html: htmlContent
-      }), 2500);
-    }
-  } catch (err) {
-    console.warn(`⚠️ [CONFIRMATION EMAIL NOTICE] Non-critical dispatch result: ${err.message}`);
-  }
-  return { success: true };
-}
-
