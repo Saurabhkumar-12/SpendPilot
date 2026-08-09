@@ -11,7 +11,13 @@ services:
         value: 5000
       - key: NODE_ENV
         value: production
-      - key: JWT_SECRET
+      - key: JWT_ACCESS_SECRET
         generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: saurabhkumarr8058@gmail.com
+      - key: APP_URL
+        value: https://spendpilot-coral.vercel.app
       - key: CORS_ORIGIN
-        value: "*"
+        value: https://spendpilot-coral.vercel.app
