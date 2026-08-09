@@ -72,7 +72,7 @@ async function runEmailAudit() {
     logTest(4, 'Password Changed Confirmation Target', false, err.message);
   }
 
-  // Test E: Verification Email -> Dynamic Recipient User
+  // Test E: Email verification is intentionally disabled.
   try {
     const newlyRegistered = 'new_registered_user@example.com';
     const resVer = await sendVerificationEmail({
@@ -80,10 +80,10 @@ async function runEmailAudit() {
       userName: 'New User',
       verificationToken: 'ver_999'
     });
-    const passVer = resVer && resVer.recipient === newlyRegistered.toLowerCase();
-    logTest(5, 'Account Verification Email Target', passVer, `(Recipient: ${resVer.recipient})`);
+    const passVer = resVer && resVer.success === false && resVer.error === 'Email verification is disabled.';
+    logTest(5, 'Account Verification Email Disabled', passVer);
   } catch (err) {
-    logTest(5, 'Account Verification Email Target', false, err.message);
+    logTest(5, 'Account Verification Email Disabled', false, err.message);
   }
 
   // Test F: Missing Recipient Error Handling

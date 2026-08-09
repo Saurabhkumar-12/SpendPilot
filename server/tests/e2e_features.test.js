@@ -137,11 +137,9 @@ test('E2E - Token Refresh Route', async () => {
   authToken = json.token;
 });
 
-test('E2E - Verify Email Route', async () => {
+test('E2E - Email Verification Route Is Disabled', async () => {
   const res = await fetch(`${baseUrl}/api/v1/auth/verify-email?token=dummy-token`);
-  assert.equal(res.status, 200);
-  const json = await res.json();
-  assert.equal(json.success, true);
+  assert.equal(res.status, 404);
 });
 
 // 3. Profile & Preferences
