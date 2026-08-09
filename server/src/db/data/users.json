@@ -5,7 +5,11 @@
     "email": "rahul@spendpilot.com",
     "password_hash": "$2a$10$o0OF4giyFTvlr870AGDoSuQqUBCueO0DBvIpk2d29G9eZg1sw4d36",
     "is_verified": 1,
-    "created_at": "2026-08-06T17:17:02.143Z"
+    "created_at": "2026-08-06T17:17:02.143Z",
+    "reset_token": null,
+    "reset_token_expires": null,
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "usr-saurabh",
@@ -13,7 +17,11 @@
     "email": "saurabh@spendpilot.com",
     "password_hash": "$2a$10$o0OF4giyFTvlr870AGDoSuQqUBCueO0DBvIpk2d29G9eZg1sw4d36",
     "is_verified": 1,
-    "created_at": "2026-08-06T17:17:02.143Z"
+    "created_at": "2026-08-06T17:17:02.143Z",
+    "reset_token": null,
+    "reset_token_expires": null,
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "usr-aman",
@@ -21,7 +29,11 @@
     "email": "aman@spendpilot.com",
     "password_hash": "$2a$10$o0OF4giyFTvlr870AGDoSuQqUBCueO0DBvIpk2d29G9eZg1sw4d36",
     "is_verified": 1,
-    "created_at": "2026-08-06T17:17:02.143Z"
+    "created_at": "2026-08-06T17:17:02.143Z",
+    "reset_token": null,
+    "reset_token_expires": null,
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "usr-neha",
@@ -29,7 +41,11 @@
     "email": "neha@spendpilot.com",
     "password_hash": "$2a$10$o0OF4giyFTvlr870AGDoSuQqUBCueO0DBvIpk2d29G9eZg1sw4d36",
     "is_verified": 1,
-    "created_at": "2026-08-06T17:17:02.143Z"
+    "created_at": "2026-08-06T17:17:02.143Z",
+    "reset_token": null,
+    "reset_token_expires": null,
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "9da89803-db12-4b8b-b6f4-834d7ad0329a",
@@ -39,11 +55,11 @@
     "avatar_url": null,
     "is_verified": 0,
     "verification_token": "a5269254afc9bce16b334d656b2b738645e43fb50a0ce96ce215af6866f62388",
-    "reset_token": "05cbefa7950fafdd9ff2198a0b60084c4f3988d23c736675bfc42dd1966f634e",
-    "reset_token_expires": "2026-08-09T15:20:51.653Z",
+    "reset_token": null,
+    "reset_token_expires": null,
     "created_at": "2026-08-06T17:18:24.487Z",
     "updated_at": "2026-08-09T14:50:51.654Z",
-    "reset_token_hash": "440baae0efc9cb00ae3ffbfffd782aa14382e4448d2cb2dedd27771eabdb0a2d",
+    "reset_token_hash": null,
     "reset_token_used": false
   },
   {
@@ -57,7 +73,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-06T17:21:18.796Z",
-    "updated_at": "2026-08-06T17:21:18.796Z"
+    "updated_at": "2026-08-06T17:21:18.796Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "ae63cd7b-3bf4-427b-8e01-354e5084a431",
@@ -71,7 +89,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-06T18:16:57.699Z",
-    "updated_at": "2026-08-06T18:16:57.699Z"
+    "updated_at": "2026-08-06T18:16:57.699Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "225e56f7-463b-4b8a-9e2a-e311322ede97",
@@ -85,7 +105,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-07T07:08:01.876Z",
-    "updated_at": "2026-08-07T07:08:01.876Z"
+    "updated_at": "2026-08-07T07:08:01.876Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "5d001448-b202-444b-861e-866f60306800",
@@ -99,7 +121,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-07T07:08:01.967Z",
-    "updated_at": "2026-08-07T07:08:01.967Z"
+    "updated_at": "2026-08-07T07:08:01.967Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
@@ -113,7 +137,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-07T07:09:10.908Z",
-    "updated_at": "2026-08-07T07:09:10.908Z"
+    "updated_at": "2026-08-07T07:09:10.908Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "11ff180a-4e31-43ca-b228-e83df6120861",
@@ -127,7 +153,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-07T07:09:10.999Z",
-    "updated_at": "2026-08-07T07:09:10.999Z"
+    "updated_at": "2026-08-07T07:09:10.999Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "882a41fd-e79c-4a70-b7ec-422da6ccea2f",
@@ -135,7 +163,11 @@
     "email": "aman_2379@group.local",
     "password_hash": "",
     "is_verified": 1,
-    "created_at": "2026-08-08T05:20:22.379Z"
+    "created_at": "2026-08-08T05:20:22.379Z",
+    "reset_token": null,
+    "reset_token_expires": null,
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "995a5fab-61f8-4e24-b173-4ae35bd0d947",
@@ -149,7 +181,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-09T13:38:39.154Z",
-    "updated_at": "2026-08-09T13:38:39.154Z"
+    "updated_at": "2026-08-09T13:38:39.154Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "a8608021-68e2-45b2-a0ca-c582894f20e2",
@@ -163,7 +197,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-09T13:38:39.238Z",
-    "updated_at": "2026-08-09T13:38:39.238Z"
+    "updated_at": "2026-08-09T13:38:39.238Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "a81e9c4d-dd04-4047-ad41-1928cdf58f70",
@@ -177,7 +213,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-09T13:38:49.817Z",
-    "updated_at": "2026-08-09T13:38:49.817Z"
+    "updated_at": "2026-08-09T13:38:49.817Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "c09969f2-1d2c-4e2f-a704-390ce458fc1a",
@@ -191,7 +229,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-09T13:38:49.903Z",
-    "updated_at": "2026-08-09T13:38:49.903Z"
+    "updated_at": "2026-08-09T13:38:49.903Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "c1caaeb2-9dde-420e-8098-91313aae80e7",
@@ -205,7 +245,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-09T13:39:11.664Z",
-    "updated_at": "2026-08-09T13:39:11.664Z"
+    "updated_at": "2026-08-09T13:39:11.664Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "aacebdeb-d17d-42ca-93b2-59903c5253a2",
@@ -219,7 +261,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-09T13:39:11.741Z",
-    "updated_at": "2026-08-09T13:39:11.741Z"
+    "updated_at": "2026-08-09T13:39:11.741Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "f12f6b70-083e-4d17-a3ff-d543d4da4b60",
@@ -233,7 +277,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-09T13:39:42.262Z",
-    "updated_at": "2026-08-09T13:39:42.262Z"
+    "updated_at": "2026-08-09T13:39:42.262Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "aec8a332-0c37-43c3-9f22-61d5ae8724cf",
@@ -247,7 +293,9 @@
     "reset_token": null,
     "reset_token_expires": null,
     "created_at": "2026-08-09T13:39:42.343Z",
-    "updated_at": "2026-08-09T13:39:42.343Z"
+    "updated_at": "2026-08-09T13:39:42.343Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
   },
   {
     "id": "5fe218d0-16da-4904-a5a4-621b460d1a82",
@@ -258,11 +306,139 @@
     "avatar_url": null,
     "is_verified": 1,
     "verification_token": null,
-    "reset_token": "fb0dd44457ab8419016226a0f5680aec1bc27292b81bd5466009110358a08d7f",
-    "reset_token_expires": "2026-08-09T15:20:55.869Z",
+    "reset_token": null,
+    "reset_token_expires": null,
     "created_at": "2026-08-09T13:51:27.542Z",
     "updated_at": "2026-08-09T14:50:55.869Z",
-    "reset_token_hash": "6388fecf57cdf26225e1a21b3b8f7e036acf4af80a9e40b400c46c63c74cb8be",
+    "reset_token_hash": null,
+    "reset_token_used": false
+  },
+  {
+    "id": "49cb0c05-5ac3-4cde-96e5-83e248b1c0dd",
+    "name": "Audit User 1",
+    "email": "audit_user_1_1786289763791@spendpilot.com",
+    "password_hash": "$2a$10$Uv5BGWlwLHPrf9vNqvUAGeoTgHrRvA3mdEheV2mEYKa1znuCl8D8u",
+    "recovery_pin": "865251",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-09T15:36:03.902Z",
+    "updated_at": "2026-08-09T15:36:04.953Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
+  },
+  {
+    "id": "e6b562af-e5a3-4208-a8e7-abc9430f6ae6",
+    "name": "Audit User 2",
+    "email": "audit_user_2_1786289763791@spendpilot.com",
+    "password_hash": "$2a$10$VW3KXOFI9BAAvkTgBVOU6uvaXJNpbUxf8WjokUvb2CvcEKe7CMwYC",
+    "recovery_pin": "631074",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-09T15:36:05.216Z",
+    "updated_at": "2026-08-09T15:36:05.216Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
+  },
+  {
+    "id": "c4dffd4d-b156-442d-956a-798d21675d17",
+    "name": "Audit User 1",
+    "email": "audit_user_1_1786289810191@spendpilot.com",
+    "password_hash": "$2a$10$ULJpj7JyZ4orhsY2j6MmVOtwmrz69bAzr7tuyObf92vhNPvOfhrRK",
+    "recovery_pin": "670958",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-09T15:36:50.303Z",
+    "updated_at": "2026-08-09T15:36:54.239Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
+  },
+  {
+    "id": "d35e6876-7a6d-4242-a6b2-24c7b31dd1a2",
+    "name": "Audit User 2",
+    "email": "audit_user_2_1786289810191@spendpilot.com",
+    "password_hash": "$2a$10$aYeE3GCF3XzKBm1RjcSm8.rBLHWkN41xZXn9bDWKJoUHJ.VpHKjK.",
+    "recovery_pin": "978966",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-09T15:36:54.478Z",
+    "updated_at": "2026-08-09T15:36:54.478Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
+  },
+  {
+    "id": "e172ac5e-4336-4312-998a-140824edd112",
+    "name": "Audit User 1",
+    "email": "audit_user_1_1786289844816@spendpilot.com",
+    "password_hash": "$2a$10$c9LVo42PfhyBd6ikJSI9/OGTm06pSLDD.EuoZvc3pdiQeOrB.E8Em",
+    "recovery_pin": "522869",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-09T15:37:24.925Z",
+    "updated_at": "2026-08-09T15:39:22.499Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
+  },
+  {
+    "id": "628c074d-7be6-423b-a077-a3336b7ec918",
+    "name": "Audit User 2",
+    "email": "audit_user_2_1786289844816@spendpilot.com",
+    "password_hash": "$2a$10$EFqyoWnkGjp8oFnZe0IB9uIcSO49NCEYn3fRWGVQwsL50C2t.iX02",
+    "recovery_pin": "886109",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "created_at": "2026-08-09T15:39:22.754Z",
+    "updated_at": "2026-08-09T15:39:22.754Z",
+    "reset_token_hash": null,
+    "reset_token_used": false
+  },
+  {
+    "id": "usr-auth-test-clean",
+    "name": "Auth Test User",
+    "email": "auth-test@example.com",
+    "password_hash": "$2a$10$9cqKz49bASreTEWwQ6SPxuoSH5Js8zgVfkGXNyrO85uR/iCk8acjS",
+    "recovery_pin": "123456",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": null,
+    "reset_token_expires": null,
+    "reset_token_hash": null,
+    "reset_token_used": false,
+    "created_at": "2026-08-09T15:45:05.435Z",
+    "updated_at": "2026-08-09T15:45:05.436Z"
+  },
+  {
+    "id": "c2fe68a1-aa34-48bb-acac-72fd6d6f5a85",
+    "name": "Audit User 1",
+    "email": "audit_user_1_1786290349049@spendpilot.com",
+    "password_hash": "$2a$10$q5ItvEXQPCghBma8b1iThOODra4.6vtw8JCxGMplKG0Nhbxr4TmqO",
+    "recovery_pin": "984024",
+    "avatar_url": null,
+    "is_verified": 1,
+    "verification_token": null,
+    "reset_token": "62607e3e68eea91382801af5883fc8b11b261e0237ddeac40aa435694dc5932b",
+    "reset_token_expires": "2026-08-09T16:15:49.458Z",
+    "created_at": "2026-08-09T15:45:49.160Z",
+    "updated_at": "2026-08-09T15:45:49.458Z",
+    "reset_token_hash": "57ad80fbed886f1666beda6b8f808d84b987b2126c0e7bc180042335d481d010",
     "reset_token_used": false
   }
 ]

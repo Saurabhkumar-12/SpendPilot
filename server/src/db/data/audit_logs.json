@@ -790,5 +790,257 @@
     "user_agent": "node",
     "details": "{\"email\":\"2k23.ece2312657@gmail.com\"}",
     "created_at": "2026-08-09T14:50:59.371Z"
+  },
+  {
+    "id": "f1fcc443-e65b-42af-a9d7-ff69c823faa4",
+    "user_id": "49cb0c05-5ac3-4cde-96e5-83e248b1c0dd",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"audit_user_1_1786289763791@spendpilot.com\"}",
+    "created_at": "2026-08-09T15:36:03.907Z"
+  },
+  {
+    "id": "33ee9760-b793-4bd1-aabe-a35d3ae6582a",
+    "user_id": "49cb0c05-5ac3-4cde-96e5-83e248b1c0dd",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:36:03.996Z"
+  },
+  {
+    "id": "ebeb609c-ac68-48a8-8d5a-d9e8cd4976b2",
+    "user_id": "49cb0c05-5ac3-4cde-96e5-83e248b1c0dd",
+    "action": "USER_LOGOUT",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-08-09T15:36:04.127Z"
+  },
+  {
+    "id": "660ecd81-f6fa-485f-af99-7ff269a47773",
+    "user_id": "49cb0c05-5ac3-4cde-96e5-83e248b1c0dd",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:36:04.219Z"
+  },
+  {
+    "id": "200f949d-a4a6-46d9-ac5f-ceb812d23c05",
+    "user_id": "49cb0c05-5ac3-4cde-96e5-83e248b1c0dd",
+    "action": "PASSWORD_RESET_REQUESTED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"audit_user_1_1786289763791@spendpilot.com\"}",
+    "created_at": "2026-08-09T15:36:04.872Z"
+  },
+  {
+    "id": "4ab9b035-00b8-419b-9223-a68459e9973a",
+    "user_id": "49cb0c05-5ac3-4cde-96e5-83e248b1c0dd",
+    "action": "PASSWORD_RESET_COMPLETED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-08-09T15:36:04.956Z"
+  },
+  {
+    "id": "15a83a78-2faf-4ef6-b3b0-a676e9800e6c",
+    "user_id": "49cb0c05-5ac3-4cde-96e5-83e248b1c0dd",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:36:05.031Z"
+  },
+  {
+    "id": "0969d3f1-957c-45a2-9782-478278f44ae8",
+    "user_id": "e6b562af-e5a3-4208-a8e7-abc9430f6ae6",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"audit_user_2_1786289763791@spendpilot.com\"}",
+    "created_at": "2026-08-09T15:36:05.219Z"
+  },
+  {
+    "id": "2ca6a8a9-0216-4c4f-8818-580f397e6821",
+    "user_id": "c4dffd4d-b156-442d-956a-798d21675d17",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"audit_user_1_1786289810191@spendpilot.com\"}",
+    "created_at": "2026-08-09T15:36:50.308Z"
+  },
+  {
+    "id": "d5b3e9b1-93be-4a71-8383-b88c8110039b",
+    "user_id": "c4dffd4d-b156-442d-956a-798d21675d17",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:36:50.401Z"
+  },
+  {
+    "id": "539eb044-baa0-48da-825e-73677b404b0a",
+    "user_id": "c4dffd4d-b156-442d-956a-798d21675d17",
+    "action": "USER_LOGOUT",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-08-09T15:36:50.542Z"
+  },
+  {
+    "id": "76f5b691-6987-4e05-a8f6-6da48e40ce60",
+    "user_id": "c4dffd4d-b156-442d-956a-798d21675d17",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:36:50.635Z"
+  },
+  {
+    "id": "69f0effe-8e78-4299-aa89-ce2587b370eb",
+    "user_id": "c4dffd4d-b156-442d-956a-798d21675d17",
+    "action": "PASSWORD_RESET_REQUESTED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"audit_user_1_1786289810191@spendpilot.com\"}",
+    "created_at": "2026-08-09T15:36:54.163Z"
+  },
+  {
+    "id": "f4239f65-6417-4c5f-875b-84c0c53eeaa6",
+    "user_id": "c4dffd4d-b156-442d-956a-798d21675d17",
+    "action": "PASSWORD_RESET_COMPLETED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-08-09T15:36:54.241Z"
+  },
+  {
+    "id": "734d5824-8bee-4b07-98ab-757e3489d324",
+    "user_id": "c4dffd4d-b156-442d-956a-798d21675d17",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:36:54.324Z"
+  },
+  {
+    "id": "3193d096-2183-4eea-b5df-ca8be233fa73",
+    "user_id": "d35e6876-7a6d-4242-a6b2-24c7b31dd1a2",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"audit_user_2_1786289810191@spendpilot.com\"}",
+    "created_at": "2026-08-09T15:36:54.479Z"
+  },
+  {
+    "id": "1c5181fb-2de6-4475-aecb-bff7fa8e0d81",
+    "user_id": "e172ac5e-4336-4312-998a-140824edd112",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"audit_user_1_1786289844816@spendpilot.com\"}",
+    "created_at": "2026-08-09T15:37:24.931Z"
+  },
+  {
+    "id": "a7891bb8-1632-4b60-a8dd-636a244bf509",
+    "user_id": "e172ac5e-4336-4312-998a-140824edd112",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:37:25.020Z"
+  },
+  {
+    "id": "4cae9f65-1fc3-4b56-89e8-81698f5c8f3c",
+    "user_id": "e172ac5e-4336-4312-998a-140824edd112",
+    "action": "USER_LOGOUT",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-08-09T15:37:25.146Z"
+  },
+  {
+    "id": "53549f0b-8ccf-4cf5-8c98-7a7011a4a260",
+    "user_id": "e172ac5e-4336-4312-998a-140824edd112",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:37:25.235Z"
+  },
+  {
+    "id": "97f3b345-67ff-467e-992d-263be15010dc",
+    "user_id": "e172ac5e-4336-4312-998a-140824edd112",
+    "action": "PASSWORD_RESET_REQUESTED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"audit_user_1_1786289844816@spendpilot.com\"}",
+    "created_at": "2026-08-09T15:39:22.405Z"
+  },
+  {
+    "id": "f0344b10-fdd3-4f17-a93e-edac5b2aaefc",
+    "user_id": "e172ac5e-4336-4312-998a-140824edd112",
+    "action": "PASSWORD_RESET_COMPLETED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-08-09T15:39:22.502Z"
+  },
+  {
+    "id": "42e6c61c-fe00-4258-85fe-298b4f329489",
+    "user_id": "e172ac5e-4336-4312-998a-140824edd112",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:39:22.585Z"
+  },
+  {
+    "id": "cd249acd-c3e3-412e-9ebe-153943765b5a",
+    "user_id": "628c074d-7be6-423b-a077-a3336b7ec918",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"audit_user_2_1786289844816@spendpilot.com\"}",
+    "created_at": "2026-08-09T15:39:22.756Z"
+  },
+  {
+    "id": "8c555287-7356-4a9d-8e97-f28e19a3c74c",
+    "user_id": "c2fe68a1-aa34-48bb-acac-72fd6d6f5a85",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"audit_user_1_1786290349049@spendpilot.com\"}",
+    "created_at": "2026-08-09T15:45:49.165Z"
+  },
+  {
+    "id": "7889a805-33d8-466d-8938-63f188e1e32f",
+    "user_id": "c2fe68a1-aa34-48bb-acac-72fd6d6f5a85",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:45:49.246Z"
+  },
+  {
+    "id": "16c78790-d0dc-4f3a-9767-8cfb875971f8",
+    "user_id": "c2fe68a1-aa34-48bb-acac-72fd6d6f5a85",
+    "action": "USER_LOGOUT",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-08-09T15:45:49.363Z"
+  },
+  {
+    "id": "890862c9-3643-4880-9f83-272344436834",
+    "user_id": "c2fe68a1-aa34-48bb-acac-72fd6d6f5a85",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"rememberMe\":false}",
+    "created_at": "2026-08-09T15:45:49.454Z"
   }
 ]

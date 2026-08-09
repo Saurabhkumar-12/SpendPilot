@@ -158,5 +158,69 @@
     "default_split_mode": "EQUAL",
     "notify_invites": 1,
     "notify_settlements": 1
+  },
+  {
+    "user_id": "49cb0c05-5ac3-4cde-96e5-83e248b1c0dd",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "e6b562af-e5a3-4208-a8e7-abc9430f6ae6",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "c4dffd4d-b156-442d-956a-798d21675d17",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "d35e6876-7a6d-4242-a6b2-24c7b31dd1a2",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "e172ac5e-4336-4312-998a-140824edd112",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "628c074d-7be6-423b-a077-a3336b7ec918",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "usr-auth-test-clean",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "c2fe68a1-aa34-48bb-acac-72fd6d6f5a85",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
   }
 ]
