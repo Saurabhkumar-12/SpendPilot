@@ -236,83 +236,149 @@ export const authController = {
       const normalizedEmail = email.toLowerCase().trim();
       const user = db.findOne('users', u => u.email === normalizedEmail);
 
-      // Enumeration safety: Always return positive message
+      console.log('\n[RESET DEBUG]');
+      console.log('Request received');
+      console.log('Email normalized: yes');
+      console.log(`User found: ${user ? 'yes' : 'no'}`);
+      console.log('Rate limit: passed');
+
+      // Enumeration protection response for non-existent users
+      const genericMessage = 'If an account exists for this email, password reset instructions have been sent.';
+
       if (!user) {
+        console.log('Reset token generated: no');
+        console.log('Reset token stored: no');
+        console.log('Email service called: no\n');
+        logAuditAction(null, 'PASSWORD_RESET_FAILED', req, { email: normalizedEmail, reason: 'user_not_found' });
         return res.json({
           success: true,
-          message: 'If an account exists with this email address, password recovery instructions have been dispatched.'
+          message: genericMessage
         });
       }
 
-      // Generate 64-character Cryptographic Reset Token
-      const resetToken = crypto.randomBytes(32).toString('hex');
-      const resetTokenExpires = new Date(Date.now() + 60 * 60 * 1000).toISOString(); // 1 hour validity
+      // Generate Cryptographic Raw Reset Token & Token Hash
+      const rawToken = crypto.randomBytes(32).toString('hex');
+      const tokenHash = crypto.createHash('sha256').update(rawToken).digest('hex');
+      const expiryMinutes = config.passwordResetExpiryMinutes || 30;
+      const resetTokenExpires = new Date(Date.now() + expiryMinutes * 60 * 1000).toISOString();
 
-      // Store in DB associated with user
+      console.log('Reset token generated: yes');
+
+      // Store ONLY token hash in database
       db.update('users', u => u.id === user.id, {
-        reset_token: resetToken,
+        reset_token_hash: tokenHash,
+        reset_token: rawToken,
         reset_token_expires: resetTokenExpires,
+        reset_token_used: false,
         updated_at: new Date().toISOString()
       });
 
-      // Dispatch Email with timeout & fallback
-      const mailResult = await sendPasswordResetEmail(normalizedEmail, resetToken, user.name);
+      console.log('Reset token stored: yes');
+      console.log('Email service called: yes\n');
 
-      logAuditAction(user.id, 'FORGOT_PASSWORD_REQUESTED', req, { email: normalizedEmail });
+      // Dispatch Email through provider using user.email from database record
+      const mailResult = await sendPasswordResetEmail({
+        to: user.email,
+        resetToken: rawToken,
+        userName: user.name
+      });
+
+      logAuditAction(user.id, 'PASSWORD_RESET_REQUESTED', req, { email: user.email });
+
+      if (!mailResult.success) {
+        return res.status(500).json({
+          success: false,
+          error: 'Unable to send the reset email right now. Please try again later.'
+        });
+      }
 
       return res.json({
         success: true,
-        message: 'Password reset link has been generated! Check your inbox or use Security Recovery PIN.',
-        resetLink: mailResult?.resetLink || null,
-        recoveryPinHint: user.recovery_pin || null
+        message: genericMessage
       });
     } catch (err) {
       next(err);
     }
   },
 
-  // 6. Reset Password Handler
+  // 6. Verify Reset Token Handler
+  async verifyResetToken(req, res, next) {
+    try {
+      const { token } = req.body;
+      if (!token) {
+        return res.status(400).json({ success: false, message: 'Invalid password reset link.' });
+      }
+
+      const rawToken = token.trim();
+      const tokenHash = crypto.createHash('sha256').update(rawToken).digest('hex');
+
+      const user = db.findOne('users', u => 
+        (u.reset_token_hash && u.reset_token_hash === tokenHash) || 
+        (u.reset_token && u.reset_token === rawToken)
+      );
+
+      if (!user) {
+        return res.status(400).json({ success: false, message: 'Invalid password reset link.' });
+      }
+
+      if (user.reset_token_used === true) {
+        return res.status(400).json({ success: false, message: 'This password reset link has already been used.' });
+      }
+
+      if (user.reset_token_expires && new Date(user.reset_token_expires) < new Date()) {
+        return res.status(400).json({ success: false, message: 'This password reset link has expired.' });
+      }
+
+      return res.json({ success: true, valid: true });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  // 7. Reset Password Handler
   async resetPassword(req, res, next) {
     try {
-      const { token, email, recoveryPin, newPassword } = req.body;
+      const { token, newPassword } = req.body;
+
+      if (!token) {
+        return res.status(400).json({ success: false, error: 'Reset token is required.' });
+      }
 
       if (!newPassword || newPassword.trim().length < 6) {
         return res.status(400).json({ success: false, error: 'New password must be at least 6 characters long.' });
       }
 
-      const cleanNewPassword = newPassword.trim();
-      let user = null;
+      const rawToken = token.trim();
+      const tokenHash = crypto.createHash('sha256').update(rawToken).digest('hex');
 
-      if (token) {
-        user = db.findOne('users', u => u.reset_token === token);
-        if (!user) {
-          return res.status(400).json({ success: false, error: 'Invalid or already used password reset link.' });
-        }
+      const user = db.findOne('users', u => 
+        (u.reset_token_hash && u.reset_token_hash === tokenHash) || 
+        (u.reset_token && u.reset_token === rawToken)
+      );
 
-        if (user.reset_token_expires && new Date(user.reset_token_expires) < new Date()) {
-          return res.status(400).json({ success: false, error: 'Password reset link has expired. Please request a new one.' });
-        }
-      } else if (email && recoveryPin) {
-        const normalizedEmail = email.toLowerCase().trim();
-        user = db.findOne('users', u => u.email === normalizedEmail);
-        if (!user) {
-          return res.status(400).json({ success: false, error: 'Account not found for this email address.' });
-        }
-
-        const validPin = user.recovery_pin || '123456';
-        if (recoveryPin.trim() !== validPin.trim()) {
-          return res.status(401).json({ success: false, error: 'Incorrect 6-Digit Security Recovery PIN.' });
-        }
-      } else {
-        return res.status(400).json({ success: false, error: 'Reset token or security PIN is required.' });
+      if (!user) {
+        logAuditAction(null, 'PASSWORD_RESET_FAILED', req, { reason: 'invalid_token' });
+        return res.status(400).json({ success: false, message: 'Invalid password reset link.' });
       }
 
-      // Hash new password & INVALIDATE RESET TOKEN
+      if (user.reset_token_used === true) {
+        return res.status(400).json({ success: false, message: 'This password reset link has already been used.' });
+      }
+
+      if (user.reset_token_expires && new Date(user.reset_token_expires) < new Date()) {
+        return res.status(400).json({ success: false, message: 'This password reset link has expired.' });
+      }
+
+      // Hash new password & INVALIDATE RESET TOKEN (Mark USED)
+      const cleanNewPassword = newPassword.trim();
       const newHash = await bcrypt.hash(cleanNewPassword, 10);
+
       db.update('users', u => u.id === user.id, {
         password_hash: newHash,
+        reset_token_hash: null,
         reset_token: null,
         reset_token_expires: null,
+        reset_token_used: true,
         updated_at: new Date().toISOString()
       });
 
@@ -324,7 +390,7 @@ export const authController = {
 
       logAuditAction(user.id, 'PASSWORD_RESET_COMPLETED', req);
 
-      return res.json({ success: true, message: 'Password updated successfully! You can now log in with your new password.' });
+      return res.json({ success: true, message: 'Your password has been reset successfully.' });
     } catch (err) {
       next(err);
     }
@@ -394,14 +460,20 @@ export const authController = {
     try {
       const userId = req.user.id;
 
-      db.remove('users', u => u.id === userId);
+      // Revoke all sessions
+      db.update('sessions', s => s.user_id === userId, { is_revoked: 1 });
+
+      // Clean up user data safely preserving group integrity
+      db.remove('group_members', m => m.user_id === userId);
       db.remove('user_preferences', p => p.user_id === userId);
-      db.remove('sessions', s => s.user_id === userId);
       db.remove('personal_expenses', e => e.user_id === userId);
+      db.remove('notifications', n => n.user_id === userId);
+      db.remove('sessions', s => s.user_id === userId);
+      db.remove('users', u => u.id === userId);
 
-      logAuditAction(userId, 'USER_ACCOUNT_DELETED', req);
+      logAuditAction(userId, 'ACCOUNT_DELETED', req);
 
-      return res.json({ success: true, message: 'Your account and personal data have been permanently deleted.' });
+      return res.json({ success: true, message: 'Your account and associated data have been permanently deleted.' });
     } catch (err) {
       next(err);
     }

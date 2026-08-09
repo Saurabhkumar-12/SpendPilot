@@ -12,6 +12,7 @@ import {
   registerSchema,
   loginSchema,
   forgotPasswordSchema,
+  verifyResetTokenSchema,
   resetPasswordSchema,
   changePasswordSchema
 } from './authSchemas.js';
@@ -30,10 +31,13 @@ router.post('/refresh-token', authController.refreshToken);
 // 4. Verify Email Route
 router.get('/verify-email', authController.verifyEmail);
 
-// 5. Forgot Password Route (DEDICATED forgotPasswordRateLimiter: 3 per 1 hour - NEVER shares login rate limiter!)
+// 5. Forgot Password Route
 router.post('/forgot-password', forgotPasswordRateLimiter, validateRequest(forgotPasswordSchema), authController.forgotPassword);
 
-// 6. Reset Password Route (Dedicated resetPasswordRateLimiter: 5 attempts per 1 hour)
+// 6. Verify Reset Token Route
+router.post('/verify-reset-token', resetPasswordRateLimiter, validateRequest(verifyResetTokenSchema), authController.verifyResetToken);
+
+// 7. Reset Password Route
 router.post('/reset-password', resetPasswordRateLimiter, validateRequest(resetPasswordSchema), authController.resetPassword);
 
 // Authenticated Routes
@@ -41,5 +45,24 @@ router.post('/change-password', authenticateToken, validateRequest(changePasswor
 router.post('/logout', authenticateToken, authController.logout);
 router.post('/logout-all', authenticateToken, authController.logoutAllDevices);
 router.delete('/account', authenticateToken, authController.deleteAccount);
+
+// Independent Development Test Email Route
+router.post('/dev/test-email', async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ success: false, error: 'Email parameter is required.' });
+    }
+    const { sendPasswordResetEmail } = await import('../../services/emailService.js');
+    const result = await sendPasswordResetEmail({ to: email.trim().toLowerCase(), resetToken: 'dev_test_token_123', userName: 'Test User' });
+    return res.json({
+      success: result.success,
+      provider: result.provider || 'resend',
+      messageId: result.messageId || null
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, error: err.message });
+  }
+});
 
 export default router;

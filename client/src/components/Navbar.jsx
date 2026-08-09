@@ -17,12 +17,10 @@ import {
 } from 'lucide-react';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { useTheme } from '../context/ThemeContext';
 import { Logo } from './Logo';
 
 export function Navbar({ currentTab, setTab, onOpenSearch, onAddExpense }) {
   const { user } = useAuth();
-  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
@@ -70,7 +68,7 @@ export function Navbar({ currentTab, setTab, onOpenSearch, onAddExpense }) {
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
-          <Logo light={theme === 'dark'} />
+          <Logo light={false} />
         </div>
 
         {/* Desktop Breadcrumb Title */}
@@ -91,15 +89,6 @@ export function Navbar({ currentTab, setTab, onOpenSearch, onAddExpense }) {
             <Search className="w-4 h-4 text-[#19B86A]" />
             <span className="hidden sm:inline">Search...</span>
             <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-[#EEF9F2] dark:bg-[#071C16] border border-[#DDE5DF] dark:border-[#1A4337] text-[9px] text-[#092B20] dark:text-[#2ED47A] font-mono">Ctrl K</kbd>
-          </button>
-
-          {/* Theme Switch */}
-          <button
-            onClick={toggleTheme}
-            className="p-2.5 text-[#092B20] dark:text-[#2ED47A] rounded-xl bg-[#EEF9F2] dark:bg-[#092B20] border border-[#DDE5DF] dark:border-[#1A4337] hover:border-[#19B86A] transition"
-            title="Toggle Light/Dark Theme"
-          >
-            {theme === 'dark' ? <Moon className="w-4 h-4 text-[#2ED47A]" /> : <Sun className="w-4 h-4 text-[#E8A317]" />}
           </button>
 
           {/* Quick Add Expense */}

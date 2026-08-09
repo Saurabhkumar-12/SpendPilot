@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { User, Mail, Lock, Camera, LogOut, ShieldAlert, CheckCircle2, Trash2, X, Sun, Moon, AlertTriangle } from 'lucide-react';
+import { User, Mail, Lock, Camera, LogOut, ShieldAlert, CheckCircle2, Trash2, X, AlertTriangle } from 'lucide-react';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { useTheme } from '../context/ThemeContext';
 import { useToast } from '../context/ToastContext';
 
 export function Profile() {
   const { user, updateUserState, logoutUser } = useAuth();
-  const { theme, toggleTheme } = useTheme();
   const { showSuccess, showError } = useToast();
 
   const [name, setName] = useState(user?.name || '');
@@ -177,18 +175,6 @@ export function Profile() {
                 <option value="£">£ — British Pound (GBP)</option>
                 <option value="¥">¥ — Japanese Yen (JPY)</option>
               </select>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-[#092B20] dark:text-[#F7FFF9] uppercase tracking-wider mb-1">Appearance Theme</label>
-              <button
-                type="button"
-                onClick={toggleTheme}
-                className="w-full px-4 py-3 rounded-xl bg-[#F7F6F0] dark:bg-[#071C16] border border-[#DDE5DF] dark:border-[#1A4337] font-bold text-xs text-[#092B20] dark:text-[#F7FFF9] flex items-center justify-between"
-              >
-                <span>Active Mode: <strong className="uppercase text-[#19B86A]">{theme}</strong></span>
-                {theme === 'dark' ? <Moon className="w-4 h-4 text-[#2ED47A]" /> : <Sun className="w-4 h-4 text-[#E8A317]" />}
-              </button>
             </div>
 
             <button type="submit" className="btn-emerald px-5 py-3 rounded-xl text-xs font-bold">Save Preferences</button>

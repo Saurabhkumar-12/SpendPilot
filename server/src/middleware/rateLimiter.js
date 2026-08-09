@@ -33,11 +33,11 @@ export const registerRateLimiter = createRateLimiter({
   message: 'Account creation limit reached. Please wait 1 hour before creating another account.'
 });
 
-// 3. Dedicated Forgot Password Limiter: 15 requests per 1 hour
+// 3. Dedicated Forgot Password Limiter: Configurable (default 5 attempts per 15 minutes in prod, 50 in dev)
 export const forgotPasswordRateLimiter = createRateLimiter({
-  windowMs: 60 * 60 * 1000,
-  max: 15,
-  message: 'Too many password reset requests. For security reasons, please wait 1 hour before requesting another reset email.'
+  windowMs: parseInt(process.env.FORGOT_PASSWORD_WINDOW_MS || (15 * 60 * 1000).toString(), 10),
+  max: parseInt(process.env.FORGOT_PASSWORD_RATE_LIMIT_MAX || (process.env.NODE_ENV === 'development' ? '50' : '5'), 10),
+  message: 'Too many reset attempts. Please try again later.'
 });
 
 // 4. Dedicated Reset Password Limiter: 20 attempts per 1 hour

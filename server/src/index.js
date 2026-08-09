@@ -21,6 +21,7 @@ import searchRoutes from './modules/search/searchRoutes.js';
 import insightsRoutes from './modules/insights/insightsRoutes.js';
 import profileRoutes from './modules/profile/profileRoutes.js';
 import feedbackRoutes from './modules/feedback/feedbackRoutes.js';
+import devRoutes from './modules/dev/devRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,8 +37,16 @@ initSocket(server);
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
+const allowedOrigins = [config.appUrl, 'http://localhost:5173', 'http://localhost:5174', 'http://127.0.0.1:5173'].filter(Boolean);
+
 app.use(cors({
-  origin: true,
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin) || config.env === 'development') {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS policy violation: Origin not allowed.'));
+    }
+  },
   credentials: true
 }));
 
@@ -51,8 +60,8 @@ app.use('/uploads', express.static(path.resolve('uploads')));
 app.use('/api', apiRateLimiter);
 
 // Healthcheck
-app.get('/api/health', (req, res) => {
-  res.json({ success: true, message: 'SpendPilot API service operational.', timestamp: new Date().toISOString() });
+app.get(['/api/health', '/api/v1/health'], (req, res) => {
+  res.json({ success: true, message: 'SpendPilot API is running', timestamp: new Date().toISOString() });
 });
 
 // Feature API Routes
@@ -66,6 +75,7 @@ app.use('/api/v1/search', searchRoutes);
 app.use('/api/v1/insights', insightsRoutes);
 app.use('/api/v1/profile', profileRoutes);
 app.use('/api/v1/feedback', feedbackRoutes);
+app.use('/api/v1/dev', devRoutes);
 
 // Fallback 404 handler
 app.use((req, res) => {
@@ -76,10 +86,12 @@ app.use((req, res) => {
 app.use(errorHandler);
 
 const PORT = config.port;
-server.listen(PORT, () => {
+const HOST = process.env.HOST || '0.0.0.0';
+server.listen(PORT, HOST, () => {
   console.log(`\n==================================================`);
   console.log(`🚀 SpendPilot Server running on http://localhost:${PORT}`);
-  console.log(`⚡ Real-Time Socket.IO Cluster Operational`);
-  console.log(`🔒 Security Rate Limiters & Helmet Active`);
+  console.log(`EMAIL_API_KEY configured: ${config.resendApiKey ? 'YES' : 'NO'}`);
+  console.log(`EMAIL_FROM configured: ${process.env.EMAIL_FROM ? 'YES' : 'NO'}`);
+  console.log(`APP_URL: ${config.appUrl}`);
   console.log(`==================================================\n`);
 });

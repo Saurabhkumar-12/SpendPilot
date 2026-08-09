@@ -11,16 +11,12 @@ import {
   Settings,
   User, 
   LogOut, 
-  Sun, 
-  Moon, 
   Search
 } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import { Logo } from './Logo';
 
 export function Sidebar({ currentTab, setTab, onOpenSearch }) {
-  const { theme, toggleTheme } = useTheme();
   const { user, logoutUser } = useAuth();
 
   const navItems = [
@@ -40,7 +36,7 @@ export function Sidebar({ currentTab, setTab, onOpenSearch }) {
       {/* Top Header */}
       <div>
         <div className="p-6 flex items-center justify-between">
-          <Logo light={theme === 'dark'} />
+          <Logo light={false} />
         </div>
 
         {/* Quick Search */}
@@ -89,18 +85,6 @@ export function Sidebar({ currentTab, setTab, onOpenSearch }) {
 
       {/* Footer Controls */}
       <div className="p-4 border-t border-[#DDE5DF] dark:border-[#1A4337] space-y-3">
-        {/* Theme Switcher */}
-        <button
-          onClick={toggleTheme}
-          className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#F7F6F0] dark:bg-[#071C16] hover:bg-[#EEF9F2] dark:hover:bg-[#0E2920] text-xs font-bold text-[#092B20] dark:text-[#F7FFF9] border border-[#DDE5DF] dark:border-[#1A4337] transition"
-        >
-          <span className="flex items-center gap-2">
-            {theme === 'dark' ? <Moon className="w-4 h-4 text-[#2ED47A]" /> : <Sun className="w-4 h-4 text-[#E8A317]" />}
-            <span>{theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>
-          </span>
-          <span className="text-[10px] uppercase font-bold text-[#19B86A] font-mono">{theme}</span>
-        </button>
-
         {/* User Card */}
         <div className="flex items-center justify-between p-2.5 rounded-xl bg-[#F7F6F0] dark:bg-[#071C16] border border-[#DDE5DF] dark:border-[#1A4337]">
           <div className="flex items-center gap-3 overflow-hidden">

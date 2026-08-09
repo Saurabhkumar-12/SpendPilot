@@ -2,8 +2,9 @@ import { Server } from 'socket.io';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import { db } from './db/database.js';
+import { config } from './config/index.js';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'spendpilot_dev_jwt_secret_key_2026_super_secure';
+const JWT_SECRET = config.jwtSecret;
 
 let io = null;
 

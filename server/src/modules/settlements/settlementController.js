@@ -74,6 +74,11 @@ export const settlementController = {
       const userId = req.user.id;
       const { groupId, payerId, payeeId, amount, notes } = req.body;
 
+      const membership = db.findOne('group_members', m => m.group_id === groupId && m.user_id === userId);
+      if (!membership) {
+        return res.status(403).json({ success: false, error: 'Access denied. You are not a member of this group.' });
+      }
+
       const numAmount = Number(amount);
       const settlementId = crypto.randomUUID();
 

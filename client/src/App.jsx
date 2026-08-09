@@ -88,7 +88,7 @@ export function App() {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#F7F6F0] dark:bg-[#071C16] text-[#161A18] dark:text-[#F7FFF9] font-sans">
+    <div className="flex min-h-screen bg-[#F7F6F0] text-[#161A18] font-sans">
       {/* Sidebar for Desktop */}
       <Sidebar
         currentTab={currentTab}

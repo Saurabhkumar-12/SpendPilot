@@ -34,6 +34,10 @@ export const config = {
   maxFileSize: 2 * 1024 * 1024, // 2MB
   allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
 
+  // App URL & Password Reset Security
+  appUrl: process.env.APP_URL || 'http://localhost:5173',
+  passwordResetExpiryMinutes: parseInt(process.env.PASSWORD_RESET_EXPIRY_MINUTES || '30', 10),
+
   // API Keys (Strict Server-Side Isolation)
   resendApiKey: process.env.RESEND_API_KEY || process.env.EMAIL_API_KEY || '',
   exchangeApiKey: process.env.EXCHANGE_API_KEY || '',

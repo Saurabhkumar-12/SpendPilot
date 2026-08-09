@@ -150,5 +150,13 @@
     "default_split_mode": "EQUAL",
     "notify_invites": 1,
     "notify_settlements": 1
+  },
+  {
+    "user_id": "5fe218d0-16da-4904-a5a4-621b460d1a82",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
   }
 ]

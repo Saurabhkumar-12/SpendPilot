@@ -198,7 +198,11 @@ export const groupController = {
 
       const membership = db.findOne('group_members', m => m.group_id === groupId && m.user_id === userId);
       if (!membership) {
-        return res.status(403).json({ success: false, error: 'Access denied.' });
+        return res.status(403).json({ success: false, error: 'Access denied. You are not a member of this group.' });
+      }
+
+      if (membership.role !== 'ADMIN') {
+        return res.status(403).json({ success: false, error: 'Access denied. Only group admins can modify group settings.' });
       }
 
       db.update('groups', g => g.id === groupId, {
@@ -231,6 +235,11 @@ export const groupController = {
       const group = db.findOne('groups', g => g.id === groupId);
       if (!group) return res.status(404).json({ success: false, error: 'Group not found.' });
 
+      const membership = db.findOne('group_members', m => m.group_id === groupId && m.user_id === userId);
+      if (!membership || membership.role !== 'ADMIN') {
+        return res.status(403).json({ success: false, error: 'Access denied. Only group admins can delete the group.' });
+      }
+
       emitGroupEvent(groupId, 'group:group-updated', {
         action: 'DELETED',
         groupId,
@@ -256,6 +265,11 @@ export const groupController = {
       const userId = req.user.id;
       const { id: groupId } = req.params;
       const { name, email } = req.body;
+
+      const membership = db.findOne('group_members', m => m.group_id === groupId && m.user_id === userId);
+      if (!membership) {
+        return res.status(403).json({ success: false, error: 'Access denied. You must be a group member to send invitations.' });
+      }
 
       let targetUser = null;
       const memberName = name ? name.trim() : '';
@@ -298,6 +312,8 @@ export const groupController = {
         joined_at: new Date().toISOString()
       });
 
+      logAuditAction(userId, 'GROUP_MEMBER_INVITED', req, { groupId, invitedUserId: targetUser.id });
+
       emitGroupEvent(groupId, 'group:member-added', {
         member: {
           userId: targetUser.id,
@@ -316,16 +332,44 @@ export const groupController = {
 
   async removeMember(req, res, next) {
     try {
+      const requesterId = req.user.id;
       const { id: groupId, memberId } = req.params;
+
+      const requesterMembership = db.findOne('group_members', m => m.group_id === groupId && m.user_id === requesterId);
+      if (!requesterMembership) {
+        return res.status(403).json({ success: false, error: 'Access denied. You are not a member of this group.' });
+      }
+
+      const targetMembership = db.findOne('group_members', m => m.group_id === groupId && m.user_id === memberId);
+      if (!targetMembership) {
+        return res.status(404).json({ success: false, error: 'Member not found in this group.' });
+      }
+
+      const isSelfRemoval = requesterId === memberId;
+      const isAdmin = requesterMembership.role === 'ADMIN';
+
+      if (!isSelfRemoval && !isAdmin) {
+        return res.status(403).json({ success: false, error: 'Access denied. Only group admins can remove other members.' });
+      }
+
+      // Prevent removing the sole ADMIN unless other ADMINs exist
+      if (targetMembership.role === 'ADMIN') {
+        const adminMembers = db.find('group_members', m => m.group_id === groupId && m.role === 'ADMIN');
+        if (adminMembers.length <= 1) {
+          return res.status(400).json({ success: false, error: 'Cannot remove the sole group admin. Transfer admin privileges first.' });
+        }
+      }
+
       const removedUser = db.findOne('users', u => u.id === memberId);
-      
       db.remove('group_members', m => m.group_id === groupId && m.user_id === memberId);
+
+      logAuditAction(requesterId, 'GROUP_MEMBER_REMOVED', req, { groupId, removedUserId: memberId });
 
       emitGroupEvent(groupId, 'group:member-removed', {
         memberId,
         memberName: removedUser ? removedUser.name : 'Member',
         actorName: req.user.name
-      }, req.user.id);
+      }, requesterId);
 
       return res.json({ success: true, message: 'Member removed from group.' });
     } catch (err) {

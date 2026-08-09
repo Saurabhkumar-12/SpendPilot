@@ -33,8 +33,28 @@ function withTimeout(promise, ms = 3500) {
 /**
  * 1. Sends a Password Reset Email via Resend SDK or Nodemailer with Graceful Fallback
  */
-export async function sendPasswordResetEmail(toEmail, resetToken, userName = 'Valued User') {
-  const resetLink = `http://localhost:5173/reset-password?token=${resetToken}&email=${encodeURIComponent(toEmail)}`;
+export async function sendPasswordResetEmail(options, tokenParam, nameParam) {
+  let toEmail, resetToken, userName;
+  if (typeof options === 'object' && options !== null) {
+    toEmail = options.to;
+    resetToken = options.resetToken;
+    userName = options.userName || 'Valued User';
+  } else {
+    toEmail = options;
+    resetToken = tokenParam;
+    userName = nameParam || 'Valued User';
+  }
+
+  if (!toEmail) {
+    throw new Error('Recipient email is required for password reset.');
+  }
+
+  const normalizedTo = toEmail.trim().toLowerCase();
+  const maskedTo = normalizedTo.substring(0, 1) + '***@' + normalizedTo.split('@')[1];
+
+  const appUrl = config.appUrl || 'http://localhost:5173';
+  const resetLink = `${appUrl}/reset-password/${resetToken}`;
+  const expiryMinutes = config.passwordResetExpiryMinutes || 30;
 
   const htmlContent = `
     <!DOCTYPE html>
@@ -42,20 +62,19 @@ export async function sendPasswordResetEmail(toEmail, resetToken, userName = 'Va
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Reset Your SpendPilot Password</title>
+      <title>Reset your SpendPilot password</title>
       <style>
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #F7F6F0; color: #092B20; margin: 0; padding: 32px 16px; }
+        body { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #F7F6F0; color: #092B20; margin: 0; padding: 32px 16px; }
         .wrapper { max-width: 540px; margin: 0 auto; background-color: #FFFFFF; border: 1px solid #DDE5DF; border-radius: 24px; padding: 40px 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
         .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-        .logo-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #19B86A 0%, #15803D 100%); border-radius: 14px; font-weight: 900; font-size: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 44px; }
+        .logo-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #19B86A 0%, #129A57 100%); border-radius: 14px; font-weight: 900; font-size: 22px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 44px; }
         .brand-name { font-size: 22px; font-weight: 800; color: #092B20; letter-spacing: -0.5px; }
         .title { font-size: 22px; font-weight: 800; color: #092B20; margin-bottom: 12px; letter-spacing: -0.3px; }
         .text { font-size: 14px; color: #53635B; line-height: 1.6; margin-bottom: 24px; }
         .cta-container { text-align: center; margin: 32px 0; }
         .btn { display: inline-block; padding: 14px 32px; background: #19B86A; color: #FFFFFF; font-weight: 800; text-decoration: none; border-radius: 16px; font-size: 14px; box-shadow: 0 10px 25px rgba(25, 184, 106, 0.3); }
-        .link-box { background: #F7F6F0; border: 1px solid #DDE5DF; padding: 16px; border-radius: 14px; font-family: monospace; color: #092B20; font-size: 12px; word-break: break-all; margin-top: 24px; }
-        .alert-box { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 14px; padding: 14px 18px; margin-top: 24px; font-size: 12px; color: #B45309; }
-        .footer { margin-top: 36px; padding-top: 20px; border-top: 1px solid #DDE5DF; font-size: 11px; color: #747B76; text-align: center; }
+        .alert-box { background: #EEF9F2; border: 1px solid #DDF5E8; border-radius: 14px; padding: 14px 18px; margin-top: 24px; font-size: 13px; color: #092B20; font-weight: 600; }
+        .footer { margin-top: 36px; padding-top: 20px; border-top: 1px solid #DDE5DF; font-size: 12px; color: #747B76; text-align: center; }
       </style>
     </head>
     <body>
@@ -65,78 +84,144 @@ export async function sendPasswordResetEmail(toEmail, resetToken, userName = 'Va
           <span class="brand-name">SpendPilot</span>
         </div>
 
-        <div class="title">Reset Your Password</div>
+        <div class="title">Reset your SpendPilot password</div>
         <p class="text">Hi ${userName},</p>
-        <p class="text">We received a request to reset the password for your SpendPilot account. Click the button below to choose a new password:</p>
+        <p class="text">We received a request to reset your SpendPilot password.</p>
 
         <div class="cta-container">
-          <a href="${resetLink}" class="btn" target="_blank">Reset Password Now →</a>
+          <a href="${resetLink}" class="btn" target="_blank">Reset Password</a>
         </div>
 
         <div class="alert-box">
-          ⏰ <strong>Security Notice:</strong> This password reset link is valid for <strong>1 hour</strong>.
+          ⏰ This link expires in <strong>${expiryMinutes} minutes</strong>.
         </div>
 
-        <p class="text" style="margin-top: 24px;">If the button above does not work, copy and paste this direct link into your browser:</p>
-        <div class="link-box">${resetLink}</div>
-
-        <p class="text" style="margin-top: 24px; font-size: 12px;">If you did not request a password reset, you can safely ignore this email.</p>
+        <p class="text" style="margin-top: 24px; font-size: 13px;">If you did not request this reset, you can safely ignore this email.</p>
 
         <div class="footer">
-          SpendPilot SaaS • Advanced Expense Management Engine
+          SpendPilot • Track. Split. Save.
         </div>
       </div>
     </body>
     </html>
   `;
 
-  // Try SMTP Transporter first if configured
+  console.log('\n[EMAIL DEBUG]');
+  console.log(`From: ${emailFrom}`);
+  console.log(`To: ${maskedTo}`);
+  console.log('Purpose: PASSWORD_RESET\n');
+
+  // 1. Try SMTP Transporter if configured
   if (smtpTransporter) {
     try {
-      console.log(`📨 Sending reset email to [${toEmail}] via SMTP...`);
-      await withTimeout(smtpTransporter.sendMail({
+      const info = await withTimeout(smtpTransporter.sendMail({
         from: emailFrom,
-        to: toEmail,
-        subject: '🔒 Reset Your SpendPilot Password',
+        to: normalizedTo,
+        subject: 'Reset your SpendPilot password',
         html: htmlContent
       }));
-      console.log(`✅ [SMTP SUCCESS] Reset email sent to ${toEmail}`);
-      return { success: true, provider: 'smtp', resetLink };
+      console.log('\n[RESET EMAIL]');
+      console.log(`Recipient: ${maskedTo}`);
+      console.log('Provider: SMTP');
+      console.log('Status: accepted');
+      console.log(`Message ID: ${info.messageId}\n`);
+      return { success: true, messageId: info.messageId, provider: 'smtp', recipient: normalizedTo };
     } catch (err) {
-      console.warn(`⚠️ [SMTP FAILED] ${err.message}. Trying Resend fallback...`);
+      console.log('\n[RESET EMAIL]');
+      console.log(`Recipient: ${maskedTo}`);
+      console.log('Provider: SMTP');
+      console.log('Status: rejected');
+      console.log('Message ID: NONE\n');
     }
   }
 
-  // Try Resend SDK
+  // 2. Try Resend SDK if configured
   if (resend) {
     try {
-      console.log(`📨 Dispatching password reset email to [${toEmail}] via Resend SDK...`);
+      const data = await withTimeout(resend.emails.send({
+        from: emailFrom,
+        to: normalizedTo,
+        subject: 'Reset your SpendPilot password',
+        html: htmlContent
+      }));
+
+      if (data && data.data && data.data.id) {
+        console.log('\n[RESET EMAIL]');
+        console.log(`Recipient: ${maskedTo}`);
+        console.log('Provider: Resend');
+        console.log('Status: accepted');
+        console.log(`Message ID: ${data.data.id}\n`);
+        return { success: true, messageId: data.data.id, provider: 'resend', recipient: normalizedTo };
+      } else if (data && data.error) {
+        const statusCode = data.error.statusCode || (data.error.name === 'validation_error' ? 403 : 500);
+        console.log('\n[RESET EMAIL]');
+        console.log(`Recipient: ${maskedTo}`);
+        console.log('Provider: Resend');
+        console.log('Status: rejected');
+        console.log('Message ID: NONE');
+        console.log(`Error: ${data.error.message}\n`);
+        return { success: false, error: data.error.message, httpStatus: statusCode, provider: 'resend', recipient: normalizedTo };
+      }
+    } catch (err) {
+      console.log('\n[RESET EMAIL]');
+      console.log(`Recipient: ${maskedTo}`);
+      console.log('Provider: Resend');
+      console.log('Status: rejected');
+      console.log('Message ID: NONE');
+      console.log(`Error: ${err.message}\n`);
+      return { success: false, error: err.message, httpStatus: 500, provider: 'resend', recipient: normalizedTo };
+    }
+  }
+
+  return { success: false, error: 'Email provider not configured or unavailable', recipient: normalizedTo };
+}
+
+/**
+ * Sends a standalone test email for dev diagnostics
+ */
+export async function sendTestEmail(toEmail) {
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <body>
+      <h2>SpendPilot Test Email</h2>
+      <p>This is a test email from SpendPilot.</p>
+    </body>
+    </html>
+  `;
+
+  if (resend) {
+    try {
+      console.log('\n[RESEND DEBUG]');
+      console.log('Request started');
       const data = await withTimeout(resend.emails.send({
         from: emailFrom,
         to: toEmail,
-        subject: '🔒 Reset Your SpendPilot Password',
+        subject: 'SpendPilot Test Email',
         html: htmlContent
       }));
 
-      if (data.error) {
-        console.warn(`⚠️ [RESEND API WARNING] ${data.error.message}. Falling back to console log.`);
-      } else {
-        const emailId = data.data?.id || data.id || 'resend_ok';
-        console.log(`✅ [RESEND SUCCESS] Reset email sent! ID: ${emailId}`);
-        return { success: true, id: emailId, provider: 'resend', resetLink };
+      if (data && data.data && data.data.id) {
+        console.log('HTTP status: 200');
+        console.log(`Message ID: ${data.data.id}`);
+        console.log('Error: NONE\n');
+        return { success: true, messageId: data.data.id, provider: 'resend' };
+      } else if (data && data.error) {
+        const statusCode = data.error.statusCode || (data.error.name === 'validation_error' ? 403 : 500);
+        console.log(`HTTP status: ${statusCode}`);
+        console.log('Message ID: NONE');
+        console.log(`Provider error: ${data.error.message}\n`);
+        return { success: false, error: data.error.message };
       }
     } catch (err) {
-      console.warn(`⚠️ [RESEND EXCEPTION/TIMEOUT] ${err.message}. Falling back to console log.`);
+      console.log('HTTP status: 500');
+      console.log('Message ID: NONE');
+      console.log(`Provider error: ${err.message}\n`);
+      return { success: false, error: err.message };
     }
   }
 
-  // Fallback to local console log
-  console.log(`\n==================================================`);
-  console.log(`📧 [PASSWORD RESET LINK GENERATED FOR ${toEmail}]`);
-  console.log(`URL: ${resetLink}`);
-  console.log(`==================================================\n`);
-
-  return { success: true, provider: 'console_fallback', resetLink };
+  return { success: false, error: 'Resend provider not configured' };
 }
 
 /**

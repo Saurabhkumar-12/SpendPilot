@@ -28,11 +28,21 @@ async function request(endpoint, options = {}) {
         localStorage.removeItem('spendpilot_user');
         window.location.href = '/login';
       }
-      throw new Error(data.error || 'Request failed.');
+      if (response.status === 429) {
+        const err = new Error('Too many reset attempts. Please try again later.');
+        err.status = 429;
+        throw err;
+      }
+      throw new Error(data.message || data.error || 'Request failed.');
     }
 
     return data;
   } catch (error) {
+    if (error.name === 'TypeError' || (error.message && (error.message.includes('fetch') || error.message.includes('NetworkError')))) {
+      const connError = new Error('Unable to connect to SpendPilot server. Please try again.');
+      connError.status = 503;
+      throw connError;
+    }
     console.error(`API Error on [${options.method || 'GET'} ${endpoint}]:`, error.message);
     throw error;
   }
@@ -44,6 +54,7 @@ export const api = {
   verifyEmail: (token, email) => request(`/auth/verify-email?token=${token}&email=${encodeURIComponent(email)}`),
   login: (data) => request('/auth/login', { method: 'POST', body: JSON.stringify(data) }),
   forgotPassword: (data) => request('/auth/forgot-password', { method: 'POST', body: JSON.stringify(data) }),
+  verifyResetToken: (data) => request('/auth/verify-reset-token', { method: 'POST', body: JSON.stringify(data) }),
   resetPassword: (data) => request('/auth/reset-password', { method: 'POST', body: JSON.stringify(data) }),
   changePassword: (data) => request('/auth/change-password', { method: 'POST', body: JSON.stringify(data) }),
   logout: () => request('/auth/logout', { method: 'POST' }),
