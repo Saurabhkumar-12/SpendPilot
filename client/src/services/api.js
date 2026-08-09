@@ -51,12 +51,9 @@ async function request(endpoint, options = {}) {
 export const api = {
   // Auth
   register: (data) => request('/auth/register', { method: 'POST', body: JSON.stringify(data) }),
-  verifyEmail: (token, email) => request(`/auth/verify-email?token=${token}&email=${encodeURIComponent(email)}`),
   login: (data) => request('/auth/login', { method: 'POST', body: JSON.stringify(data) }),
-  forgotPassword: (data) => request('/auth/forgot-password', { method: 'POST', body: JSON.stringify(data) }),
-  verifyResetToken: (data) => request('/auth/verify-reset-token', { method: 'POST', body: JSON.stringify(data) }),
-  resetPassword: (data) => request('/auth/reset-password', { method: 'POST', body: JSON.stringify(data) }),
   changePassword: (data) => request('/auth/change-password', { method: 'POST', body: JSON.stringify(data) }),
+  adminResetPassword: (data) => request('/auth/admin/reset-password', { method: 'POST', body: JSON.stringify(data) }),
   logout: () => request('/auth/logout', { method: 'POST' }),
   logoutAll: () => request('/auth/logout-all', { method: 'POST' }),
   deleteAccount: () => request('/auth/account', { method: 'DELETE' }),

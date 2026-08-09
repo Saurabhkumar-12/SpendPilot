@@ -21,7 +21,6 @@ import searchRoutes from './modules/search/searchRoutes.js';
 import insightsRoutes from './modules/insights/insightsRoutes.js';
 import profileRoutes from './modules/profile/profileRoutes.js';
 import feedbackRoutes from './modules/feedback/feedbackRoutes.js';
-import devRoutes from './modules/dev/devRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -52,10 +51,7 @@ app.use(cors({
     if (
       !origin ||
       allowedOrigins.includes(origin) ||
-      allowedOrigins.includes('*') ||
-      process.env.CORS_ORIGIN === '*' ||
-      (origin && origin.endsWith('.vercel.app')) ||
-      config.env === 'development'
+      (config.env === 'development' && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin || ''))
     ) {
       callback(null, true);
     } else {
@@ -90,7 +86,6 @@ app.use('/api/v1/search', searchRoutes);
 app.use('/api/v1/insights', insightsRoutes);
 app.use('/api/v1/profile', profileRoutes);
 app.use('/api/v1/feedback', feedbackRoutes);
-app.use('/api/v1/dev', devRoutes);
 
 // Fallback 404 handler
 app.use((req, res) => {

@@ -9,8 +9,9 @@ export const config = {
   dbUrl: process.env.DATABASE_URL || 'file:./src/db/data',
 
   // JWT Token Secrets
-  jwtSecret: process.env.JWT_ACCESS_SECRET || process.env.JWT_SECRET || 'spendpilot_super_secure_jwt_access_secret_2026',
-  jwtRefreshSecret: process.env.JWT_REFRESH_SECRET || 'spendpilot_super_secure_jwt_refresh_secret_2026',
+  jwtSecret: process.env.JWT_ACCESS_SECRET || process.env.JWT_SECRET,
+  jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
+  adminEmail: (process.env.ADMIN_EMAIL || '').trim().toLowerCase(),
   
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '24h',
   jwtRememberExpiresIn: process.env.JWT_REMEMBER_EXPIRES_IN || '30d',

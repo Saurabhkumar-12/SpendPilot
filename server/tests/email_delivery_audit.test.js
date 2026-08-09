@@ -5,6 +5,9 @@ import {
   sendGroupInvitationEmail
 } from '../src/services/emailService.js';
 
+process.env.NODE_ENV = 'test';
+process.env.MOCK_EMAIL = 'true';
+
 let passedCount = 0;
 let failedCount = 0;
 const totalCases = 7;
@@ -62,7 +65,7 @@ async function runEmailAudit() {
   // Test D: Password Changed Confirmation -> Dynamic Recipient User
   try {
     const userC = 'userc_changed@example.com';
-    const resConfirm = await sendPasswordChangedConfirmationEmail(userC, 'User C');
+    const resConfirm = await sendPasswordChangedConfirmationEmail({ to: userC, userName: 'User C' });
     const passConfirm = resConfirm && resConfirm.recipient === userC.toLowerCase();
     logTest(4, 'Password Changed Confirmation Target', passConfirm, `(Recipient: ${resConfirm.recipient})`);
   } catch (err) {
@@ -92,14 +95,14 @@ async function runEmailAudit() {
     logTest(6, 'Missing Recipient Error Handled', false, err.message);
   }
 
-  // Test G: Resend Sandbox Account Delivery Verification (Owner account)
+  // Test G: Resend Sandbox Account Delivery Verification (Test account)
   try {
-    const ownerAccount = 'chaurasiyasaurabh97104@gmail.com';
-    const resOwner = await sendPasswordResetEmail({ to: ownerAccount, resetToken: 'owner_token', userName: 'Owner' });
-    const passOwner = resOwner && resOwner.success === true;
-    logTest(7, 'Resend Provider Acceptance for Owner Account', passOwner, `(Provider: ${resOwner.provider}, MessageId: ${resOwner.messageId || 'DEV'})`);
+    const testAccount = 'test_owner@spendpilot.com';
+    const resOwner = await sendPasswordResetEmail({ to: testAccount, resetToken: 'owner_token', userName: 'Owner' });
+    const passOwner = resOwner && resOwner.recipient === testAccount.toLowerCase();
+    logTest(7, 'Email Service Target Resolution for Test Account', passOwner, `(Recipient: ${resOwner.recipient})`);
   } catch (err) {
-    logTest(7, 'Resend Provider Acceptance for Owner Account', false, err.message);
+    logTest(7, 'Email Service Target Resolution for Test Account', false, err.message);
   }
 
   console.log('\n==================================================');

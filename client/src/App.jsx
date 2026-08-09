@@ -9,9 +9,6 @@ import { LogoMark } from './components/Logo';
 import { LandingPage } from './pages/LandingPage';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
-import { VerifyEmail } from './pages/VerifyEmail';
-import { ForgotPassword } from './pages/ForgotPassword';
-import { ResetPassword } from './pages/ResetPassword';
 import { Dashboard } from './pages/Dashboard';
 import { PersonalExpenses } from './pages/PersonalExpenses';
 import { Groups } from './pages/Groups';
@@ -34,14 +31,6 @@ export function App() {
   // Modals
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isExpenseModalOpen, setIsExpenseModalOpen] = useState(false);
-
-  useEffect(() => {
-    if (window.location.pathname.includes('/verify-email')) {
-      setAuthView('verify-email');
-    } else if (window.location.pathname.includes('/reset-password')) {
-      setAuthView('reset-password');
-    }
-  }, []);
 
   // Handle shareable group invite link (e.g. ?joinGroup=groupId)
   useEffect(() => {
@@ -81,9 +70,6 @@ export function App() {
   if (!user) {
     if (authView === 'login') return <Login onNavigate={setAuthView} />;
     if (authView === 'register') return <Register onNavigate={setAuthView} />;
-    if (authView === 'verify-email') return <VerifyEmail onNavigate={setAuthView} />;
-    if (authView === 'forgot-password') return <ForgotPassword onNavigate={setAuthView} />;
-    if (authView === 'reset-password') return <ResetPassword onNavigate={setAuthView} />;
     return <LandingPage onNavigate={setAuthView} />;
   }
 

@@ -16,6 +16,9 @@ export function Profile() {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [updatingPassword, setUpdatingPassword] = useState(false);
+  const [adminUserEmail, setAdminUserEmail] = useState('');
+  const [adminNewPassword, setAdminNewPassword] = useState('');
+  const [resettingUserPassword, setResettingUserPassword] = useState(false);
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [confirmInput, setConfirmInput] = useState('');
@@ -104,6 +107,25 @@ export function Profile() {
       setDeleting(false);
     }
   };
+
+  const handleAdminPasswordReset = async (e) => {
+    e.preventDefault();
+    setResettingUserPassword(true);
+    try {
+      const res = await api.adminResetPassword({ email: adminUserEmail, newPassword: adminNewPassword });
+      if (res.success) {
+        showSuccess('User password reset. Their active sessions were signed out.');
+        setAdminUserEmail('');
+        setAdminNewPassword('');
+      }
+    } catch (err) {
+      showError(err.message || 'Unable to reset the user password.');
+    } finally {
+      setResettingUserPassword(false);
+    }
+  };
+
+  const isAdministrator = user?.email?.toLowerCase() === 'saurabhkumarr8058@gmail.com';
 
   return (
     <div className="min-h-screen bg-[#F7F6F0] dark:bg-[#071C16] text-[#161A18] dark:text-[#F7FFF9] font-sans p-4 md:p-8 space-y-6 animate-in fade-in duration-300">
@@ -220,6 +242,21 @@ export function Profile() {
             </button>
           </form>
         </div>
+
+        {isAdministrator && (
+          <div className="lg:col-span-6 bg-[#EEF9F2] dark:bg-[#0E2920] border border-[#19B86A]/40 p-6 rounded-3xl space-y-4 shadow-sm">
+            <div className="flex items-center gap-3">
+              <ShieldAlert className="w-6 h-6 text-[#19B86A]" />
+              <h3 className="font-display font-extrabold text-base text-[#092B20] dark:text-[#F7FFF9]">Administrator Password Reset</h3>
+            </div>
+            <p className="text-xs text-[#53635B] dark:text-[#B8C9C0]">Use only after confirming the account owner’s identity. This signs the user out of every device.</p>
+            <form onSubmit={handleAdminPasswordReset} className="space-y-3">
+              <input type="email" required value={adminUserEmail} onChange={(e) => setAdminUserEmail(e.target.value)} placeholder="User email address" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#071C16] border border-[#DDE5DF] dark:border-[#1A4337] font-semibold text-xs text-[#092B20] dark:text-[#F7FFF9]" />
+              <input type="password" required minLength={6} value={adminNewPassword} onChange={(e) => setAdminNewPassword(e.target.value)} placeholder="Temporary new password" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#071C16] border border-[#DDE5DF] dark:border-[#1A4337] font-semibold text-xs text-[#092B20] dark:text-[#F7FFF9]" />
+              <button type="submit" disabled={resettingUserPassword} className="btn-emerald px-5 py-3 rounded-xl text-xs font-bold disabled:opacity-50">{resettingUserPassword ? 'Resetting User Password...' : 'Reset User Password'}</button>
+            </form>
+          </div>
+        )}
 
         {/* Danger Zone: Account Deletion */}
         <div className="lg:col-span-6 bg-[#D94A4A]/5 border border-[#D94A4A]/30 p-6 rounded-3xl space-y-4 shadow-sm">

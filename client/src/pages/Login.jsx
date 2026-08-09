@@ -123,7 +123,7 @@ export function Login({ onNavigate }) {
                 <label className="block text-xs font-bold text-[#092B20] uppercase tracking-wider">Password</label>
                 <button
                   type="button"
-                  onClick={() => onNavigate('forgot-password')}
+                  onClick={() => showError('Password recovery is not available yet. Please contact the SpendPilot administrator.')}
                   className="text-xs text-[#19B86A] hover:underline font-bold"
                 >
                   Forgot Password?

@@ -8,22 +8,31 @@ export function authGuard(req, res, next) {
     return res.status(401).json({ success: false, error: 'Access denied. Token missing.' });
   }
 
-  const token = authHeader.split(' ')[1];
+  const token = authHeader.slice('Bearer '.length).trim();
+  if (!token) {
+    return res.status(401).json({ success: false, error: 'Unauthorized' });
+  }
   try {
     const decoded = jwt.verify(token, config.jwtSecret);
     
     // Verify user exists
+    if (!decoded.userId || !decoded.sessionId) {
+      return res.status(401).json({ success: false, error: 'Unauthorized' });
+    }
+
     const user = db.findOne('users', u => u.id === decoded.userId);
     if (!user) {
       return res.status(401).json({ success: false, error: 'User account no longer exists.' });
     }
 
-    // Verify active non-revoked session if sessionId is attached
-    if (decoded.sessionId) {
-      const session = db.findOne('sessions', s => s.id === decoded.sessionId && s.is_revoked === 0);
-      if (!session) {
-        return res.status(401).json({ success: false, error: 'Session has been revoked or expired.' });
-      }
+    const session = db.findOne('sessions', s =>
+      s.id === decoded.sessionId &&
+      s.user_id === user.id &&
+      Number(s.is_revoked) === 0 &&
+      (!s.expires_at || new Date(s.expires_at) > new Date())
+    );
+    if (!session) {
+      return res.status(401).json({ success: false, error: 'Unauthorized' });
     }
 
     req.user = {

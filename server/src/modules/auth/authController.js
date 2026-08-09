@@ -32,8 +32,9 @@ export const authController = {
         avatar_url: null,
         is_verified: 1, // Instant account verification
         verification_token: null,
-        reset_token: null,
         reset_token_expires: null,
+        reset_token_hash: null,
+        reset_token_used: false,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       };
@@ -96,7 +97,6 @@ export const authController = {
           name: newUser.name,
           email: newUser.email,
           avatarUrl: newUser.avatar_url,
-          recoveryPin: uniqueRecoveryPin,
           isVerified: true,
           preferences: { currency: '₹', theme: 'light', defaultSplitMode: 'EQUAL' }
         }
@@ -131,18 +131,15 @@ export const authController = {
         return res.status(401).json({ success: false, error: 'Invalid email or password.' });
       }
 
-      // Handle invited group users who don't have a password set yet
+      // Handle users with empty password_hash safely without uncaught exception
       if (!user.password_hash || user.password_hash.trim() === '') {
-        return res.status(400).json({
-          success: false,
-          error: 'This account was created via group invite and does not have a password set yet. Please use "Forgot Password" or "Security PIN" to set your password.'
-        });
+        return res.status(401).json({ success: false, error: 'Invalid email or password.' });
       }
 
       // Test clean trimmed password first, then raw password as fallback
-      let isPasswordValid = await bcrypt.compare(cleanPassword, user.password_hash);
+      let isPasswordValid = await bcrypt.compare(cleanPassword, user.password_hash).catch(() => false);
       if (!isPasswordValid && cleanPassword !== password) {
-        isPasswordValid = await bcrypt.compare(password, user.password_hash);
+        isPasswordValid = await bcrypt.compare(password, user.password_hash).catch(() => false);
       }
 
       if (!isPasswordValid) {
@@ -190,7 +187,6 @@ export const authController = {
           name: user.name,
           email: user.email,
           avatarUrl: user.avatar_url,
-          recoveryPin: user.recovery_pin || '123456',
           isVerified: true,
           preferences: userPref || { currency: '₹', theme: 'light', defaultSplitMode: 'EQUAL' }
         }
@@ -209,7 +205,12 @@ export const authController = {
       }
 
       const decoded = jwt.verify(refreshToken, config.jwtRefreshSecret);
-      const session = db.findOne('sessions', s => s.id === decoded.sessionId && s.is_revoked === 0);
+      const session = db.findOne('sessions', s =>
+        s.id === decoded.sessionId &&
+        s.user_id === decoded.userId &&
+        Number(s.is_revoked) === 0 &&
+        (!s.expires_at || new Date(s.expires_at) > new Date())
+      );
       if (!session) {
         return res.status(401).json({ success: false, error: 'Session has been revoked or expired.' });
       }
@@ -239,22 +240,12 @@ export const authController = {
         return res.status(400).json({ success: false, error: 'Please enter your registered email address.' });
       }
 
-      const normalizedEmail = email.toLowerCase().trim();
-      const user = db.findOne('users', u => u.email === normalizedEmail);
+      const normalizedEmail = String(email || '').trim().toLowerCase();
+      const user = db.findOne('users', u => u.email && u.email.trim().toLowerCase() === normalizedEmail);
 
-      console.log('\n[RESET DEBUG]');
-      console.log('Request received');
-      console.log('Email normalized: yes');
-      console.log(`User found: ${user ? 'yes' : 'no'}`);
-      console.log('Rate limit: passed');
-
-      // Enumeration protection response for non-existent users
       const genericMessage = 'If an account exists for this email, password reset instructions have been sent.';
 
       if (!user) {
-        console.log('Reset token generated: no');
-        console.log('Reset token stored: no');
-        console.log('Email service called: no\n');
         logAuditAction(null, 'PASSWORD_RESET_FAILED', req, { email: normalizedEmail, reason: 'user_not_found' });
         return res.json({
           success: true,
@@ -262,36 +253,41 @@ export const authController = {
         });
       }
 
+      const recipientEmail = user.email.trim().toLowerCase();
+      console.log('[RESET EMAIL] Recipient:', recipientEmail);
+
       // Generate Cryptographic Raw Reset Token & Token Hash
       const rawToken = crypto.randomBytes(32).toString('hex');
       const tokenHash = crypto.createHash('sha256').update(rawToken).digest('hex');
       const expiryMinutes = config.passwordResetExpiryMinutes || 30;
       const resetTokenExpires = new Date(Date.now() + expiryMinutes * 60 * 1000).toISOString();
+      const idempotencyKey = `password-reset-${user.id}-${tokenHash}`;
 
-      console.log('Reset token generated: yes');
-
-      // Store ONLY token hash in database
+      // Store ONLY token hash in database (NEVER rawToken)
       db.update('users', u => u.id === user.id, {
         reset_token_hash: tokenHash,
-        reset_token: rawToken,
         reset_token_expires: resetTokenExpires,
         reset_token_used: false,
         updated_at: new Date().toISOString()
       });
 
-      console.log('Reset token stored: yes');
-      console.log('Email service called: yes\n');
-
-      // Dispatch Email through provider using user.email from database record
+      // Dispatch Email through provider using user.email from database record ONLY
       const mailResult = await sendPasswordResetEmail({
-        to: user.email,
+        to: recipientEmail,
         resetToken: rawToken,
-        userName: user.name
+        userName: user.name,
+        idempotencyKey
       });
 
-      logAuditAction(user.id, 'PASSWORD_RESET_REQUESTED', req, { email: user.email });
+      logAuditAction(user.id, 'PASSWORD_RESET_REQUESTED', req, { email: recipientEmail });
 
       if (!mailResult.success) {
+        db.update('users', u => u.id === user.id && u.reset_token_hash === tokenHash, {
+          reset_token_hash: null,
+          reset_token_expires: null,
+          reset_token_used: false,
+          updated_at: new Date().toISOString()
+        });
         return res.status(500).json({
           success: false,
           error: 'Unable to send the reset email right now. Please try again later.'
@@ -318,10 +314,7 @@ export const authController = {
       const rawToken = token.trim();
       const tokenHash = crypto.createHash('sha256').update(rawToken).digest('hex');
 
-      const user = db.findOne('users', u => 
-        (u.reset_token_hash && u.reset_token_hash === tokenHash) || 
-        (u.reset_token && u.reset_token === rawToken)
-      );
+      const user = db.findOne('users', u => u.reset_token_hash === tokenHash);
 
       if (!user) {
         return res.status(400).json({ success: false, message: 'Invalid password reset link.' });
@@ -357,10 +350,7 @@ export const authController = {
       const rawToken = token.trim();
       const tokenHash = crypto.createHash('sha256').update(rawToken).digest('hex');
 
-      const user = db.findOne('users', u => 
-        (u.reset_token_hash && u.reset_token_hash === tokenHash) || 
-        (u.reset_token && u.reset_token === rawToken)
-      );
+      const user = db.findOne('users', u => u.reset_token_hash === tokenHash);
 
       if (!user) {
         logAuditAction(null, 'PASSWORD_RESET_FAILED', req, { reason: 'invalid_token' });
@@ -382,7 +372,6 @@ export const authController = {
       db.update('users', u => u.id === user.id, {
         password_hash: newHash,
         reset_token_hash: null,
-        reset_token: null,
         reset_token_expires: null,
         reset_token_used: true,
         updated_at: new Date().toISOString()
@@ -392,7 +381,7 @@ export const authController = {
       db.update('sessions', s => s.user_id === user.id, { is_revoked: 1 });
 
       // Non-blocking confirmation email
-      sendPasswordChangedConfirmationEmail(user.email, user.name).catch(() => {});
+      sendPasswordChangedConfirmationEmail({ to: user.email, userName: user.name }).catch(() => {});
 
       logAuditAction(user.id, 'PASSWORD_RESET_COMPLETED', req);
 
@@ -409,6 +398,9 @@ export const authController = {
       const userId = req.user.id;
 
       const user = db.findOne('users', u => u.id === userId);
+      if (!user || !currentPassword || !newPassword) {
+        return res.status(400).json({ success: false, error: 'Current and new passwords are required.' });
+      }
       const cleanCurrent = currentPassword.trim();
       const cleanNew = newPassword.trim();
 
@@ -427,11 +419,42 @@ export const authController = {
         updated_at: new Date().toISOString()
       });
 
-      sendPasswordChangedConfirmationEmail(user.email, user.name).catch(() => {});
+      db.update('sessions', s => s.user_id === userId && s.id !== req.user.sessionId, { is_revoked: 1 });
+      sendPasswordChangedConfirmationEmail({ to: user.email, userName: user.name }).catch(() => {});
 
       logAuditAction(userId, 'PASSWORD_CHANGED', req);
 
       return res.json({ success: true, message: 'Password updated successfully.' });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  // Administrator-only recovery for users who have lost both password and recovery access.
+  async adminResetPassword(req, res, next) {
+    try {
+      if (!config.adminEmail || req.user.email.toLowerCase() !== config.adminEmail) {
+        return res.status(403).json({ success: false, error: 'Administrator access is required.' });
+      }
+
+      const normalizedEmail = req.body.email.trim().toLowerCase();
+      const user = db.findOne('users', candidate => candidate.email?.trim().toLowerCase() === normalizedEmail);
+      if (!user) {
+        return res.status(404).json({ success: false, error: 'User account not found.' });
+      }
+
+      const passwordHash = await bcrypt.hash(req.body.newPassword.trim(), 10);
+      db.update('users', candidate => candidate.id === user.id, {
+        password_hash: passwordHash,
+        reset_token_hash: null,
+        reset_token_expires: null,
+        reset_token_used: true,
+        updated_at: new Date().toISOString()
+      });
+      db.update('sessions', session => session.user_id === user.id, { is_revoked: 1 });
+      logAuditAction(user.id, 'ADMIN_PASSWORD_RESET', req, { adminId: req.user.id });
+
+      return res.json({ success: true, message: 'Password reset. The user must sign in again.' });
     } catch (err) {
       next(err);
     }

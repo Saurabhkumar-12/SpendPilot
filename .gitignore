@@ -20,6 +20,13 @@ yarn-error.log*
 logs/
 *.log
 
+# Local JSON database backups and one-off recovery utilities
+server/src/db/data_backup/
+server/generate_reset_link.js
+server/reset_and_audit_auth.js
+server/safe_auth_reset.js
+server/test_user_email_delivery.js
+
 # Editor & OS files
 .DS_Store
 Thumbs.db
