@@ -1,4 +1,8 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+const configuredApiUrl = String(import.meta.env.VITE_API_URL || '')
+  .trim()
+  .replace(/^VITE_API_URL=/, '')
+  .replace(/\/+$/, '');
+const API_BASE_URL = configuredApiUrl || 'http://localhost:5000/api/v1';
 
 async function request(endpoint, options = {}) {
   const token = localStorage.getItem('spendpilot_token');
@@ -20,7 +24,7 @@ async function request(endpoint, options = {}) {
 
   try {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-    const data = await response.json();
+    const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
       if (response.status === 401 && !endpoint.includes('/auth/login')) {
