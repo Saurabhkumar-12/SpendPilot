@@ -37,11 +37,26 @@ initSocket(server);
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
-const allowedOrigins = [config.appUrl, 'http://localhost:5173', 'http://localhost:5174', 'http://127.0.0.1:5173'].filter(Boolean);
+const allowedOrigins = [
+  config.appUrl,
+  process.env.CORS_ORIGIN,
+  process.env.CLIENT_URL,
+  'https://spendpilot-coral.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://127.0.0.1:5173'
+].filter(Boolean);
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin) || config.env === 'development') {
+    if (
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      allowedOrigins.includes('*') ||
+      process.env.CORS_ORIGIN === '*' ||
+      (origin && origin.endsWith('.vercel.app')) ||
+      config.env === 'development'
+    ) {
       callback(null, true);
     } else {
       callback(new Error('CORS policy violation: Origin not allowed.'));
