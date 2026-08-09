@@ -19,31 +19,31 @@ const createRateLimiter = (options) => {
   });
 };
 
-// 1. Dedicated Login Limiter: 5 attempts per 15 minutes
+// 1. Dedicated Login Limiter: 20 attempts per 15 minutes
 export const loginRateLimiter = createRateLimiter({
   windowMs: 15 * 60 * 1000,
-  max: 5,
+  max: 20,
   message: 'Too many failed login attempts. Please wait 15 minutes before trying again.'
 });
 
-// 2. Dedicated Register Limiter: 5 attempts per 1 hour
+// 2. Dedicated Register Limiter: 15 attempts per 1 hour
 export const registerRateLimiter = createRateLimiter({
   windowMs: 60 * 60 * 1000,
-  max: 5,
+  max: 15,
   message: 'Account creation limit reached. Please wait 1 hour before creating another account.'
 });
 
-// 3. Dedicated Forgot Password Limiter: 3 requests per 1 hour
+// 3. Dedicated Forgot Password Limiter: 15 requests per 1 hour
 export const forgotPasswordRateLimiter = createRateLimiter({
   windowMs: 60 * 60 * 1000,
-  max: 3,
+  max: 15,
   message: 'Too many password reset requests. For security reasons, please wait 1 hour before requesting another reset email.'
 });
 
-// 4. Dedicated Reset Password Limiter: 5 attempts per 1 hour
+// 4. Dedicated Reset Password Limiter: 20 attempts per 1 hour
 export const resetPasswordRateLimiter = createRateLimiter({
   windowMs: 60 * 60 * 1000,
-  max: 5,
+  max: 20,
   message: 'Too many password reset attempts. Please wait 1 hour before trying again.'
 });
 

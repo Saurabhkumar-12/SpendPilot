@@ -31,7 +31,7 @@ export async function seedDatabase() {
     db.insert('user_preferences', {
       user_id: u.id,
       currency: '₹',
-      theme: 'dark',
+      theme: 'light',
       default_split_mode: 'EQUAL',
       notify_invites: 1,
       notify_settlements: 1

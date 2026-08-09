@@ -152,5 +152,19 @@
     "user_id": "882a41fd-e79c-4a70-b7ec-422da6ccea2f",
     "amount_owed": 500,
     "percentage": 50
+  },
+  {
+    "id": "ab686ac6-f33b-4a2c-82a1-4e9b92ca8f67",
+    "expense_id": "e71d89dc-ca89-411e-b945-2d9bb62e689e",
+    "user_id": "f12f6b70-083e-4d17-a3ff-d543d4da4b60",
+    "amount_owed": 1000,
+    "percentage": 50
+  },
+  {
+    "id": "6998c4d2-a971-4302-924a-3afa85030dc3",
+    "expense_id": "e71d89dc-ca89-411e-b945-2d9bb62e689e",
+    "user_id": "aec8a332-0c37-43c3-9f22-61d5ae8724cf",
+    "amount_owed": 1000,
+    "percentage": 50
   }
 ]

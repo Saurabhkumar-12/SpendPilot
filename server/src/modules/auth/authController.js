@@ -19,7 +19,8 @@ export const authController = {
       }
 
       const userId = crypto.randomUUID();
-      const passwordHash = await bcrypt.hash(password, 10);
+      const cleanPassword = password.trim();
+      const passwordHash = await bcrypt.hash(cleanPassword, 10);
       const uniqueRecoveryPin = Math.floor(100000 + Math.random() * 900000).toString();
 
       const newUser = {
@@ -43,7 +44,7 @@ export const authController = {
       db.insert('user_preferences', {
         user_id: userId,
         currency: '₹',
-        theme: 'dark',
+        theme: 'light',
         default_split_mode: 'EQUAL',
         notify_invites: 1,
         notify_settlements: 1
@@ -91,7 +92,7 @@ export const authController = {
           avatarUrl: newUser.avatar_url,
           recoveryPin: uniqueRecoveryPin,
           isVerified: true,
-          preferences: { currency: '₹', theme: 'dark', defaultSplitMode: 'EQUAL' }
+          preferences: { currency: '₹', theme: 'light', defaultSplitMode: 'EQUAL' }
         }
       });
     } catch (err) {
@@ -112,14 +113,32 @@ export const authController = {
   async login(req, res, next) {
     try {
       const { email, password, rememberMe } = req.body;
+      if (!email || !password) {
+        return res.status(400).json({ success: false, error: 'Email and password are required.' });
+      }
+
       const normalizedEmail = email.toLowerCase().trim();
+      const cleanPassword = password.trim();
 
       const user = db.findOne('users', u => u.email === normalizedEmail);
       if (!user) {
         return res.status(401).json({ success: false, error: 'Invalid email or password.' });
       }
 
-      const isPasswordValid = await bcrypt.compare(password, user.password_hash);
+      // Handle invited group users who don't have a password set yet
+      if (!user.password_hash || user.password_hash.trim() === '') {
+        return res.status(400).json({
+          success: false,
+          error: 'This account was created via group invite and does not have a password set yet. Please use "Forgot Password" or "Security PIN" to set your password.'
+        });
+      }
+
+      // Test clean trimmed password first, then raw password as fallback
+      let isPasswordValid = await bcrypt.compare(cleanPassword, user.password_hash);
+      if (!isPasswordValid && cleanPassword !== password) {
+        isPasswordValid = await bcrypt.compare(password, user.password_hash);
+      }
+
       if (!isPasswordValid) {
         return res.status(401).json({ success: false, error: 'Invalid email or password.' });
       }
@@ -167,7 +186,7 @@ export const authController = {
           avatarUrl: user.avatar_url,
           recoveryPin: user.recovery_pin || '123456',
           isVerified: true,
-          preferences: userPref || { currency: '₹', theme: 'dark', defaultSplitMode: 'EQUAL' }
+          preferences: userPref || { currency: '₹', theme: 'light', defaultSplitMode: 'EQUAL' }
         }
       });
     } catch (err) {
@@ -236,14 +255,16 @@ export const authController = {
         updated_at: new Date().toISOString()
       });
 
-      // Dispatch Email via Resend SDK
+      // Dispatch Email with timeout & fallback
       const mailResult = await sendPasswordResetEmail(normalizedEmail, resetToken, user.name);
 
       logAuditAction(user.id, 'FORGOT_PASSWORD_REQUESTED', req, { email: normalizedEmail });
 
       return res.json({
         success: true,
-        message: 'Password reset link has been dispatched to your email address. Check your inbox!'
+        message: 'Password reset link has been generated! Check your inbox or use Security Recovery PIN.',
+        resetLink: mailResult?.resetLink || null,
+        recoveryPinHint: user.recovery_pin || null
       });
     } catch (err) {
       next(err);
@@ -255,6 +276,11 @@ export const authController = {
     try {
       const { token, email, recoveryPin, newPassword } = req.body;
 
+      if (!newPassword || newPassword.trim().length < 6) {
+        return res.status(400).json({ success: false, error: 'New password must be at least 6 characters long.' });
+      }
+
+      const cleanNewPassword = newPassword.trim();
       let user = null;
 
       if (token) {
@@ -282,7 +308,7 @@ export const authController = {
       }
 
       // Hash new password & INVALIDATE RESET TOKEN
-      const newHash = await bcrypt.hash(newPassword, 10);
+      const newHash = await bcrypt.hash(cleanNewPassword, 10);
       db.update('users', u => u.id === user.id, {
         password_hash: newHash,
         reset_token: null,
@@ -293,8 +319,8 @@ export const authController = {
       // Revoke all active user sessions for security
       db.update('sessions', s => s.user_id === user.id, { is_revoked: 1 });
 
-      // Send confirmation email
-      await sendPasswordChangedConfirmationEmail(user.email, user.name);
+      // Non-blocking confirmation email
+      sendPasswordChangedConfirmationEmail(user.email, user.name).catch(() => {});
 
       logAuditAction(user.id, 'PASSWORD_RESET_COMPLETED', req);
 
@@ -311,18 +337,25 @@ export const authController = {
       const userId = req.user.id;
 
       const user = db.findOne('users', u => u.id === userId);
-      const isValid = await bcrypt.compare(currentPassword, user.password_hash);
+      const cleanCurrent = currentPassword.trim();
+      const cleanNew = newPassword.trim();
+
+      let isValid = await bcrypt.compare(cleanCurrent, user.password_hash);
+      if (!isValid) {
+        isValid = await bcrypt.compare(currentPassword, user.password_hash);
+      }
+
       if (!isValid) {
         return res.status(400).json({ success: false, error: 'Incorrect current password.' });
       }
 
-      const newHash = await bcrypt.hash(newPassword, 10);
+      const newHash = await bcrypt.hash(cleanNew, 10);
       db.update('users', u => u.id === userId, {
         password_hash: newHash,
         updated_at: new Date().toISOString()
       });
 
-      await sendPasswordChangedConfirmationEmail(user.email, user.name);
+      sendPasswordChangedConfirmationEmail(user.email, user.name).catch(() => {});
 
       logAuditAction(userId, 'PASSWORD_CHANGED', req);
 

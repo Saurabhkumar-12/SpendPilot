@@ -15,16 +15,24 @@ export function Login({ onNavigate }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const cleanEmail = email.trim();
+    const cleanPassword = password.trim();
+
+    if (!cleanEmail || !cleanPassword) {
+      showError('Please enter both email and password.');
+      return;
+    }
+
     setLoading(true);
     try {
-      const res = await api.login({ email, password, rememberMe });
+      const res = await api.login({ email: cleanEmail, password: cleanPassword, rememberMe });
       if (res.success) {
         showSuccess('Welcome back to SpendPilot!');
         loginUser(res.token, res.user);
         onNavigate('dashboard');
       }
     } catch (err) {
-      showError(err.message || 'Login failed.');
+      showError(err.message || 'Login failed. Please check your password.');
     } finally {
       setLoading(false);
     }

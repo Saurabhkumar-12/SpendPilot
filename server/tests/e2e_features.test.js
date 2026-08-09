@@ -29,6 +29,7 @@ let createdExpenseId = '';
 let createdGroupId = '';
 let secondUserId = '';
 let secondAuthToken = '';
+let secondUserEmail = '';
 
 before(async () => {
   initDatabase();
@@ -118,6 +119,7 @@ test('E2E - Second User Registration (for multi-user group tests)', async () => 
   const json = await res.json();
   secondAuthToken = json.token;
   secondUserId = json.user.id;
+  secondUserEmail = json.user.email;
 });
 
 test('E2E - Token Refresh Route', async () => {
@@ -234,6 +236,15 @@ test('E2E - Create Group', async () => {
   assert.equal(json.success, true);
   assert.equal(json.data.name, 'Goa Trip 2026');
   createdGroupId = json.data.id;
+
+  // Add second user to group members
+  db.insert('group_members', {
+    id: 'test-gm-2',
+    group_id: createdGroupId,
+    user_id: secondUserId,
+    role: 'MEMBER',
+    joined_at: new Date().toISOString()
+  });
 });
 
 test('E2E - Add Group Expense & Split', async () => {

@@ -60,5 +60,49 @@
     "payment_method": "UPI",
     "created_at": "2026-08-07T07:09:11.050Z",
     "updated_at": "2026-08-07T07:09:11.050Z"
+  },
+  {
+    "id": "a03310d6-ee27-48fb-b1f5-e4bef64600d4",
+    "user_id": "995a5fab-61f8-4e24-b173-4ae35bd0d947",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-08-09",
+    "payment_method": "UPI",
+    "created_at": "2026-08-09T13:38:39.310Z",
+    "updated_at": "2026-08-09T13:38:39.310Z"
+  },
+  {
+    "id": "3cbff0bc-9756-4e98-91d8-1cd3eaf8a3b2",
+    "user_id": "a81e9c4d-dd04-4047-ad41-1928cdf58f70",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-08-09",
+    "payment_method": "UPI",
+    "created_at": "2026-08-09T13:38:49.950Z",
+    "updated_at": "2026-08-09T13:38:49.950Z"
+  },
+  {
+    "id": "6531833e-5491-456e-a44d-9ca0125b6a74",
+    "user_id": "c1caaeb2-9dde-420e-8098-91313aae80e7",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-08-09",
+    "payment_method": "UPI",
+    "created_at": "2026-08-09T13:39:11.821Z",
+    "updated_at": "2026-08-09T13:39:11.821Z"
+  },
+  {
+    "id": "0e976ff6-99ab-48f8-b399-fb986279d4c0",
+    "user_id": "f12f6b70-083e-4d17-a3ff-d543d4da4b60",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-08-09",
+    "payment_method": "UPI",
+    "created_at": "2026-08-09T13:39:42.400Z",
+    "updated_at": "2026-08-09T13:39:42.400Z"
   }
 ]

@@ -78,5 +78,85 @@
     "created_at": "2026-08-08T05:28:40.037Z",
     "expires_at": "2026-09-07T05:28:40.037Z",
     "is_revoked": 0
+  },
+  {
+    "id": "9fd14be6-5674-420d-a0eb-a2ac53e4f9d9",
+    "user_id": "995a5fab-61f8-4e24-b173-4ae35bd0d947",
+    "token_hash": "ad71b85457cd0f354c43f233628a5b9ad419f89dba260c2e0750d70e55f70357",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "created_at": "2026-08-09T13:38:39.156Z",
+    "expires_at": "2026-08-10T13:38:39.156Z",
+    "is_revoked": 0
+  },
+  {
+    "id": "554de16f-f6fb-44c9-8a8e-cf882656b241",
+    "user_id": "a8608021-68e2-45b2-a0ca-c582894f20e2",
+    "token_hash": "294dd7f93bd9cb397427e83372315c2d17cc64b7f765d5f403db3a2561dd99c9",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "created_at": "2026-08-09T13:38:39.239Z",
+    "expires_at": "2026-08-10T13:38:39.239Z",
+    "is_revoked": 0
+  },
+  {
+    "id": "63c5ea2a-45ba-4d43-aa50-194cecab08ab",
+    "user_id": "a81e9c4d-dd04-4047-ad41-1928cdf58f70",
+    "token_hash": "f1a69752892bce27ffab6ae5da8ae55ba2005d0ce1a8a1db7827cd2b81095a99",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "created_at": "2026-08-09T13:38:49.818Z",
+    "expires_at": "2026-08-10T13:38:49.818Z",
+    "is_revoked": 0
+  },
+  {
+    "id": "8eec233c-0ee7-4071-9f2c-e699622d267e",
+    "user_id": "c09969f2-1d2c-4e2f-a704-390ce458fc1a",
+    "token_hash": "488bae276e7a3c9ddffa7ffa3c04494909d17ccb88d895183a36fb49832800c2",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "created_at": "2026-08-09T13:38:49.904Z",
+    "expires_at": "2026-08-10T13:38:49.904Z",
+    "is_revoked": 0
+  },
+  {
+    "id": "ad6df1ef-bd6b-45c2-a406-4d7a8f19b1d1",
+    "user_id": "c1caaeb2-9dde-420e-8098-91313aae80e7",
+    "token_hash": "fc000a2d8b007a076d6155b93be225b1557fc634b36cc465a157ebec63fcb527",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "created_at": "2026-08-09T13:39:11.665Z",
+    "expires_at": "2026-08-10T13:39:11.665Z",
+    "is_revoked": 0
+  },
+  {
+    "id": "f2366330-ad50-46a6-bfc4-8f9fac489269",
+    "user_id": "aacebdeb-d17d-42ca-93b2-59903c5253a2",
+    "token_hash": "66485d159b110623e61c796a913815ea7451ce61936b237a2661e5318c8939c7",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "created_at": "2026-08-09T13:39:11.743Z",
+    "expires_at": "2026-08-10T13:39:11.742Z",
+    "is_revoked": 0
+  },
+  {
+    "id": "0fe00cfd-c3c2-4a6c-9e92-7e8a096b5e4b",
+    "user_id": "f12f6b70-083e-4d17-a3ff-d543d4da4b60",
+    "token_hash": "15ffb6d3a8b593b8ed40f12131450e293012a9536493f992ae4f985baa01465d",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "created_at": "2026-08-09T13:39:42.263Z",
+    "expires_at": "2026-08-10T13:39:42.263Z",
+    "is_revoked": 0
+  },
+  {
+    "id": "1d564623-96c6-4705-aa1d-d80d3ab18e7d",
+    "user_id": "aec8a332-0c37-43c3-9f22-61d5ae8724cf",
+    "token_hash": "073294cc0a9a2391d44dd9a932cbce0ee8b6d8e4a235b45504c3950416821881",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "created_at": "2026-08-09T13:39:42.344Z",
+    "expires_at": "2026-08-10T13:39:42.344Z",
+    "is_revoked": 0
   }
 ]

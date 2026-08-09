@@ -36,5 +36,40 @@
     "user_id": "523a4e4a-0438-4989-b0ac-6773db9a4aa3",
     "role": "ADMIN",
     "joined_at": "2026-08-07T07:09:11.103Z"
+  },
+  {
+    "id": "0eb0c8c4-d04e-4bc1-9a8a-3b6feef3cf1c",
+    "group_id": "f151adc9-0ed5-4b19-a9d3-9ed6502626d8",
+    "user_id": "995a5fab-61f8-4e24-b173-4ae35bd0d947",
+    "role": "ADMIN",
+    "joined_at": "2026-08-09T13:38:39.339Z"
+  },
+  {
+    "id": "543bba7d-2827-40aa-919b-80bb378ef90f",
+    "group_id": "4de036d5-c3e8-4e0e-a8c8-97aa88643a76",
+    "user_id": "a81e9c4d-dd04-4047-ad41-1928cdf58f70",
+    "role": "ADMIN",
+    "joined_at": "2026-08-09T13:38:49.990Z"
+  },
+  {
+    "id": "8f29c3d2-8401-40fc-ab7e-38eec5de602c",
+    "group_id": "1c79834c-8404-405d-b2b2-fa20dc061bf0",
+    "user_id": "c1caaeb2-9dde-420e-8098-91313aae80e7",
+    "role": "ADMIN",
+    "joined_at": "2026-08-09T13:39:11.868Z"
+  },
+  {
+    "id": "90a08991-d4f5-4859-8760-fcb1a202d2be",
+    "group_id": "1cdc61bf-3466-4bc7-b63a-225a08927357",
+    "user_id": "f12f6b70-083e-4d17-a3ff-d543d4da4b60",
+    "role": "ADMIN",
+    "joined_at": "2026-08-09T13:39:42.420Z"
+  },
+  {
+    "id": "test-gm-2",
+    "group_id": "1cdc61bf-3466-4bc7-b63a-225a08927357",
+    "user_id": "aec8a332-0c37-43c3-9f22-61d5ae8724cf",
+    "role": "MEMBER",
+    "joined_at": "2026-08-09T13:39:42.422Z"
   }
 ]

@@ -70,5 +70,18 @@
     "split_type": "EQUAL",
     "created_at": "2026-08-07T07:09:11.119Z",
     "updated_at": "2026-08-07T07:09:11.119Z"
+  },
+  {
+    "id": "e71d89dc-ca89-411e-b945-2d9bb62e689e",
+    "group_id": "1cdc61bf-3466-4bc7-b63a-225a08927357",
+    "description": "Cab Booking",
+    "amount": 2000,
+    "category": "Travel",
+    "paid_by_id": "f12f6b70-083e-4d17-a3ff-d543d4da4b60",
+    "created_by": "f12f6b70-083e-4d17-a3ff-d543d4da4b60",
+    "split_type": "EQUAL",
+    "notes": "",
+    "date": "2026-08-09",
+    "created_at": "2026-08-09T13:39:42.430Z"
   }
 ]
