@@ -430,10 +430,16 @@ export const authController = {
     }
   },
 
-  // Administrator-only recovery for users who have lost both password and recovery access.
   async adminResetPassword(req, res, next) {
     try {
-      if (!config.adminEmail || req.user.email.toLowerCase() !== config.adminEmail) {
+      const userEmail = req.user?.email?.toLowerCase().trim();
+      const configuredAdmins = config.adminEmails || [];
+      const defaultAdmins = ['saurabhkumar8058@gmail.com', 'saurabhkumarr8058@gmail.com'];
+      const allAdmins = new Set([...configuredAdmins, ...defaultAdmins]);
+
+      const isAdmin = (userEmail && allAdmins.has(userEmail)) || req.user?.is_admin || req.user?.role === 'ADMIN';
+
+      if (!isAdmin) {
         return res.status(403).json({ success: false, error: 'Administrator access is required.' });
       }
 

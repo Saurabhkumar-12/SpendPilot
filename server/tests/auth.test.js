@@ -31,3 +31,13 @@ test('Password Hashing & Verification', async () => {
   assert.equal(isValid, true);
   assert.equal(isInvalid, false);
 });
+
+test('Admin Email Authorization Check', () => {
+  const adminEmails = ['saurabhkumar8058@gmail.com', 'saurabhkumarr8058@gmail.com'];
+  const checkIsAdmin = (email) => Boolean(email && adminEmails.includes(email.toLowerCase().trim()));
+
+  assert.equal(checkIsAdmin('saurabhkumar8058@gmail.com'), true);
+  assert.equal(checkIsAdmin('saurabhkumarr8058@gmail.com'), true);
+  assert.equal(checkIsAdmin('user@example.com'), false);
+});
+

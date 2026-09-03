@@ -125,7 +125,14 @@ export function Profile() {
     }
   };
 
-  const isAdministrator = user?.email?.toLowerCase() === 'saurabhkumarr8058@gmail.com';
+  const adminEmails = ['saurabhkumar8058@gmail.com', 'saurabhkumarr8058@gmail.com'];
+  const isAdministrator = Boolean(
+    user?.email && (
+      adminEmails.includes(user.email.toLowerCase().trim()) ||
+      user?.is_admin ||
+      user?.role === 'ADMIN'
+    )
+  );
 
   return (
     <div className="min-h-screen bg-[#F7F6F0] dark:bg-[#071C16] text-[#161A18] dark:text-[#F7FFF9] font-sans p-4 md:p-8 space-y-6 animate-in fade-in duration-300">

@@ -16,7 +16,7 @@ services:
       - key: JWT_REFRESH_SECRET
         generateValue: true
       - key: ADMIN_EMAIL
-        value: saurabhkumarr8058@gmail.com
+        value: saurabhkumar8058@gmail.com,saurabhkumarr8058@gmail.com
       - key: APP_URL
         value: https://spendpilot-coral.vercel.app
       - key: CORS_ORIGIN

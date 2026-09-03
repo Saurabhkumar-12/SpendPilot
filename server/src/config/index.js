@@ -11,7 +11,12 @@ export const config = {
   // JWT Token Secrets
   jwtSecret: process.env.JWT_ACCESS_SECRET || process.env.JWT_SECRET,
   jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
-  adminEmail: (process.env.ADMIN_EMAIL || '').trim().toLowerCase(),
+  adminEmail: (process.env.ADMIN_EMAIL || 'saurabhkumar8058@gmail.com,saurabhkumarr8058@gmail.com').trim().toLowerCase(),
+  adminEmails: (process.env.ADMIN_EMAIL || 'saurabhkumar8058@gmail.com,saurabhkumarr8058@gmail.com')
+    .toLowerCase()
+    .split(',')
+    .map(e => e.trim())
+    .filter(Boolean),
   
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '24h',
   jwtRememberExpiresIn: process.env.JWT_REMEMBER_EXPIRES_IN || '30d',
