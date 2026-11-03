@@ -116,8 +116,8 @@ export function Insights() {
             
             <div className="space-y-3">
               {recommendations.length > 0 ? (
-                recommendations.map((rec, idx) => (
-                  <div key={idx} className="p-4 rounded-2xl bg-[#EEF9F2] dark:bg-[#071C16] border border-[#19B86A]/30 space-y-1">
+                recommendations.map((rec) => (
+                  <div key={rec.id || rec.heading || rec.title || (typeof rec === 'string' ? rec : rec.description)} className="p-4 rounded-2xl bg-[#EEF9F2] dark:bg-[#071C16] border border-[#19B86A]/30 space-y-1">
                     <span className="text-[10px] font-bold text-[#19B86A] dark:text-[#2ED47A] uppercase font-mono">{rec.title || 'SAVINGS SUGGESTION'}</span>
                     <h4 className="font-extrabold text-sm text-[#092B20] dark:text-[#F7FFF9]">{rec.heading}</h4>
                     <p className="text-xs text-[#53635B] dark:text-[#B8C9C0]">{rec.description}</p>

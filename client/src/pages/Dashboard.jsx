@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { 
   Plus, 
   Search, 
@@ -20,17 +20,46 @@ import {
   PiggyBank,
   PieChart as PieIcon
 } from 'lucide-react';
-import { 
-  ResponsiveContainer, 
-  AreaChart, 
-  Area, 
-  XAxis,
-  YAxis,
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip 
-} from 'recharts';
+const LazyAreaChart = lazy(() =>
+  import('recharts').then(module => ({
+    default: ({ data, currency }) => (
+      <module.ResponsiveContainer width="100%" height="100%">
+        <module.AreaChart data={data}>
+          <defs>
+            <linearGradient id="emeraldGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#19B86A" stopOpacity={0.4} />
+              <stop offset="95%" stopColor="#19B86A" stopOpacity={0.0} />
+            </linearGradient>
+          </defs>
+          <module.XAxis dataKey="month" stroke="#53635B" fontSize={11} tickLine={false} />
+          <module.YAxis stroke="#53635B" fontSize={11} tickLine={false} />
+          <module.Tooltip 
+            contentStyle={{ backgroundColor: '#092B20', borderRadius: '12px', border: 'none', color: '#FCFCF8', fontSize: '12px' }}
+            formatter={(value) => [`${currency} ${value.toLocaleString()}`, 'Amount']}
+          />
+          <module.Area type="monotone" dataKey="amount" stroke="#19B86A" strokeWidth={3} fillOpacity={1} fill="url(#emeraldGrad)" />
+        </module.AreaChart>
+      </module.ResponsiveContainer>
+    )
+  }))
+);
+
+const LazyPieChart = lazy(() =>
+  import('recharts').then(module => ({
+    default: ({ data, colors }) => (
+      <module.ResponsiveContainer width="100%" height="100%">
+        <module.PieChart>
+          <module.Pie data={data} cx="50%" cy="50%" innerRadius={50} outerRadius={70} paddingAngle={4} dataKey="value">
+            {data.map((entry, index) => (
+              <module.Cell key={entry.name || `cell-${entry.value}`} fill={colors[index % colors.length]} />
+            ))}
+          </module.Pie>
+          <module.Tooltip contentStyle={{ backgroundColor: '#092B20', borderRadius: '10px', color: '#FCFCF8', fontSize: '11px' }} />
+        </module.PieChart>
+      </module.ResponsiveContainer>
+    )
+  }))
+);
 
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
@@ -175,23 +204,13 @@ export function Dashboard({ onNavigate, onAddExpense }) {
 
           {hasTrend ? (
             <div className="h-64 w-full pt-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={monthlyTrend}>
-                  <defs>
-                    <linearGradient id="emeraldGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#19B86A" stopOpacity={0.4}/>
-                      <stop offset="95%" stopColor="#19B86A" stopOpacity={0.0}/>
-                    </linearGradient>
-                  </defs>
-                  <XAxis dataKey="month" stroke="#53635B" fontSize={11} tickLine={false} />
-                  <YAxis stroke="#53635B" fontSize={11} tickLine={false} />
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: '#092B20', borderRadius: '12px', border: 'none', color: '#FCFCF8', fontSize: '12px' }}
-                    formatter={(value) => [`${currency} ${value.toLocaleString()}`, 'Amount']}
-                  />
-                  <Area type="monotone" dataKey="amount" stroke="#19B86A" strokeWidth={3} fillOpacity={1} fill="url(#emeraldGrad)" />
-                </AreaChart>
-              </ResponsiveContainer>
+              <Suspense fallback={
+                <div className="h-64 w-full flex items-center justify-center">
+                  <div className="w-8 h-8 border-2 border-[#19B86A] border-t-transparent rounded-full animate-spin" />
+                </div>
+              }>
+                <LazyAreaChart data={monthlyTrend} currency={currency} />
+              </Suspense>
             </div>
           ) : (
             <div className="h-64 flex flex-col items-center justify-center border-2 border-dashed border-[#DDE5DF] dark:border-[#1A4337] rounded-2xl p-6 text-center space-y-3">
@@ -216,16 +235,13 @@ export function Dashboard({ onNavigate, onAddExpense }) {
 
           {pieData.length > 0 ? (
             <div className="h-48 w-full flex items-center justify-center">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie data={pieData} cx="50%" cy="50%" innerRadius={50} outerRadius={70} paddingAngle={4} dataKey="value">
-                    {pieData.map((_, index) => (
-                      <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip contentStyle={{ backgroundColor: '#092B20', borderRadius: '10px', color: '#FCFCF8', fontSize: '11px' }} />
-                </PieChart>
-              </ResponsiveContainer>
+              <Suspense fallback={
+                <div className="h-48 w-full flex items-center justify-center">
+                  <div className="w-6 h-6 border-2 border-[#19B86A] border-t-transparent rounded-full animate-spin" />
+                </div>
+              }>
+                <LazyPieChart data={pieData} colors={CHART_COLORS} />
+              </Suspense>
             </div>
           ) : (
             <div className="h-48 flex flex-col items-center justify-center border-2 border-dashed border-[#DDE5DF] dark:border-[#1A4337] rounded-2xl p-4 text-center space-y-2">

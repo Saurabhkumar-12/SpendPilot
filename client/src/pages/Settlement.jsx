@@ -114,9 +114,9 @@ export function Settlement() {
           />
         ) : (
           <div className="space-y-3">
-            {pending.map((item, idx) => (
+            {pending.map((item) => (
               <div
-                key={idx}
+                key={item.id || `${item.groupId}-${item.payerId}-${item.payeeId}`}
                 className="p-5 rounded-2xl bg-[#FCFCF8] dark:bg-[#0E2920] border border-[#DDE5DF] dark:border-[#1A4337] flex items-center justify-between shadow-sm"
               >
                 <div className="flex items-center gap-4">

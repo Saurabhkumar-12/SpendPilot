@@ -14,5 +14,85 @@
     "default_split_mode": "EQUAL",
     "notify_invites": 1,
     "notify_settlements": 1
+  },
+  {
+    "user_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "7f0ef2d4-56c0-43a0-a74b-cf82641749e9",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "88cf2ae2-a6d7-4636-bd93-3f6f67727b9a",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "1ad98bd5-70d1-4bf8-9057-72c66df8458c",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "6833d818-2c3c-4230-a14b-c668ef46bd1a",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "currency": "₹",
+    "theme": "dark",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
+  },
+  {
+    "user_id": "f8e89114-1d2e-4ac8-90e6-ddb33656fb7c",
+    "currency": "₹",
+    "theme": "light",
+    "default_split_mode": "EQUAL",
+    "notify_invites": 1,
+    "notify_settlements": 1
   }
 ]

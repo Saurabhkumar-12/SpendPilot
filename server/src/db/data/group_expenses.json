@@ -1,1 +1,67 @@
-[]
+[
+  {
+    "id": "77567c65-13b0-4336-bc10-63445d6a4025",
+    "group_id": "d553b126-b556-408e-9680-cdf539ee58d7",
+    "description": "Cab Booking",
+    "amount": 2000,
+    "category": "Travel",
+    "paid_by_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "created_by": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "split_type": "EQUAL",
+    "notes": "",
+    "date": "2026-11-03",
+    "created_at": "2026-11-03T08:32:34.880Z"
+  },
+  {
+    "id": "ed674897-dbe9-4674-8f98-c247b4f967f4",
+    "group_id": "1333edf3-f659-4d73-85ed-f0f620e4003e",
+    "description": "Cab Booking",
+    "amount": 2000,
+    "category": "Travel",
+    "paid_by_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "created_by": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "split_type": "EQUAL",
+    "notes": "",
+    "date": "2026-11-03",
+    "created_at": "2026-11-03T08:51:32.903Z"
+  },
+  {
+    "id": "7545f1cc-3c8a-4899-b154-b5d9495a3ea3",
+    "group_id": "8263cfbf-7888-4eaa-9f9e-3ab6cd8064b9",
+    "description": "Cab Booking",
+    "amount": 2000,
+    "category": "Travel",
+    "paid_by_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "created_by": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "split_type": "EQUAL",
+    "notes": "",
+    "date": "2026-11-03",
+    "created_at": "2026-11-03T08:59:16.253Z"
+  },
+  {
+    "id": "dde4b3a5-b157-4120-b0a7-4b7e73a47e12",
+    "group_id": "707c9c59-e48a-4054-b012-181f23b55720",
+    "description": "Cab Booking",
+    "amount": 2000,
+    "category": "Travel",
+    "paid_by_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "created_by": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "split_type": "EQUAL",
+    "notes": "",
+    "date": "2026-11-03",
+    "created_at": "2026-11-03T09:04:25.780Z"
+  },
+  {
+    "id": "73e3b007-0c5d-4bf1-a244-e7f6f07a79d0",
+    "group_id": "77e98314-7828-4a81-ac05-c53be02225b5",
+    "description": "Cab Booking",
+    "amount": 2000,
+    "category": "Travel",
+    "paid_by_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "created_by": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "split_type": "EQUAL",
+    "notes": "",
+    "date": "2026-11-03",
+    "created_at": "2026-11-03T09:08:31.266Z"
+  }
+]

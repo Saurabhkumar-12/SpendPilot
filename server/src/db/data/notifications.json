@@ -1,1 +1,52 @@
-[]
+[
+  {
+    "id": "fb98ab04-7e35-41ec-bcc0-c07ca9c9d041",
+    "user_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "title": "Settlement Completed",
+    "message": "QA Friend User settled 1000 with you in Goa Trip 2026.",
+    "type": "SETTLEMENT",
+    "is_read": 0,
+    "metadata": "{\"groupId\":\"d553b126-b556-408e-9680-cdf539ee58d7\",\"settlementId\":\"5ac55f33-5843-46da-b423-87d51a931f1e\"}",
+    "created_at": "2026-11-03T08:32:34.894Z"
+  },
+  {
+    "id": "4ba7c6d8-9af5-4b3b-9888-b43a93626683",
+    "user_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "title": "Settlement Completed",
+    "message": "QA Friend User settled 1000 with you in Goa Trip 2026.",
+    "type": "SETTLEMENT",
+    "is_read": 0,
+    "metadata": "{\"groupId\":\"1333edf3-f659-4d73-85ed-f0f620e4003e\",\"settlementId\":\"81773984-2bd0-4869-af74-e78493c04741\"}",
+    "created_at": "2026-11-03T08:51:32.913Z"
+  },
+  {
+    "id": "872a4b22-6168-4927-a8e8-e961378d0c40",
+    "user_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "title": "Settlement Completed",
+    "message": "QA Friend User settled 1000 with you in Goa Trip 2026.",
+    "type": "SETTLEMENT",
+    "is_read": 0,
+    "metadata": "{\"groupId\":\"8263cfbf-7888-4eaa-9f9e-3ab6cd8064b9\",\"settlementId\":\"c5867a2f-8896-424e-9dc3-f5e6257a48a4\"}",
+    "created_at": "2026-11-03T08:59:16.266Z"
+  },
+  {
+    "id": "2d2e6957-fce3-40e8-b889-ad141c7defa4",
+    "user_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "title": "Settlement Completed",
+    "message": "QA Friend User settled 1000 with you in Goa Trip 2026.",
+    "type": "SETTLEMENT",
+    "is_read": 0,
+    "metadata": "{\"groupId\":\"707c9c59-e48a-4054-b012-181f23b55720\",\"settlementId\":\"f41aeef2-1a12-48eb-bca3-8140427360ac\"}",
+    "created_at": "2026-11-03T09:04:25.790Z"
+  },
+  {
+    "id": "f5aa3a18-da94-408b-b647-1c7c0f03752e",
+    "user_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "title": "Settlement Completed",
+    "message": "QA Friend User settled 1000 with you in Goa Trip 2026.",
+    "type": "SETTLEMENT",
+    "is_read": 0,
+    "metadata": "{\"groupId\":\"77e98314-7828-4a81-ac05-c53be02225b5\",\"settlementId\":\"8ea7d4b0-d2b0-47bb-b153-ef20c3cdb63c\"}",
+    "created_at": "2026-11-03T09:08:31.276Z"
+  }
+]

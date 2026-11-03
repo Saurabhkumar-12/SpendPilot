@@ -8,10 +8,24 @@ const JWT_SECRET = config.jwtSecret;
 
 let io = null;
 
+function parseCookies(cookieHeader) {
+  if (!cookieHeader) return {};
+  const cookies = {};
+  cookieHeader.split(';').forEach(cookie => {
+    const parts = cookie.split('=');
+    const key = parts[0]?.trim();
+    if (key) {
+      cookies[key] = decodeURIComponent(parts.slice(1).join('=').trim());
+    }
+  });
+  return cookies;
+}
+
 export function initSocket(httpServer) {
   io = new Server(httpServer, {
     cors: {
       origin: '*',
+      credentials: true,
       methods: ['GET', 'POST', 'PUT', 'DELETE']
     }
   });
@@ -19,9 +33,16 @@ export function initSocket(httpServer) {
   // Socket Authentication Middleware
   io.use((socket, next) => {
     try {
-      const token = socket.handshake.auth?.token || 
-                    socket.handshake.headers?.authorization?.replace('Bearer ', '') ||
-                    socket.handshake.query?.token;
+      let token = socket.handshake.auth?.token || 
+                  socket.handshake.headers?.authorization?.replace('Bearer ', '') ||
+                  socket.handshake.query?.token;
+
+      if (!token && socket.handshake.headers?.cookie) {
+        const cookies = parseCookies(socket.handshake.headers.cookie);
+        if (cookies.spendpilot_token) {
+          token = cookies.spendpilot_token;
+        }
+      }
 
       if (!token) {
         return next(new Error('Authentication failed. Token missing.'));

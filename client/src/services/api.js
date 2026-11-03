@@ -5,11 +5,8 @@ const configuredApiUrl = String(import.meta.env.VITE_API_URL || '')
 const API_BASE_URL = configuredApiUrl || 'http://localhost:5000/api/v1';
 
 async function request(endpoint, options = {}) {
-  const token = localStorage.getItem('spendpilot_token');
-
   const headers = {
     'Content-Type': 'application/json',
-    ...(token ? { Authorization: `Bearer ${token}` } : {}),
     ...options.headers
   };
 
@@ -18,17 +15,16 @@ async function request(endpoint, options = {}) {
   }
 
   const config = {
+    credentials: 'include',
     ...options,
     headers
   };
 
   try {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-    const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      if (response.status === 401 && !endpoint.includes('/auth/login')) {
-        localStorage.removeItem('spendpilot_token');
+      if (response.status === 401 && !endpoint.includes('/auth/login') && !endpoint.includes('/profile')) {
         localStorage.removeItem('spendpilot_user');
         window.location.href = '/login';
       }
@@ -37,9 +33,13 @@ async function request(endpoint, options = {}) {
         err.status = 429;
         throw err;
       }
-      throw new Error(data.message || data.error || 'Request failed.');
+      const errData = await response.json().catch(() => ({}));
+      const error = new Error(errData.message || errData.error || `Request failed with status ${response.status}`);
+      error.status = response.status;
+      throw error;
     }
 
+    const data = await response.json().catch(() => ({}));
     return data;
   } catch (error) {
     if (error.name === 'TypeError' || (error.message && (error.message.includes('fetch') || error.message.includes('NetworkError')))) {

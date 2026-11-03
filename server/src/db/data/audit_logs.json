@@ -25,5 +25,383 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
     "details": "{\"email\":\"2k23.ece2312657@gmail.com\"}",
     "created_at": "2026-08-09T17:42:13.763Z"
+  },
+  {
+    "id": "5fc8fa84-f4af-4e33-801c-558632c4fc4c",
+    "user_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"qa_test_1793694754673@spendpilot.com\"}",
+    "created_at": "2026-11-03T08:32:34.754Z"
+  },
+  {
+    "id": "7e799eac-1169-47c1-9255-b2b34bbc6c29",
+    "user_id": "7f0ef2d4-56c0-43a0-a74b-cf82641749e9",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"friend_1793694754756@spendpilot.com\"}",
+    "created_at": "2026-11-03T08:32:34.828Z"
+  },
+  {
+    "id": "bc290802-bbcc-49c9-a5ec-c07061cdb919",
+    "user_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "action": "PREFERENCES_UPDATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-11-03T08:32:34.851Z"
+  },
+  {
+    "id": "43efc658-38f9-4a48-9e21-25cc80092e98",
+    "user_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "action": "PERSONAL_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"ea6c4f5b-eb15-47d8-9915-d24040f71e86\",\"amount\":450}",
+    "created_at": "2026-11-03T08:32:34.858Z"
+  },
+  {
+    "id": "56d0d217-2287-4fcc-9a6d-0527ca9bb64c",
+    "user_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "action": "CUSTOM_CATEGORY_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"categoryName\":\"Gadgets\"}",
+    "created_at": "2026-11-03T08:32:34.867Z"
+  },
+  {
+    "id": "0d09b76e-a0b0-4d1b-85e9-3c9bb968b3fc",
+    "user_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "action": "GROUP_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"groupId\":\"d553b126-b556-408e-9680-cdf539ee58d7\",\"name\":\"Goa Trip 2026\"}",
+    "created_at": "2026-11-03T08:32:34.874Z"
+  },
+  {
+    "id": "3d37e9fa-979a-43f8-b998-fad27f9ad02d",
+    "user_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "action": "GROUP_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"77567c65-13b0-4336-bc10-63445d6a4025\",\"groupId\":\"d553b126-b556-408e-9680-cdf539ee58d7\",\"amount\":2000}",
+    "created_at": "2026-11-03T08:32:34.883Z"
+  },
+  {
+    "id": "8abba22a-d53a-467c-930a-c7dedee4ece4",
+    "user_id": "7f0ef2d4-56c0-43a0-a74b-cf82641749e9",
+    "action": "SETTLEMENT_RECORDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"settlementId\":\"5ac55f33-5843-46da-b423-87d51a931f1e\",\"amount\":1000}",
+    "created_at": "2026-11-03T08:32:34.895Z"
+  },
+  {
+    "id": "ef619d39-5db6-4c1d-89be-954f20cfdf1e",
+    "user_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"qa_test_1793695892668@spendpilot.com\"}",
+    "created_at": "2026-11-03T08:51:32.762Z"
+  },
+  {
+    "id": "1ed886a8-8492-4f12-b4c9-3a82e64e47ec",
+    "user_id": "88cf2ae2-a6d7-4636-bd93-3f6f67727b9a",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"friend_1793695892764@spendpilot.com\"}",
+    "created_at": "2026-11-03T08:51:32.838Z"
+  },
+  {
+    "id": "c7771d46-d83f-49a0-ab24-97a5bc162893",
+    "user_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "action": "PREFERENCES_UPDATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-11-03T08:51:32.873Z"
+  },
+  {
+    "id": "f8b76870-7546-4d23-9422-a9a977161446",
+    "user_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "action": "PERSONAL_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"f10aa2fb-87b1-413c-bf1b-6f7ffc93e16e\",\"amount\":450}",
+    "created_at": "2026-11-03T08:51:32.881Z"
+  },
+  {
+    "id": "4d8bb709-0bbd-474f-94e7-cd11526bea84",
+    "user_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "action": "CUSTOM_CATEGORY_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"categoryName\":\"Gadgets\"}",
+    "created_at": "2026-11-03T08:51:32.893Z"
+  },
+  {
+    "id": "c9c7744c-b018-4423-8876-ecb74c75097d",
+    "user_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "action": "GROUP_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"groupId\":\"1333edf3-f659-4d73-85ed-f0f620e4003e\",\"name\":\"Goa Trip 2026\"}",
+    "created_at": "2026-11-03T08:51:32.898Z"
+  },
+  {
+    "id": "24a82fad-7ecb-41bf-8261-0d265694320e",
+    "user_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "action": "GROUP_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"ed674897-dbe9-4674-8f98-c247b4f967f4\",\"groupId\":\"1333edf3-f659-4d73-85ed-f0f620e4003e\",\"amount\":2000}",
+    "created_at": "2026-11-03T08:51:32.904Z"
+  },
+  {
+    "id": "e7f05eac-d1fb-47e0-8985-2c515208f8da",
+    "user_id": "88cf2ae2-a6d7-4636-bd93-3f6f67727b9a",
+    "action": "SETTLEMENT_RECORDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"settlementId\":\"81773984-2bd0-4869-af74-e78493c04741\",\"amount\":1000}",
+    "created_at": "2026-11-03T08:51:32.913Z"
+  },
+  {
+    "id": "d4ac418d-09e0-4cae-b4f5-e3eb312d21f5",
+    "user_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"qa_test_1793696356029@spendpilot.com\"}",
+    "created_at": "2026-11-03T08:59:16.121Z"
+  },
+  {
+    "id": "ae21c1b4-9313-4ec4-99e4-931720c061f6",
+    "user_id": "1ad98bd5-70d1-4bf8-9057-72c66df8458c",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"friend_1793696356124@spendpilot.com\"}",
+    "created_at": "2026-11-03T08:59:16.194Z"
+  },
+  {
+    "id": "88c9d860-54d7-40de-9e09-8ae7ac558ad6",
+    "user_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "action": "PREFERENCES_UPDATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-11-03T08:59:16.215Z"
+  },
+  {
+    "id": "2541303e-76e7-4b9a-8946-408c3c00393a",
+    "user_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "action": "PERSONAL_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"e3fe894e-0b94-4e95-86ac-392dbe26876f\",\"amount\":450}",
+    "created_at": "2026-11-03T08:59:16.221Z"
+  },
+  {
+    "id": "485a2e4a-4762-4602-a0e0-804c24a6609f",
+    "user_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "action": "CUSTOM_CATEGORY_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"categoryName\":\"Gadgets\"}",
+    "created_at": "2026-11-03T08:59:16.242Z"
+  },
+  {
+    "id": "0858a1c8-1116-4dea-9f8a-f1ae7d701d9a",
+    "user_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "action": "GROUP_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"groupId\":\"8263cfbf-7888-4eaa-9f9e-3ab6cd8064b9\",\"name\":\"Goa Trip 2026\"}",
+    "created_at": "2026-11-03T08:59:16.248Z"
+  },
+  {
+    "id": "56ad3a7c-692f-4d73-8d40-c9d25ead69e8",
+    "user_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "action": "GROUP_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"7545f1cc-3c8a-4899-b154-b5d9495a3ea3\",\"groupId\":\"8263cfbf-7888-4eaa-9f9e-3ab6cd8064b9\",\"amount\":2000}",
+    "created_at": "2026-11-03T08:59:16.255Z"
+  },
+  {
+    "id": "dd695609-7d98-48c5-b253-c1988ba09e09",
+    "user_id": "1ad98bd5-70d1-4bf8-9057-72c66df8458c",
+    "action": "SETTLEMENT_RECORDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"settlementId\":\"c5867a2f-8896-424e-9dc3-f5e6257a48a4\",\"amount\":1000}",
+    "created_at": "2026-11-03T08:59:16.266Z"
+  },
+  {
+    "id": "35fb3cc8-4110-4a01-84b3-235a49034691",
+    "user_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"qa_test_1793696665584@spendpilot.com\"}",
+    "created_at": "2026-11-03T09:04:25.670Z"
+  },
+  {
+    "id": "0a49260b-6415-4c1e-879e-e7a8d6a85c13",
+    "user_id": "6833d818-2c3c-4230-a14b-c668ef46bd1a",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"friend_1793696665672@spendpilot.com\"}",
+    "created_at": "2026-11-03T09:04:25.736Z"
+  },
+  {
+    "id": "40213e99-5642-415f-b4c8-6b675aea476b",
+    "user_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "action": "PREFERENCES_UPDATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-11-03T09:04:25.756Z"
+  },
+  {
+    "id": "9c310a5e-5b23-42f2-ae49-021103dfab3d",
+    "user_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "action": "PERSONAL_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"13d71c9d-5bb1-44d9-acd1-689aea6fa72d\",\"amount\":450}",
+    "created_at": "2026-11-03T09:04:25.761Z"
+  },
+  {
+    "id": "a664b776-7a8a-4a54-9094-1f03e906b239",
+    "user_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "action": "CUSTOM_CATEGORY_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"categoryName\":\"Gadgets\"}",
+    "created_at": "2026-11-03T09:04:25.770Z"
+  },
+  {
+    "id": "b31d23d5-df3d-42c1-8725-65c5ef9e6ff8",
+    "user_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "action": "GROUP_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"groupId\":\"707c9c59-e48a-4054-b012-181f23b55720\",\"name\":\"Goa Trip 2026\"}",
+    "created_at": "2026-11-03T09:04:25.775Z"
+  },
+  {
+    "id": "61e1b079-078d-46f7-8c00-283d8e9e81c0",
+    "user_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "action": "GROUP_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"dde4b3a5-b157-4120-b0a7-4b7e73a47e12\",\"groupId\":\"707c9c59-e48a-4054-b012-181f23b55720\",\"amount\":2000}",
+    "created_at": "2026-11-03T09:04:25.782Z"
+  },
+  {
+    "id": "e4022603-916d-4dbe-a66b-1c983273b91d",
+    "user_id": "6833d818-2c3c-4230-a14b-c668ef46bd1a",
+    "action": "SETTLEMENT_RECORDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"settlementId\":\"f41aeef2-1a12-48eb-bca3-8140427360ac\",\"amount\":1000}",
+    "created_at": "2026-11-03T09:04:25.791Z"
+  },
+  {
+    "id": "f1dc392a-d007-49b8-a699-ac5141c03f90",
+    "user_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"qa_test_1793696911066@spendpilot.com\"}",
+    "created_at": "2026-11-03T09:08:31.152Z"
+  },
+  {
+    "id": "59e6c146-3968-4f73-8164-0eda9777e0fb",
+    "user_id": "f8e89114-1d2e-4ac8-90e6-ddb33656fb7c",
+    "action": "USER_REGISTERED_AND_LOGGED_IN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"email\":\"friend_1793696911155@spendpilot.com\"}",
+    "created_at": "2026-11-03T09:08:31.227Z"
+  },
+  {
+    "id": "bd87d0bc-3b4c-4881-a82d-ac1808e895e2",
+    "user_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "action": "PREFERENCES_UPDATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{}",
+    "created_at": "2026-11-03T09:08:31.244Z"
+  },
+  {
+    "id": "f65754e2-117a-469a-a4be-36e9c59f9c28",
+    "user_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "action": "PERSONAL_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"820cfe27-9b2a-4d4c-a9cb-6597495300c2\",\"amount\":450}",
+    "created_at": "2026-11-03T09:08:31.248Z"
+  },
+  {
+    "id": "ae018933-9b6e-4e65-9db1-64278249f63c",
+    "user_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "action": "CUSTOM_CATEGORY_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"categoryName\":\"Gadgets\"}",
+    "created_at": "2026-11-03T09:08:31.256Z"
+  },
+  {
+    "id": "f71974cd-5944-4081-8f96-0e792b9b6247",
+    "user_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "action": "GROUP_CREATED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"groupId\":\"77e98314-7828-4a81-ac05-c53be02225b5\",\"name\":\"Goa Trip 2026\"}",
+    "created_at": "2026-11-03T09:08:31.261Z"
+  },
+  {
+    "id": "b686a7ba-da63-4285-9597-44c63ae133c8",
+    "user_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "action": "GROUP_EXPENSE_ADDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"expenseId\":\"73e3b007-0c5d-4bf1-a244-e7f6f07a79d0\",\"groupId\":\"77e98314-7828-4a81-ac05-c53be02225b5\",\"amount\":2000}",
+    "created_at": "2026-11-03T09:08:31.267Z"
+  },
+  {
+    "id": "f4d4a09e-05a5-4f3d-a085-6c57fbcc3a83",
+    "user_id": "f8e89114-1d2e-4ac8-90e6-ddb33656fb7c",
+    "action": "SETTLEMENT_RECORDED",
+    "ip_address": "127.0.0.1",
+    "user_agent": "node",
+    "details": "{\"settlementId\":\"8ea7d4b0-d2b0-47bb-b153-ef20c3cdb63c\",\"amount\":1000}",
+    "created_at": "2026-11-03T09:08:31.277Z"
+  },
+  {
+    "id": "acb641e0-d0c4-4076-b0c3-dbdda3c28875",
+    "user_id": "3e26ed6a-1b9b-44b4-92ec-9de257722bef",
+    "action": "USER_LOGIN",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "details": "{\"rememberMe\":true}",
+    "created_at": "2026-11-03T09:15:06.383Z"
+  },
+  {
+    "id": "cad4392d-b014-4152-9847-e6926e71f53f",
+    "user_id": "3e26ed6a-1b9b-44b4-92ec-9de257722bef",
+    "action": "USER_LOGOUT",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "details": "{}",
+    "created_at": "2026-11-03T09:15:38.593Z"
   }
 ]

@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "id": "99f45c5d-ff23-4d14-aff8-ff9bacf43e9e",
+    "group_id": "d553b126-b556-408e-9680-cdf539ee58d7",
+    "user_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "role": "ADMIN",
+    "joined_at": "2026-11-03T08:32:34.872Z"
+  },
+  {
+    "id": "test-gm-2",
+    "group_id": "d553b126-b556-408e-9680-cdf539ee58d7",
+    "user_id": "7f0ef2d4-56c0-43a0-a74b-cf82641749e9",
+    "role": "MEMBER",
+    "joined_at": "2026-11-03T08:32:34.876Z"
+  },
+  {
+    "id": "2ce29541-123b-44da-a4c0-f4d58cd40646",
+    "group_id": "1333edf3-f659-4d73-85ed-f0f620e4003e",
+    "user_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "role": "ADMIN",
+    "joined_at": "2026-11-03T08:51:32.897Z"
+  },
+  {
+    "id": "test-gm-2",
+    "group_id": "1333edf3-f659-4d73-85ed-f0f620e4003e",
+    "user_id": "88cf2ae2-a6d7-4636-bd93-3f6f67727b9a",
+    "role": "MEMBER",
+    "joined_at": "2026-11-03T08:51:32.899Z"
+  },
+  {
+    "id": "9771e07f-f9b5-46c2-bc85-7037f8c47476",
+    "group_id": "8263cfbf-7888-4eaa-9f9e-3ab6cd8064b9",
+    "user_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "role": "ADMIN",
+    "joined_at": "2026-11-03T08:59:16.247Z"
+  },
+  {
+    "id": "test-gm-2",
+    "group_id": "8263cfbf-7888-4eaa-9f9e-3ab6cd8064b9",
+    "user_id": "1ad98bd5-70d1-4bf8-9057-72c66df8458c",
+    "role": "MEMBER",
+    "joined_at": "2026-11-03T08:59:16.249Z"
+  },
+  {
+    "id": "685db9a7-c622-4c05-9eac-cbd6cf913bd1",
+    "group_id": "707c9c59-e48a-4054-b012-181f23b55720",
+    "user_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "role": "ADMIN",
+    "joined_at": "2026-11-03T09:04:25.774Z"
+  },
+  {
+    "id": "test-gm-2",
+    "group_id": "707c9c59-e48a-4054-b012-181f23b55720",
+    "user_id": "6833d818-2c3c-4230-a14b-c668ef46bd1a",
+    "role": "MEMBER",
+    "joined_at": "2026-11-03T09:04:25.776Z"
+  },
+  {
+    "id": "2663645b-e637-4102-9619-9786392a5df3",
+    "group_id": "77e98314-7828-4a81-ac05-c53be02225b5",
+    "user_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "role": "ADMIN",
+    "joined_at": "2026-11-03T09:08:31.260Z"
+  },
+  {
+    "id": "test-gm-2",
+    "group_id": "77e98314-7828-4a81-ac05-c53be02225b5",
+    "user_id": "f8e89114-1d2e-4ac8-90e6-ddb33656fb7c",
+    "role": "MEMBER",
+    "joined_at": "2026-11-03T09:08:31.262Z"
+  }
+]

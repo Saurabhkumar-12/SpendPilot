@@ -2,15 +2,36 @@ import jwt from 'jsonwebtoken';
 import { config } from '../config/index.js';
 import { db } from '../db/database.js';
 
+function parseCookies(cookieHeader) {
+  if (!cookieHeader) return {};
+  const cookies = {};
+  cookieHeader.split(';').forEach(cookie => {
+    const parts = cookie.split('=');
+    const key = parts[0]?.trim();
+    if (key) {
+      cookies[key] = decodeURIComponent(parts.slice(1).join('=').trim());
+    }
+  });
+  return cookies;
+}
+
 export function authGuard(req, res, next) {
+  let token = null;
+
   const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ success: false, error: 'Access denied. Token missing.' });
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    token = authHeader.slice('Bearer '.length).trim();
+  } else if (req.cookies && req.cookies.spendpilot_token) {
+    token = req.cookies.spendpilot_token;
+  } else if (req.headers.cookie) {
+    const cookies = parseCookies(req.headers.cookie);
+    if (cookies.spendpilot_token) {
+      token = cookies.spendpilot_token;
+    }
   }
 
-  const token = authHeader.slice('Bearer '.length).trim();
   if (!token) {
-    return res.status(401).json({ success: false, error: 'Unauthorized' });
+    return res.status(401).json({ success: false, error: 'Access denied. Token missing.' });
   }
   try {
     const decoded = jwt.verify(token, config.jwtSecret);

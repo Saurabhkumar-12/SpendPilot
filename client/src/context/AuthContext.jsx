@@ -12,30 +12,31 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('spendpilot_token');
-    if (token) {
-      api.getProfile()
-        .then(res => {
-          if (res.success) {
-            setUser(res.data);
-            localStorage.setItem('spendpilot_user', JSON.stringify(res.data));
-          }
-        })
-        .catch(() => {
-          localStorage.removeItem('spendpilot_token');
-          localStorage.removeItem('spendpilot_user');
+    api.getProfile()
+      .then(res => {
+        if (res.success && res.data) {
+          setUser(res.data);
+          localStorage.setItem('spendpilot_user', JSON.stringify(res.data));
+        } else {
           setUser(null);
-        })
-        .finally(() => setLoading(false));
-    } else {
-      setLoading(false);
-    }
+          localStorage.removeItem('spendpilot_user');
+        }
+      })
+      .catch(() => {
+        setUser(null);
+        localStorage.removeItem('spendpilot_user');
+      })
+      .finally(() => setLoading(false));
   }, []);
 
-  const loginUser = (token, userData) => {
-    localStorage.setItem('spendpilot_token', token);
-    localStorage.setItem('spendpilot_user', JSON.stringify(userData));
-    setUser(userData);
+  const loginUser = (tokenOrUser, maybeUser) => {
+    // Auth token is securely handled via server-issued HttpOnly cookies.
+    // Only non-sensitive user display metadata is kept in web storage.
+    const userData = maybeUser || tokenOrUser;
+    if (userData) {
+      localStorage.setItem('spendpilot_user', JSON.stringify(userData));
+      setUser(userData);
+    }
   };
 
   const logoutUser = async () => {
@@ -44,7 +45,6 @@ export function AuthProvider({ children }) {
     } catch (e) {
       // ignore network errors on logout
     }
-    localStorage.removeItem('spendpilot_token');
     localStorage.removeItem('spendpilot_user');
     setUser(null);
   };

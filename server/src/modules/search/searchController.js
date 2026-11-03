@@ -24,9 +24,9 @@ export const searchController = {
 
       // Search User's Groups
       const memberRecords = db.find('group_members', m => m.user_id === userId);
-      const groupIds = memberRecords.map(m => m.group_id);
+      const groupIds = new Set(memberRecords.map(m => m.group_id));
       const groups = db.find('groups', g =>
-        groupIds.includes(g.id) && (
+        groupIds.has(g.id) && (
           g.name.toLowerCase().includes(query) ||
           g.group_type.toLowerCase().includes(query) ||
           (g.description && g.description.toLowerCase().includes(query))
@@ -35,7 +35,7 @@ export const searchController = {
 
       // Search Group Expenses
       const groupExpenses = db.find('group_expenses', e =>
-        groupIds.includes(e.group_id) && (
+        groupIds.has(e.group_id) && (
           e.description.toLowerCase().includes(query) ||
           e.category.toLowerCase().includes(query) ||
           e.amount.toString().includes(query)

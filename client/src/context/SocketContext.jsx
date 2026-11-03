@@ -15,8 +15,7 @@ export function SocketProvider({ children }) {
   const processedEventIds = useRef(new Set());
 
   useEffect(() => {
-    const token = localStorage.getItem('spendpilot_token');
-    if (!user || !token) {
+    if (!user) {
       if (socketRef.current) {
         socketRef.current.disconnect();
         socketRef.current = null;
@@ -27,7 +26,7 @@ export function SocketProvider({ children }) {
 
     const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
     const socket = io(socketUrl, {
-      auth: { token },
+      withCredentials: true,
       transports: ['websocket', 'polling'],
       reconnection: true,
       reconnectionAttempts: 10,

@@ -1,1 +1,57 @@
-[]
+[
+  {
+    "id": "ea6c4f5b-eb15-47d8-9915-d24040f71e86",
+    "user_id": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-11-03",
+    "payment_method": "UPI",
+    "created_at": "2026-11-03T08:32:34.857Z",
+    "updated_at": "2026-11-03T08:32:34.857Z"
+  },
+  {
+    "id": "f10aa2fb-87b1-413c-bf1b-6f7ffc93e16e",
+    "user_id": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-11-03",
+    "payment_method": "UPI",
+    "created_at": "2026-11-03T08:51:32.881Z",
+    "updated_at": "2026-11-03T08:51:32.881Z"
+  },
+  {
+    "id": "e3fe894e-0b94-4e95-86ac-392dbe26876f",
+    "user_id": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-11-03",
+    "payment_method": "UPI",
+    "created_at": "2026-11-03T08:59:16.220Z",
+    "updated_at": "2026-11-03T08:59:16.220Z"
+  },
+  {
+    "id": "13d71c9d-5bb1-44d9-acd1-689aea6fa72d",
+    "user_id": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-11-03",
+    "payment_method": "UPI",
+    "created_at": "2026-11-03T09:04:25.761Z",
+    "updated_at": "2026-11-03T09:04:25.761Z"
+  },
+  {
+    "id": "820cfe27-9b2a-4d4c-a9cb-6597495300c2",
+    "user_id": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "amount": 450,
+    "category": "Food",
+    "description": "Team Lunch",
+    "date": "2026-11-03",
+    "payment_method": "UPI",
+    "created_at": "2026-11-03T09:08:31.247Z",
+    "updated_at": "2026-11-03T09:08:31.247Z"
+  }
+]

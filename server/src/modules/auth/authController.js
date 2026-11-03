@@ -6,6 +6,23 @@ import { config } from '../../config/index.js';
 import { logAuditAction } from '../../middleware/auditLogger.js';
 import { sendPasswordResetEmail, sendPasswordChangedConfirmationEmail, sendVerificationEmail } from '../../services/emailService.js';
 
+const COOKIE_NAME = 'spendpilot_token';
+
+const getCookieOptions = (maxAgeMs) => ({
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+  path: '/',
+  maxAge: maxAgeMs
+});
+
+const getClearCookieOptions = () => ({
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+  path: '/'
+});
+
 export const authController = {
   // 1. User Registration
   async register(req, res, next) {
@@ -86,6 +103,8 @@ export const authController = {
         userName: newUser.name,
         verificationToken: uniqueRecoveryPin
       }).catch(err => console.warn(`⚠️ [VERIFICATION EMAIL NOTICE]: ${err.message}`));
+
+      res.cookie(COOKIE_NAME, token, getCookieOptions(24 * 60 * 60 * 1000));
 
       return res.status(201).json({
         success: true,
@@ -178,6 +197,9 @@ export const authController = {
 
       logAuditAction(user.id, 'USER_LOGIN', req, { rememberMe: !!rememberMe });
 
+      const cookieMaxAge = (rememberMe ? 30 : 1) * 24 * 60 * 60 * 1000;
+      res.cookie(COOKIE_NAME, token, getCookieOptions(cookieMaxAge));
+
       return res.json({
         success: true,
         token,
@@ -225,6 +247,8 @@ export const authController = {
         config.jwtSecret,
         { expiresIn: config.jwtExpiresIn }
       );
+
+      res.cookie(COOKIE_NAME, newToken, getCookieOptions(24 * 60 * 60 * 1000));
 
       return res.json({ success: true, token: newToken });
     } catch (err) {
@@ -472,6 +496,7 @@ export const authController = {
       if (req.user.sessionId) {
         db.update('sessions', s => s.id === req.user.sessionId, { is_revoked: 1 });
       }
+      res.clearCookie(COOKIE_NAME, getClearCookieOptions());
       logAuditAction(req.user.id, 'USER_LOGOUT', req);
       return res.json({ success: true, message: 'Logged out successfully.' });
     } catch (err) {
@@ -483,6 +508,7 @@ export const authController = {
   async logoutAllDevices(req, res, next) {
     try {
       db.update('sessions', s => s.user_id === req.user.id, { is_revoked: 1 });
+      res.clearCookie(COOKIE_NAME, getClearCookieOptions());
       logAuditAction(req.user.id, 'USER_LOGOUT_ALL_DEVICES', req);
       return res.json({ success: true, message: 'All active sessions have been revoked across all devices.' });
     } catch (err) {
@@ -506,6 +532,7 @@ export const authController = {
       db.remove('sessions', s => s.user_id === userId);
       db.remove('users', u => u.id === userId);
 
+      res.clearCookie(COOKIE_NAME, getClearCookieOptions());
       logAuditAction(userId, 'ACCOUNT_DELETED', req);
 
       return res.json({ success: true, message: 'Your account and associated data have been permanently deleted.' });

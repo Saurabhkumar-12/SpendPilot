@@ -609,8 +609,8 @@ export function GroupDetails({ groupId, onBack }) {
           {suggestedSettlements.length === 0 ? (
             <p className="text-xs text-[#53635B] dark:text-[#B8C9C0] text-center py-6">All debts in this group are currently settled!</p>
           ) : (
-            suggestedSettlements.map((s, idx) => (
-              <div key={idx} className="p-4 rounded-2xl bg-[#EEF9F2] dark:bg-[#071C16] border border-[#19B86A]/30 flex items-center justify-between font-bold text-sm text-[#092B20] dark:text-[#F7FFF9]">
+            suggestedSettlements.map((s) => (
+              <div key={s.id || `${s.payerId || s.fromName}-${s.payeeId || s.toName}`} className="p-4 rounded-2xl bg-[#EEF9F2] dark:bg-[#071C16] border border-[#19B86A]/30 flex items-center justify-between font-bold text-sm text-[#092B20] dark:text-[#F7FFF9]">
                 <span>{s.fromName || s.payerName} owes {s.toName || s.payeeName}</span>
                 <span className="text-[#19B86A] dark:text-[#2ED47A] font-extrabold">{currency}{s.amount.toLocaleString()}</span>
               </div>

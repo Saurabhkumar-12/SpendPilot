@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "id": "d553b126-b556-408e-9680-cdf539ee58d7",
+    "name": "Goa Trip 2026",
+    "description": "Vacation expenses",
+    "group_type": "Trip",
+    "created_by": "a854c1ec-73b0-477c-a6fa-b4bebb93b088",
+    "created_at": "2026-11-03T08:32:34.871Z",
+    "updated_at": "2026-11-03T08:32:34.871Z"
+  },
+  {
+    "id": "1333edf3-f659-4d73-85ed-f0f620e4003e",
+    "name": "Goa Trip 2026",
+    "description": "Vacation expenses",
+    "group_type": "Trip",
+    "created_by": "499d00ff-0431-478c-9c32-86d8ad6a2871",
+    "created_at": "2026-11-03T08:51:32.897Z",
+    "updated_at": "2026-11-03T08:51:32.897Z"
+  },
+  {
+    "id": "8263cfbf-7888-4eaa-9f9e-3ab6cd8064b9",
+    "name": "Goa Trip 2026",
+    "description": "Vacation expenses",
+    "group_type": "Trip",
+    "created_by": "d1bd4f3a-de61-4459-9204-79fd5a617417",
+    "created_at": "2026-11-03T08:59:16.246Z",
+    "updated_at": "2026-11-03T08:59:16.246Z"
+  },
+  {
+    "id": "707c9c59-e48a-4054-b012-181f23b55720",
+    "name": "Goa Trip 2026",
+    "description": "Vacation expenses",
+    "group_type": "Trip",
+    "created_by": "712b3ccc-af06-4751-80a4-8eb2287be972",
+    "created_at": "2026-11-03T09:04:25.774Z",
+    "updated_at": "2026-11-03T09:04:25.774Z"
+  },
+  {
+    "id": "77e98314-7828-4a81-ac05-c53be02225b5",
+    "name": "Goa Trip 2026",
+    "description": "Vacation expenses",
+    "group_type": "Trip",
+    "created_by": "df5cae7a-7d07-47e9-a0c5-81326a408353",
+    "created_at": "2026-11-03T09:08:31.260Z",
+    "updated_at": "2026-11-03T09:08:31.260Z"
+  }
+]

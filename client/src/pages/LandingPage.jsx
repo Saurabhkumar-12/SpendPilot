@@ -21,7 +21,7 @@ import {
   Lock,
   Compass
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion';
 import { PublicHeader } from '../components/PublicHeader';
 import { ModalPages } from '../components/ModalPages';
 import { Logo, LogoMark } from '../components/Logo';
@@ -70,7 +70,8 @@ export function LandingPage({ onNavigate }) {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F7F6F0] text-[#161A18] font-sans selection:bg-[#19B86A] selection:text-white">
+    <LazyMotion features={domAnimation}>
+      <div className="min-h-screen bg-[#F7F6F0] text-[#161A18] font-sans selection:bg-[#19B86A] selection:text-white">
       
       {/* PUBLIC NAVBAR */}
       <PublicHeader 
@@ -94,7 +95,7 @@ export function LandingPage({ onNavigate }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left Content Column */}
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -143,10 +144,10 @@ export function LandingPage({ onNavigate }) {
                 <ShieldCheck className="w-4 h-4 text-[#19B86A]" />
                 <span>Instant Setup</span>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Right Graphic Composition */}
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.15 }}
@@ -181,7 +182,7 @@ export function LandingPage({ onNavigate }) {
                 </div>
 
                 {/* Staggered Floating Cards */}
-                <motion.div 
+                <m.div 
                   animate={{ y: [0, -6, 0] }} 
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute top-12 right-4 md:right-8 bg-white border border-[#DDE5DF] rounded-2xl p-4 shadow-xl max-w-[200px]"
@@ -189,9 +190,9 @@ export function LandingPage({ onNavigate }) {
                   <p className="text-[11px] font-bold text-[#53635B]">Monthly Spending</p>
                   <p className="text-lg font-extrabold text-[#092B20] font-display">₹24,850</p>
                   <span className="text-[10px] font-bold text-[#19B86A]">↓ 12.4% vs last month</span>
-                </motion.div>
+                </m.div>
 
-                <motion.div 
+                <m.div 
                   animate={{ y: [0, 6, 0] }} 
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute bottom-8 left-4 md:left-8 bg-[#092B20] text-[#FCFCF8] rounded-2xl p-4 shadow-xl border border-[#1A4337] max-w-[210px]"
@@ -202,7 +203,7 @@ export function LandingPage({ onNavigate }) {
                   </div>
                   <p className="text-xs font-medium text-[#B8C9C0]">You receive</p>
                   <p className="text-base font-extrabold text-[#FCFCF8] font-display">₹2,450</p>
-                </motion.div>
+                </m.div>
 
                 <div className="p-4 rounded-2xl bg-[#F7F6F0] border border-[#DDE5DF] flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -217,7 +218,7 @@ export function LandingPage({ onNavigate }) {
                   <span className="text-xs font-bold text-[#19B86A] font-mono">86 / 100</span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
           </div>
         </div>
@@ -620,7 +621,7 @@ export function LandingPage({ onNavigate }) {
 
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="card-editorial bg-[#F7F6F0] overflow-hidden">
+              <div key={faq.q} className="card-editorial bg-[#F7F6F0] overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full p-6 text-left flex items-center justify-between font-extrabold text-base text-[#092B20] hover:text-[#19B86A] transition"
@@ -630,14 +631,14 @@ export function LandingPage({ onNavigate }) {
                 </button>
                 <AnimatePresence>
                   {openFaq === idx && (
-                    <motion.div
+                    <m.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       className="px-6 pb-6 text-sm text-[#53635B] leading-relaxed border-t border-[#DDE5DF] pt-4"
                     >
                       {faq.a}
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
               </div>
@@ -710,7 +711,7 @@ export function LandingPage({ onNavigate }) {
           </div>
         </div>
       </footer>
-
     </div>
+  </LazyMotion>
   );
 }
